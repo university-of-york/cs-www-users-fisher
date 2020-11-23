@@ -1,0 +1,24 @@
+static void prhtmlchar(int ch)
+  { switch (ch)
+      { default:
+	    putchar(ch);
+	    break;
+
+	case '<':
+	    printf("&lt;");
+	    break;
+
+	case '&':
+	    printf("&amp;");
+	    break;
+
+	case '`':
+	    printf("<i>");
+	    break;
+
+	case '\'':
+	    printf("</i>");
+	    break;
+      }
+  }
+

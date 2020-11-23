@@ -1,0 +1,6 @@
+BUILTINS =
+
+testpolos:	testpolos.c
+		cc -O testpolos.c -lm
+		mv a.out testpolos
+

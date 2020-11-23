@@ -1,0 +1,42 @@
+# Mkfile for alpha (C++ version)   AJF	 May 1988
+
+BUILTINS =
+
+ALIB = $MYLIB/alpha
+
+a_objects = main.o edit.o readstyle.o format.o substs.o translit.o psout.o scrout.o common.o giveup.o
+w_objects = ${cputype}_windows.o giveup.o
+libs	  = $MYLIB/gfxlib.a $MYLIB/spawn.a
+headers	  = alpha.h $MYLIB/gfxlib.h $MYLIB/spawn.h
+
+all:V:			$MYBIN/alpha $ALIB/windows \
+			$ALIB/icon $ALIB/menu $ALIB/prelude.ps
+
+$MYBIN/alpha:		$a_objects $libs
+			gcc $a_objects $libs -lX11
+			mv a.out $MYBIN/alpha
+			chmod a+x $MYBIN/alpha
+
+$ALIB/windows:		$w_objects $libs
+			gcc $w_objects $libs -lX11
+			mv a.out $ALIB/windows
+			chmod a+x $ALIB/windows
+
+$ALIB/icon:		alphaicon
+			cp alphaicon $ALIB/icon
+			chmod a+r $ALIB/icon
+
+$ALIB/menu:		alphamenu
+			cp alphamenu $ALIB/menu
+			chmod a+r $ALIB/menu
+
+$ALIB/%.ps:		%.ps
+			cp $stem.ps $ALIB/$stem.ps
+			chmod a+r $ALIB/$stem.ps
+
+%.o:			%.C $headers
+			gcc -O -c -I$MYLIB $stem.C
+
+clean:
+			rm -f $a_objects $w_objects
+

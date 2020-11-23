@@ -1,0 +1,17 @@
+BUILTINS =
+
+libs = $MYLIB/fishaudio.a
+hdrs = $MYLIB/fishaudio.h
+
+all:V:		$MYBIN/aucat $MYBIN/autac $MYBIN/play $MYBIN/record
+
+$MYBIN/%:	%.o $libs
+		gcc $stem.o $libs -lm
+		mv a.out $MYBIN/$stem
+
+%.o:		%.C $hdrs
+		gcc -I$MYLIB -O -c $stem.C
+
+clean:
+		rm -f aucat.o autac.o play.o record.o
+

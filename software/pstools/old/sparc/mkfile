@@ -1,0 +1,8 @@
+BUILTINS =
+
+all:V:		    $MYBIN/pstobm
+
+$MYBIN/pstobm:	    pstobm
+		    cp pstobm $MYBIN/pstobm
+		    chmod a+rx $MYBIN/pstobm
+

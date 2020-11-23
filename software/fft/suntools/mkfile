@@ -1,0 +1,13 @@
+BUILTINS =
+
+all:		psplot sunplot
+		touch all
+
+psplot:		psplot.c
+		cc -O psplot.c -lm
+		mv a.out psplot
+
+sunplot:	sunplot.c
+		cc -O sunplot.c -lm -lSun -lpixrect
+		mv a.out sunplot
+

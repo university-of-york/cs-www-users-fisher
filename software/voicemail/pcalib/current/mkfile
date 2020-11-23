@@ -1,0 +1,19 @@
+BUILTINS=
+
+objs = pcalib.o filters.o compute.o complex.o
+libs = $MYLIB/gfxlib.a $MYLIB/fishaudio.a
+
+$MYBIN/pcalib:	    $objs $libs
+		    gcc $objs $libs -lX11 -lm
+		    mv a.out $MYBIN/pcalib
+		    chmod a+x $MYBIN/pcalib
+
+%.o:		    %.C header.h filters.h $MYLIB/gfxlib.h
+		    gcc -O -c -I$MYLIB -I/sys/include $stem.C
+
+%.C:		    %.F
+		    fifi $stem.F $stem.C
+
+clean:
+		    rm -f $objs pcalib.C
+

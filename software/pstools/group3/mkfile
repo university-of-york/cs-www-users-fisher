@@ -1,0 +1,20 @@
+BUILTINS =
+
+all:V:		    $MYBIN/pstog3 $MYBIN/g3tops
+
+$MYBIN/pstog3:	    pstog3.o tables.o
+		    gcc pstog3.o tables.o
+		    mv a.out $MYBIN/pstog3
+		    chmod a+x $MYBIN/pstog3
+
+$MYBIN/g3tops:	    g3tops.o tables.o
+		    gcc g3tops.o tables.o
+		    mv a.out $MYBIN/g3tops
+		    chmod a+x $MYBIN/g3tops
+
+%.o:		    %.C tables.h
+		    gcc -O -c $stem.C
+
+clean:
+		    rm -f pstog3.o g3tops.o tables.o
+

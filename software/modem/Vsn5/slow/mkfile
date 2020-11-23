@@ -1,0 +1,33 @@
+BUILTINS =
+
+objs = main.o getpass.o dial.o progress.o modem.o fax.o doc.o \
+       txside.o fsktx.o v29tx.o rxside.o fskrx.o \
+       filters.o ttymodes.o common.o
+
+libs = $MYLIB/fishaudio.a $MYLIB/spawn.a $MYLIB/coro.a
+
+hdrs = $MYLIB/fishaudio.h $MYLIB/spawn.h $MYLIB/coro.h \
+       filters.h fcf.h complex.h modem.h
+
+all:V:		    $MYBIN/modem $MYLIB/logfax
+
+$MYBIN/modem:	    $objs $libs
+		    gcc $objs $libs -lm
+		    mv a.out $MYBIN/modem
+		    chmod a+x $MYBIN/modem
+
+$MYLIB/logfax:	    logfax.C
+		    gcc -O -I$MYLIB logfax.C
+		    mv a.out $MYLIB/logfax
+		    chmod a+x,ug+s $MYLIB/logfax
+
+%.o:		    %.C $hdrs
+		    gcc -O -c -I$MYLIB $stem.C
+
+%.C:		    %.F
+		    fifi $stem.F $stem.C
+
+clean:
+		    rm -f $objs
+		    rm -f progress.C fskrx.C
+

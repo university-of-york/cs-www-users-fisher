@@ -1,0 +1,54 @@
+#! /bin/sh
+# pstoppm -- cvt PostScript to ppm bitmap
+
+glog=/tmp/$$.glog
+itemp=/tmp/$$.psI
+otemp=/tmp/$$.psO
+
+mylib=/usr/fisher/mipslib
+
+rc=0
+
+trap "echo '[rmtemps]' >&2; rm -f $glog $itemp $otemp; exit \$rc" 0
+
+fail()
+  { echo "pstoppm: $1" >&2
+    rc=1; exit
+  }
+
+trap "fail \"Ouch!\"" 1 2 3 15
+
+xdpi=72
+ydpi=72
+
+while [ $# -gt 2 ]
+do
+    case "$1" in
+	-dpi)
+	    xdpi="$2"; ydpi="$3"
+	    shift; shift; shift;;
+
+	*)
+	    fail "bad option: $1";;
+    esac
+done
+
+[ $# != 2 ] && fail "Usage: pstoppm [-dpi x y] in.ps out.ppm\n(either file can be -)"
+
+[ "$1" = - ] && { cat >$itemp; ifn=$itemp; } || ifn="$1"
+[ "$2" = - ] && ofn=$otemp || ofn="$2"
+
+[ ! -r $ifn ] && fail "can't open $ifn"
+
+rm -f $ofn
+
+echo "$xdpi $ydpi ppmsetdensity ($ifn) ($ofn) ppm1run" |
+  gs -q -dNODISPLAY $mylib/pstoppm.ps >$glog
+
+[ ! -r $ofn ] &&
+  { cat $glog >&2; echo >&2
+    fail "GhostScript failed!"
+  }
+
+[ "$2" = - ] && cat $ofn
+

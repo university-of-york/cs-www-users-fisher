@@ -1,0 +1,13 @@
+%%BeginProlog
+%%BeginProcSet: alpha 1 1
+/Mv  { moveto } def			    % absolute move
+/Rt  { 0 rmoveto } def			    % move right
+/Up  { 0 exch rmoveto } def		    % move up
+/FFt { findfont exch scalefont def } def    % define abbrev. for font
+/SFt { setfont } def			    % set font
+/T   { show } def			    % show text
+/Bp  { /pgsave save def } def		    % begin page
+/Ep  { pgsave restore showpage } def	    % end page
+%%EndProcSet
+%%EndProlog
+

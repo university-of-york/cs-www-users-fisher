@@ -1,0 +1,15 @@
+BUILTINS =
+
+libs = $MYLIB/fishaudio.a
+hdrs = $MYLIB/fishaudio.h
+
+$MYBIN/aumail:	aumail.o $libs
+		gcc aumail.o $libs -lm
+		mv a.out $MYBIN/aumail
+
+%.o:		%.C $hdrs
+		gcc -I$MYLIB -O -c $stem.C
+
+clean:
+		rm -f aumail.o
+

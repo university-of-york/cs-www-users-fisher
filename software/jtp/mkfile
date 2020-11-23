@@ -1,0 +1,16 @@
+BUILTINS =
+objs	 = main.o readclass.o allocfields.o readassem.o compile.o translate.o optimize.o peephole.o \
+	   gentail.o assemble.o fixconsts.o jlist.o tlist.o findlabs.o common.o
+hdrs	 = jtp.h jcodes.h tcodes.h cftags.h
+
+$MYBIN/jtp:	$objs
+		gcc $objs
+		mv a.out $MYBIN/jtp
+		chmod a+x $MYBIN/jtp
+
+%.o:		%.C $hdrs
+		gcc -O -c $stem.C
+
+clean:
+		rm -f $objs
+

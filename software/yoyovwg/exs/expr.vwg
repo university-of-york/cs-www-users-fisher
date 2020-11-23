@@ -1,0 +1,102 @@
+{ syntax of pascal expressions
+   pascal user manual and report, 2nd edition, p.110 et seq }
+
+program: expression, stop symbol.
+
+expression:
+  simple expression, expr tail.
+
+expr tail:
+  relational operator, expression;
+  empty.
+
+relational operator: equals symbol;
+  not equals symbol;
+  less than symbol;
+  less than or equals symbol;
+  greater than or equals symbol;
+  greater than symbol;
+  in symbol.
+
+simple expression:
+  term, simple expr tail;
+  sign, term, simple expr tail.
+
+simple expr tail:
+  adding operator, term, simple expr tail;
+  empty.
+
+sign: plus symbol;
+  minus symbol.
+
+adding operator: plus symbol;
+  minus symbol;
+  or symbol.
+
+term: factor, term tail.
+
+term tail:
+  multiplying operator, term;
+  empty.
+
+multiplying operator: star symbol;
+  slash symbol;
+  div symbol;
+  mod symbol;
+  and symbol.
+
+factor: iden symbol;
+  numb symbol;
+  left paren symbol, expression, right paren symbol;
+  set;
+  not symbol, factor.
+
+set:
+  left bracket symbol, set tail.
+
+set tail:
+  element list with comma, right bracket symbol;
+  right bracket symbol.
+
+element list with comma:
+  element, element list tail.
+
+element list tail:
+  comma symbol, element list with comma;
+  empty.
+
+element:
+  expression, element tail.
+
+element tail:
+  dotdot symbol, element;
+  empty.
+
+empty: .
+
+iden symbol:                    'a'.
+numb symbol:                    '0'.
+plus symbol:                    '+'.
+minus symbol:                   '-'.
+star symbol:                    '*'.
+slash symbol:                   '/'.
+comma symbol:                   ','.
+equals symbol:                  '='.
+not equals symbol:              '<>'.
+less than symbol:               '<'.
+less than or equals symbol:     '<='.
+greater than or equals symbol:  '>='.
+greater than symbol:            '>'.
+left paren symbol:              '('.
+right paren symbol:             ')'.
+left bracket symbol:            '['.
+right bracket symbol:           ']'.
+dotdot symbol:                  '..'.
+stop symbol:                    '@'.
+
+and symbol:                     'AND'.
+div symbol:                     'DIV'.
+in symbol:                      'IN'.
+mod symbol:                     'MOD'.
+not symbol:                     'NOT'.
+or symbol:                      'OR'.

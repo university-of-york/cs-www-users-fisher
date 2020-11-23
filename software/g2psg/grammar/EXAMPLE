@@ -1,0 +1,114 @@
+$ buildpar gram.g
+$ a.out
+
+Parse: Carol tested the telephone
+
+*** 0 bytes (0/400) 00h 00m 00.0s   Parsing: Carol tested the telephone
+ Carol test YES ed YES the telephone YES
+
+Parse: .di
+
+*** 659524 bytes (66/400) 00h 00m 08.8s	  Parsing: .di
+
+{
+Utterance [NULL -]
+..>U [TOP +, NULL -]
+....V2 [CONJ NIL, PER 3, PLU -, COMP NULL, VFORM FIN, R -, INV -, IMP -, NFORM NORM, NULL -, GEN F]
+......$>N2 [TOP +, CONJ NIL, RE -, PER 3, PLU -, NOM +, NFORM NORM, PRO -, NULL -, GEN F]
+........"Carol"
+......*$V1 [PER 3, PLU -, VFORM FIN, INV -, NFORM NORM, PAS -, NULL -, GEN F]
+........*V0 [PER 3, PLU -, VFORM FIN, INV -, NFORM NORM, AUX -, SUBCAT 2, NULL -, GEN F, PAST +, REGPAST +]
+..........*Vstem [PER 3, PLU -, VFORM FIN, INV -, NFORM NORM, AUX -, SUBCAT 2, NULL -, GEN F, PAST +, REGPAST +]
+............"test"
+..........pastaffix [NULL -]
+............"ed"
+........N2 [CONJ NIL, RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+..........$>DET [PER 3, PLU -, NFORM NORM, NULL -]
+............"the"
+..........*$N1 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+............*N0 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+..............*Noun [RE -, PER 3, PLU -, NOM -, NFORM NORM, PRO -, NULL -, MORPH S]
+................"telephone"
+}
+
+There was 1 tree.
+
+Parse: Ring the number on the telephone
+
+*** 723716 bytes (73/400) 00h 00m 09.5s	  Parsing: Ring the number on the telephone
+ ? ing
+
+Parse: phone the number on the telephone
+
+*** 55164 bytes (73/400) 00h 00m 10.5s	 Parsing: phone the number on the telephone
+ phone YES the number YES on YES the telephone YES
+
+Parse: .di
+
+*** 848636 bytes (85/400) 00h 00m 21.0s	  Parsing: .di
+
+{
+Utterance [NULL -]
+..>U [TOP +, NULL -]
+....V2 [CONJ NIL, COMP NULL, R -, IMP +, INV -, VFORM BSE, NFORM NORM, AUX -, PER 2, NULL -]
+......*V1 [INV -, VFORM BSE, NFORM NORM, PAS -, AUX -, PER 2, NULL -]
+........*V0 [INV -, VFORM BSE, NFORM NORM, AUX -, SUBCAT 2, PER 2, NULL -]
+..........*Vstem [INV -, VFORM BSE, NFORM NORM, AUX -, SUBCAT 2, PER 2, NULL -]
+............"phone"
+........N2 [CONJ NIL, RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, NULL -, MORPH S]
+..........*>N2 [CONJ NIL, RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+............$>DET [PER 3, PLU -, NFORM NORM, NULL -]
+.............."the"
+............*$N1 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+..............*N0 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+................*Noun [RE -, PER 3, PLU -, NOM -, NFORM NORM, PRO -, NULL -, MORPH S]
+.................."number"
+..........P2 [PFORM NORM, POST +, NULL -, APF NORM]
+............*P1 [PFORM NORM, POST +, NULL -, APF NORM]
+..............*P0 [PFORM NORM, POST +, SUBCAT 38, NULL -, APF NORM]
+................"on"
+..............N2 [CONJ NIL, RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+................$>DET [PER 3, PLU -, NFORM NORM, NULL -]
+.................."the"
+................*$N1 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+..................*N0 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+....................*Noun [RE -, PER 3, PLU -, NOM -, NFORM NORM, PRO -, NULL -, MORPH S]
+......................"telephone"
+}
+
+{
+Utterance [NULL -]
+..>U [TOP +, NULL -]
+....V2 [CONJ NIL, COMP NULL, R -, IMP +, INV -, VFORM BSE, NFORM NORM, AUX -, PER 2, NULL -]
+......*V1 [INV -, VFORM BSE, NFORM NORM, AUX -, PER 2, NULL -]
+........*>V1 [INV -, VFORM BSE, NFORM NORM, PAS -, AUX -, PER 2, NULL -]
+..........*V0 [INV -, VFORM BSE, NFORM NORM, AUX -, SUBCAT 2, PER 2, NULL -]
+............*Vstem [INV -, VFORM BSE, NFORM NORM, AUX -, SUBCAT 2, PER 2, NULL -]
+.............."phone"
+..........N2 [CONJ NIL, RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+............$>DET [PER 3, PLU -, NFORM NORM, NULL -]
+.............."the"
+............*$N1 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+..............*N0 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+................*Noun [RE -, PER 3, PLU -, NOM -, NFORM NORM, PRO -, NULL -, MORPH S]
+.................."number"
+........ADV2 [NULL -]
+..........P2 [PFORM NORM, NULL -, ADV +, APF NORM]
+............*P1 [PFORM NORM, NULL -, ADV +, APF NORM]
+..............*P0 [PFORM NORM, SUBCAT 38, NULL -, ADV +, APF NORM]
+................"on"
+..............N2 [CONJ NIL, RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+................$>DET [PER 3, PLU -, NFORM NORM, NULL -]
+.................."the"
+................*$N1 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+..................*N0 [RE -, PER 3, PLU -, NOM -, NFORM NORM, POSS -, PRO -, NULL -, MORPH S]
+....................*Noun [RE -, PER 3, PLU -, NOM -, NFORM NORM, PRO -, NULL -, MORPH S]
+......................"telephone"
+}
+
+There were 2 trees.
+
+Parse: ^D
+*** 948300 bytes (95/400) 00h 00m 22.8s	  End of run
+$
+

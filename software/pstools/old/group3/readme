@@ -1,0 +1,11 @@
+Convert between PostScript and Group3 fax in both directions
+
+Requirements:
+
+    g3tops:  standard pbm library
+	     modified g3topbm (in this directory)
+
+    pstog3:  pstobm (in ../mips, etc)
+		which requires GhostScript
+	     pbmtog3 (pbm executable)
+

@@ -1,0 +1,40 @@
+Fixed-point polar to OS conversion routines by Fourier series method
+====================================================================
+
+Polar args:	  FXSCALE represents 2pi degrees
+Cartesian args:	  integer metres (so accuracy is limited to ~1m)
+
+NOTE:
+=====
+
+[4:28]-bit fixed-point arithmetic is used, i.e. FXSCALE = (1 << 28)
+and FXSCALE represents 1.0.
+
+The file convert.c contains functions muldiv, isin, icos, ihypot,
+implemented using double-precision floating-point.  In a real fixed-
+point device, these would of course be implemented using fixed-
+point arithmetic.
+
+muldiv(a, b, c) returns (a*b)/c, where a, b, c are 32-bit integers
+and the intermediate product is evaluated in 64 bits.
+
+isin(theta), icos(theta) return the respective trig. functions of theta.
+Arguments are scaled so that FXSCALE represents 2pi radians.
+Results are scaled so that FXSCALE represents 1.0.
+
+Accuracy
+========
+
+Note that NHARMS, NDERIVS, EPS1 and EPS2 are linked:
+if you change one, accuracy will be adversely affected unless the others
+are changed to match.  Experimentation is necessary.
+
+with NHARMS  = 8
+     NDERIVS = 8
+     EPS1    = 2684	= 1e-5 * FXSCALE
+     EPS2    = 27	= 1e-7 * FXSCALE
+
+     maxdx   0.60581 at lon 1.600000 : 1:36:00.0000 lat 54.250000 : 54:15:00.0000
+     maxdy   1.25577 at lon 4.000000 : 4:00:00.0000 lat 60.200000 : 60:12:00.0000
+     maxdh   1.32284 at lon 3.500000 : 3:30:00.0000 lat 57.850000 : 57:51:00.0000
+

@@ -1,0 +1,32 @@
+<HTML>
+
+<title> Bessel Cutoff Frequency </title>
+
+<h1> Bessel Cutoff Frequency </h1>
+
+Before today, my ``mkfilter'' web page
+gave you a filter whose magnitude response differed from 0.707 (-3dB) at the
+cutoff frequency you specified.	 Several people asked me if this was correct. <p>
+
+My standard reply until today was along the lines of ``it depends which
+textbook you read'', although I think I made it sound more convincing than that. <p>
+
+I've now changed the pole-finding program according to the procedure given in Van Valkenburg,
+<a href=//www.cs.york.ac.uk/books/cgi-bin/findbook?0030592461><i>Analog filter design</i></a> (1982).
+This differs from any of the other text-books I consulted (!) but it does appear to be sound,
+and it does give a corner-frequency gain which is very close to -3dB, if the bilinear
+transform is used. <p>
+
+Be warned therefore that if you re-design a Bessel filter using ``mkfilter''
+you will get different results from those you got before.  The difference is
+more pronounced at higher orders.  The shape of the response is unchanged. <p>
+
+I hope this is more of a help than a hindrance. <p>
+
+<hr>
+
+<address>
+   <a href=/~fisher> Tony Fisher </a> /
+   fisher@minster.york.ac.uk
+</address>
+

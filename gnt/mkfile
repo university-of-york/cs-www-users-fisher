@@ -1,0 +1,17 @@
+BUILTINS =
+
+bindir = /york/www/usr/fisher/cgi-bin
+libdir = /usr/fisher/linuxlib
+
+objs   = main.o search.o translit.o morph.o common.o util.o
+
+$bindir/gnt:	$objs $libdir/libcgi.a
+		olinux gcc $objs -L$libdir -lcgi -lgd -lm
+		mv a.out $bindir/gnt
+
+%.o:		%.C gnt.h $libdir/libcgi.h $libdir/gd.h
+		olinux gcc -O -c -I$libdir $stem.C
+
+clean:
+		rm -f $objs
+

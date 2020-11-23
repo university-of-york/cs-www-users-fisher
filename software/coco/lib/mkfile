@@ -1,0 +1,8 @@
+BUILTINS =
+
+libio.a:   io.o
+	   mv io.o libio.a
+
+io.o:	   io.c hdr.h
+	   cc -O -c io.c
+

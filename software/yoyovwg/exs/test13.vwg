@@ -1,0 +1,18 @@
+ONES::	     i ONESETY.
+ONESETY::    ONES; EMPTY.
+
+THREES::     iii THREESETY.
+THREESETY::  THREES; EMPTY.
+
+TWOS::	     ii TWOSETY.
+TWOSETY::    TWOS; EMPTY.
+
+EMPTY::	     .
+
+program:     THREES tag.
+
+i ONES tag:  i tag, ONES tag.
+i tag:	     i symbol.
+
+i symbol:    "i".
+

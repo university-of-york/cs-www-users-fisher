@@ -1,0 +1,23 @@
+BUILTINS =
+NREP = 2
+
+libdir = ../lib
+
+polos:		polos.o convert.o table.o $libdir/libio.a
+		cc polos.o convert.o table.o -L$libdir -lio -lm
+		mv a.out polos
+
+table.c:	mktable
+		mktable | tac table.c
+
+mktable:	mktable.o $libdir/libio.a
+		cc mktable.o -L$libdir -lio -lm
+		mv a.out mktable
+
+%.o:		%.c $libdir/hdr.h trighdr.h
+		cc -c -O -I$libdir $stem.c
+
+clean:
+		rm -f polos.o convert.o table.o
+		rm -f table.c mktable mktable.o
+

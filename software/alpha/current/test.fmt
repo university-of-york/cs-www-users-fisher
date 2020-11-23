@@ -1,0 +1,14 @@
+version		2		version number
+pagewidth	5.85i		width of page, = width of window on screen
+pageheight	8.3i		height of ditto
+bodywidth	5.0i		body width (measure, width of text)
+leftmargin	0.425i		left margin (paper edge to text)
+mingluewidth	3.33p		minimum width of glue, stretched by justification
+linesperpage	92		num. of lines per page (HALF SPACING)
+linesperbody	88		num. of lines per body (text proper)
+topmargin	4		top margin (lines from page top to text top)
+headposn	0		lines from page top to header
+footposn	86		lines from page top to footer
+vertspacing	6p		spacing between lines
+indexspacing	3.8p		index spacing (superscripts & subscripts)
+indexmag	0.6p		index magnification

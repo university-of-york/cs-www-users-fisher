@@ -1,0 +1,29 @@
+Voicemail
+=========
+
+Directory: /usr/fisher/voicemail
+
+Sub-Directories:
+
+   phoneman  C++ source of telephone manager
+   aumail    C++ source of audio (voice-) mail-reading program
+   pcalib    C++ source of calibration program for LTU
+
+For an idea of what the telephone manager can do, read the flyer on the Web at
+
+   http://www.cs.york.ac.uk/~fisher/voicemail
+
+or have a look at the default script in the file
+
+   phoneman/current/dfltrc
+
+in this directory.
+
+One day, there might be some more documentation...
+
+Please don't remove my name from the source or from this ``readme'' file,
+or delete this ``readme'' file.
+
+Dr A.J. Fisher <fisher@minster.york.ac.uk>
+http://www.cs.york/ac/uk/~fisher
+

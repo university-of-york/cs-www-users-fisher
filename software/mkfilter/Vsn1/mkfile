@@ -1,0 +1,17 @@
+BUILTINS =
+
+libdir=/york/$cputype/lib
+
+all:V:		  $MYBIN/mkfilter $MYBIN/gencode $MYBIN/genplot
+
+$MYBIN/%:	  %.o complex.o
+		  cc $stem.o complex.o -L$libdir -lgd -lm
+		  mv a.out $MYBIN/$stem
+		  chmod a+x $MYBIN/$stem
+
+%.o:		  %.c mkfilter.h
+		  cc -I$MYLIB -O -c $stem.c
+
+clean:
+		  rm -f mkfilter.o gencode.o genplot.o complex.o
+

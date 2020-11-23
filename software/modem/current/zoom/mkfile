@@ -1,0 +1,26 @@
+BUILTINS =
+LIB	 = ../lib
+
+objs = main.o txside.o rxside.o common.o
+
+libs = $LIB/library.a $MYLIB/fishaudio.a $MYLIB/coro.a
+
+hdrs = $LIB/sinegen.h $LIB/filters.h $LIB/debug.h $LIB/complex.h \
+       $LIB/myaudio.h $LIB/mystdio.h $LIB/tonedec.h \
+       $MYLIB/coro.h \
+       modem.h
+
+$MYLIB/zmodem:	    $objs $libs
+		    gcc $objs $libs -lm
+		    mv a.out $MYLIB/zmodem
+
+%.o:		    %.C $hdrs
+		    gcc -O -c -I$MYLIB -I$LIB $stem.C
+
+%.C:		    %.F
+		    fifi $stem.F $stem.C
+
+clean:
+		    rm -f $objs
+		    rm -f rxside.C
+

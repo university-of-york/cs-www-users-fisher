@@ -1,0 +1,7 @@
+ALPHA::	  i.
+BETA::	  i.
+
+program:  ALPHA.
+BETA:	  x symbol.
+x symbol: 'x'.
+

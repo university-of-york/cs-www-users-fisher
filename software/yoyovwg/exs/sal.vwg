@@ -1,0 +1,325 @@
+{ ----- Hypersyntax ----- }
+
+{ The program }
+
+program: void sequence, qm symbol.
+
+TF sequence:
+  either <declaration> or <void clause>, goon symbol, TF sequence;
+  TF clause.
+
+void sequence: declaration.
+
+void clause:
+  if symbol, bool clause, do part;
+  repeat symbol, void clause, while symbol, bool clause, opt <do part>;
+  while symbol, bool clause, do part;
+  for symbol, int identifier, equals symbol,
+    int clause, to symbol, int clause, opt <by part>, do part;
+  write;
+  TE assign, becomes symbol, TE clause;
+  void expression.
+
+do part: do symbol, void clause.
+
+by part: by symbol, int clause.
+
+TF clause:
+  if symbol, bool clause, then symbol, TF clause, else symbol, TF clause;
+  case symbol, TE clause, of symbol, seq of <TE case part TF result>,
+    default symbol, colon symbol, TF clause;
+  TF expression.
+
+TE case part TF result:
+  comma list of <TE clause>, colon symbol, TF clause, goon symbol.
+
+write:
+  write symbol, write list;
+  output symbol, file clause, comma symbol, write list;
+  outbyte symbol, file clause, comma symbol,
+    int clause, comma symbol, int clause.
+
+write list:
+  comma list of <first <TC clause> then <opt <width part>>>.
+
+width part: colon symbol, int clause.
+
+TF expression: TF exp three.
+
+bool expression: list of <bool exp zero> sep by <or symbol>.
+
+bool exp zero: list of <bool exp one> sep by <and symbol>.
+
+bool exp one:
+  TB exp three,
+    either <lt symbol> or <le symbol> or <gt symbol> or <ge symbol>,
+    TB exp three;
+  TE exp two, either <eq symbol> or <ne symbol>, TE exp two;
+  pntr exp three, either <is symbol> or <isnt symbol>, structure identifier.
+
+bool exp two: opt <not symbol>, bool exp three.
+
+TF exp two: TF exp three.
+
+TF exp three: TF exp four.
+
+TA exp three:
+  list of <TA exp four> sep by <plus or minus>.
+
+TF exp four: TF exp five.
+
+real exp four:
+  list of <real exp five> sep by <either <star symbol> or <slash symbol>>.
+
+int exp four:
+  list of <int exp five> sep by
+    <either <star symbol> or <div symbol> or <rem symbol>>.
+
+TF exp five: TF exp six.
+
+TA exp five: plus or minus, TA exp six.
+
+TF exp six: TF exp seven.
+
+chars exp six:
+  list of <chars exp seven> sep by <concat symbol>.
+
+TF exp seven:
+  TF name;
+  lcurl symbol, TF sequence, rcurl symbol;
+  begin symbol, TF sequence, end symbol.
+
+TE exp seven: pack of <TE clause>.
+
+TD exp seven: TD literal.
+
+chars exp seven:
+  chars expression,
+    seq of <pack of <first <int clause> then <bar symbol> then <int clause>>>.
+
+multiple of TE exp seven:
+  at symbol, int clause, of symbol, TE type one,
+    bra symbol, comma list of <TE clause>, ket symbol;
+  vector symbol, comma list of <bound>, of symbol, TE clause.
+
+bound: int clause, upto symbol, int clause.
+
+TE assign: TE identifier; TE vec exp; TE struct exp.
+
+TE vec exp:
+  multiple of TE expression, seq of <pack of <comma list of <int clause>>>.
+
+TE struct exp:
+  pntr expression, seq of <pack of <comma list of <TE field identifier>>>.
+
+pntr name: structure creation.
+
+TE name: TE identifier; TE vec exp; TE struct exp.
+
+TF name: TF proc call; TF standard name.
+
+TF proc call: TF procedure identifier, opt <pack of <comma list of <arg>>>.
+
+arg: TE clause; TF procedure identifier; structure identifier.
+
+structure creation:
+  structure identifier, opt <pack of <comma list of <TE clause>>>.
+
+int standard name:
+  either <lwb symbol> or <upb symbol>, pack of <multiple of TE clause>;
+  either <readi symbol> or <readbyte symbol>, opt <pack of <file clause>>.
+
+bool standard name:
+  either <eof symbol> or <readb symbol>, opt <pack of <file clause>>.
+
+chars standard name:
+  either <read symbol> or <peek symbol> or <reads symbol> or
+    <readname symbol> or <readaline symbol>,
+      opt <pack of <file clause>>.
+
+real standard name: readr symbol, opt <pack of <file clause>>.
+
+void standard name: abort symbol.
+
+bool literal: true symbol; false symbol.
+
+file literal: nullfile symbol.
+
+pntr literal: nil symbol.
+
+real literal:
+  int literal,
+  opt <first <dot symbol> then <int literal>>,
+  opt <first <letter symbol> then <plus or minus> then <int literal>>.
+
+int literal: seq of <digit symbol>.
+
+chars literal: quote symbol, opt <seq of <anychar symbol>>, quote symbol.
+
+TG identifier:
+  letter symbol, opt <seq of <either <letter symbol> or <digit symbol>>>.
+
+plus or minus: plus symbol; minus symbol.
+
+declaration: let decl; structure decl; procedure decl; external; forward.
+
+let decl:
+  let symbol, TE identifier, either <eq symbol> or <becomes symbol>, TE clause.
+
+structure decl:
+  structure symbol, structure identifier, opt <pack of <goon list of <field>>>.
+
+field: TE type one, comma list of <TE field identifier>.
+
+procedure decl:
+  procedure symbol, TF procedure identifier, opt <TF type spec>, goon symbol,
+    TF clause.
+
+void type spec: pack of <goon list of <param spec>>.
+
+TE type spec:
+  pack of <first <opt <goon list of <param spec>>> then <yielding TE type>>.
+
+param spec:
+  TE type one, comma list of <TE identifier>;
+  structure decl;
+  TF proc type, comma list of <TF procedure identifier>.
+
+TF proc type:
+  pack of
+    <first <opt <comma list of <arg type>>>
+     then <opt <yielding TF type>>>.
+
+arg type: TE type one; TF proc type; s type.
+
+s type: structure symbol, opt <pack of <comma list of <TE type one>>>.
+
+yielding TE type: arrow symbol, TE type.
+
+external: external symbol, TF procedure identifier, opt <TF proc type>.
+
+forward: forward symbol, TF procedure identifier, opt <TF proc type>.
+
+TE type one: opt <c symbol>, TE type.
+
+TE type: TE symbol.
+
+multiple of TE type: star symbol, TE type one.
+
+{ General hyperrules }
+
+pack of <NOTION>: lpar symbol, NOTION, rpar symbol.
+
+comma list of <NOTION>: list of <NOTION> sep by <comma symbol>.
+
+goon list of <NOTION>: list of <NOTION> sep by <goon symbol>.
+
+list of <NOTION1> sep by <NOTION2>:
+  NOTION1, opt <first <NOTION2> then <list of <NOTION1> sep by <NOTION2>>>.
+
+seq of <NOTION>: NOTION, opt <seq of <NOTION>>.
+
+opt <NOTION>: NOTION; EMPTY.
+
+either <NOTION> or <ORLIST>: NOTION; either <ORLIST>.
+
+either <NOTION>: NOTION.
+
+first <NOTION> then <THENLIST>: NOTION, first <THENLIST>.
+
+first <NOTION>: NOTION.
+
+{ ----- Metasyntax ----- }
+
+{ Types }
+
+TG:: TE FLOCETY; void PROCETY; structure.
+
+FLOCETY:: field; PROCETY.
+
+PROCETY:: procedure; EMPTY.
+
+TF:: TE; void.
+
+TE:: TD; multiple of TE.
+
+TD:: TC; pntr; file.
+
+TC:: TB; bool.
+
+TB:: TA; chars.
+
+TA:: int; real.
+
+{ General metanotions }
+
+ORLIST:: NOTION ORTAIL.
+
+ORTAIL:: >or< ORLIST; EMPTY.
+
+THENLIST:: NOTION THENTAIL.
+
+THENTAIL:: >then< THENLIST; EMPTY.
+
+NOTION:: ALPHA NOTETY; <NOTION>.
+
+NOTETY:: NOTION; EMPTY.
+
+ALPHA:: a; b; c; d; e; f; g; h; i; j; k; l; m;
+        n; o; p; q; r; s; t; u; v; w; x; y; z.
+
+EMPTY:: .
+
+{ ----- Representation rules ----- }
+
+letter symbol:    'a'.
+
+qm symbol:        '?'.
+goon symbol:      ';'.
+equals symbol:    '='.
+becomes symbol:   ':='.
+colon symbol:     ':'.
+comma symbol:     ','.
+lcurl symbol:     '{'.
+rcurl symbol:     '}'.
+at symbol:        '@'.
+bra symbol:       '['.
+ket symbol:       ']'.
+upto symbol:      '::'.
+quote symbol:     '"'.
+plus symbol:      '+'.
+minus symbol:     '-'.
+arrow symbol:     '->'.
+star symbol:      '*'.
+lpar symbol:      '('.
+rpar symbol:      ')'.
+
+abort symbol:     'ABORT'.
+begin symbol:     'BEGIN'.
+by symbol:        'BY'.
+case symbol:      'CASE'.
+default symbol:   'DEFAULT'.
+do symbol:        'DO'.
+else symbol:      'ELSE'.
+end symbol:       'END'.
+external symbol:  'EXTERNAL'.
+false symbol:     'FALSE'.
+for symbol:       'FOR'.
+forward symbol:   'FORWARD'.
+if symbol:        'IF'.
+let symbol:       'LET'.
+nil symbol:       'NIL'.
+nullfile symbol:  'NULLFILE'.
+of symbol:        'OF'.
+outbyte symbol:   'OUT.BYTE'.
+output symbol:    'OUTPUT'.
+procedure symbol: 'PROCEDURE'.
+structure symbol: 'STRUCTURE'.
+then symbol:      'THEN'.
+true symbol:      'TRUE'.
+readr symbol:     'READR'.
+repeat symbol:    'REPEAT'.
+to symbol:        'TO'.
+vector symbol:    'VECTOR'.
+while symbol:     'WHILE'.
+write symbol:     'WRITE'.

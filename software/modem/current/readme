@@ -1,0 +1,39 @@
+Directory: /usr/fisher/modem/current
+
+Fax Modem Software
+
+Author:
+
+   Dr Anthony J. Fisher
+   Dept of Computer Science
+   The University of York
+   York YO10 5DD, U.K.
+
+Please don't remove my name from the source or from this ``readme'' file,
+or delete this ``readme'' file.
+
+Manual page and further info are available on the World Wide Web at
+
+   http://www.cs.york.ac.uk/~fisher/modem
+
+This is Version ??? (?? ?? 1998).
+
+   (*) The directory ``slow'' contains the source of the top-level program
+       ``modem'' which handles fax output and the slow modem modes
+       (V.21 and V.23).
+
+   (*) The directory ``fast'' contains the source of the program ``fmodem''
+       which handles the fast modem modes (V.32 bis).  At the moment,
+       access to this directory is restricted.	Sorry about this.
+
+The program uses ``fifi'', a filter-filter, which generates efficient
+C++ code from a compact representation of a digital filter.
+Fifi is "work in progress" which is not yet documented.
+Email me for more details.
+
+For further help, please contact me by email.
+I'd also like to hear what you do and don't like about the package.
+
+Tony Fisher <fisher@minster.york.ac.uk>
+http://www.cs.york.ac.uk/~fisher
+

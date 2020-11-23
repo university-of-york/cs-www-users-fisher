@@ -1,0 +1,56 @@
+{Prepositions}
+
+{transitive prepositions}
+P0[SUBCAT 38, PFORM NORM]: "about"
+P0[SUBCAT 38, PFORM about]: "about"
+P0[SUBCAT 38, PFORM NORM]: "across"
+P0[SUBCAT 38, PFORM NORM]: "at"
+P0[SUBCAT 38, PFORM NORM]: "by"
+P0[SUBCAT 38, PFORM by]: "by"
+P0[SUBCAT 38, PFORM for]: "for"
+P0[SUBCAT 38, PFORM NORM]: "for"
+P0[SUBCAT 38, PFORM NORM]: "from"
+P0[SUBCAT 38, PFORM in]: "in"
+P0[SUBCAT 38, PFORM NORM]: "in"
+P0[SUBCAT 38, PFORM of]: "of"
+{P0[SUBCAT 38, PFORM NORM]: "of"}
+P0[SUBCAT 38, PFORM NORM]: "on"
+P0[SUBCAT 38, PFORM NORM]: "through"
+P0[SUBCAT 38, PFORM NORM]: "to"
+P0[SUBCAT 38, PFORM to]: "to"
+P0[SUBCAT 38, PFORM NORM]: "under"
+P0[SUBCAT 38, PFORM NORM]: "underneath"
+P0[SUBCAT 38, PFORM NORM]: "with"
+
+{prepositions which subcategorise for a P2[PFORM of]}
+P0[SUBCAT 39, PFORM NORM]: "out"
+	{out of the garden ...}
+
+{intransitive prepositions}
+P0[SUBCAT 49, PFORM NORM]: "over"
+P0[SUBCAT 49, PFORM NORM]: "everywhere"
+P0[SUBCAT 49, PFORM NORM]: "here"
+P0[SUBCAT 49, PFORM NORM, POST -, ADV -]: "in"
+P0[SUBCAT 49, PFORM off, POST -]: "off"
+P0[SUBCAT 49, PFORM NORM, POST -]: "on"
+P0[SUBCAT 49, PFORM on]: "on"
+P0[SUBCAT 49, PFORM NORM, POST -]: "out"
+P0[SUBCAT 49, PFORM NORM]: "nowhere"
+P0[SUBCAT 49, PFORM NORM]: "there"
+P0[SUBCAT 49, PFORM NORM, POST -]: "away"
+P0[SUBCAT 49, PFORM NORM]: "underneath"
+
+{prepositions which subcategorise for a P2}
+P0[SUBCAT 50, PFORM NORM]: "down"
+P0[SUBCAT 50, PFORM NORM]: "everywhere"
+P0[SUBCAT 50, PFORM NORM]: "from"
+P0[SUBCAT 50, PFORM NORM]: "here"
+P0[SUBCAT 50, PFORM NORM]: "nowhere"
+P0[SUBCAT 50, PFORM NORM]: "there"
+	{from out of the garden}
+
+{WH prepositions}
+P1[SUBCAT 49, WH, POST -]: "where"
+	{where is it?}
+P0[SUBCAT 50, WH, WHMOR Q, POST -]: "where"
+	{where in the garden is it?}

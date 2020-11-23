@@ -1,0 +1,22 @@
+BUILTINS =
+
+objs = fishaudio.o getset.o duplex.o doioctl.o mulaw.o giveup.o
+
+all:V:			$MYLIB/fishaudio.a $MYLIB/fishaudio.h
+
+$MYLIB/fishaudio.a:	$objs
+			rm -f temp.a
+			ar cr temp.a $objs
+			mv temp.a $MYLIB/fishaudio.a
+			chmod a+r $MYLIB/fishaudio.a
+
+%.o:			%.C fishaudio.h private.h
+			gcc -O -c $stem.C
+
+$MYLIB/fishaudio.h:	fishaudio.h
+			cp fishaudio.h $MYLIB/fishaudio.h
+			chmod a+r $MYLIB/fishaudio.h
+
+clean:
+			rm -f $objs
+

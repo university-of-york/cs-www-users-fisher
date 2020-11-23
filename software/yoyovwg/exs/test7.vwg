@@ -1,0 +1,7 @@
+EMPTY:: .
+
+program: star seq, star symbol.
+
+star seq: star symbol, star seq; EMPTY.
+
+star symbol:   '*'.

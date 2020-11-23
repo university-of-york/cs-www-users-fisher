@@ -1,0 +1,52 @@
+#! /bin/sh
+# pstobm -- cvt PostScript to bitmap
+# calls psrender
+
+PATH=/usr/fisher/mipsbin:/york/mips/bin:/bin:/usr/bin:
+pbm=/york/mips/bin/pbm
+lib=/usr/fisher/mipslib
+
+fail()
+  { echo "pstobm: $1" >&2
+    exit 1
+  }
+
+opts=
+otype="-c"
+
+while :
+do
+    case "$1" in
+	-dpi)
+	    opts="$opts $1 $2 $3"
+	    shift; shift; shift;;
+
+	-m)
+	    opts="$opts $1"
+	    shift;;
+
+	-ppm | -gif | -c)
+	    otype="$1"
+	    shift;;
+
+	-?*)
+	    fail "bad option: $1";;
+
+	*)
+	    break;;
+    esac
+done
+
+[ $# != 2 ] && fail "Usage: pstobm [-ppm | -gif | -c] [-m] [-dpi x y] in.ps out.bm\nDefault is -c.  Either file can be -."
+
+case "$otype" in
+    -ppm)
+	$lib/psrender $opts "$1" "$2" ;;
+
+    -gif)
+	$lib/psrender $opts "$1" - | $pbm/pnmcrop | $pbm/ppmtogif | tac "$2" ;;
+
+    -c)
+	$lib/psrender $opts -m "$1" - | $pbm/pnmcrop | $pbm/pbmtoyork -xor | tac "$2" ;;
+esac
+

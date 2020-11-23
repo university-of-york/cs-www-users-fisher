@@ -1,0 +1,15 @@
+BUILTINS =
+
+objs = pstog3.o
+
+$MYBIN/pstog3:	    $objs
+		    cc $objs
+		    mv a.out $MYBIN/pstog3
+		    chmod a+x $MYBIN/pstog3
+
+%.o:		    %.c
+		    cc -O -c -I$MYLIB $stem.c
+
+clean:
+		    rm -f $objs
+

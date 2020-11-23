@@ -1,0 +1,12 @@
+BUILTINS =
+
+all:V:		  $MYBIN/pstobm $MYLIB/psrender
+
+$MYBIN/pstobm:	  pstobm
+		  cp pstobm $MYBIN/pstobm
+		  chmod a+rx $MYBIN/pstobm
+
+$MYLIB/psrender:  psrender
+		  cp psrender $MYLIB/psrender
+		  chmod a+rx $MYLIB/psrender
+

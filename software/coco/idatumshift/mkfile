@@ -1,0 +1,14 @@
+BUILTINS =
+
+libdir = ../lib
+
+datumshift:	datumshift.o convert.o $libdir/libio.a
+		cc datumshift.o convert.o -L$libdir -lio -lm
+		mv a.out datumshift
+
+%.o:		%.c $libdir/hdr.h
+		cc -O -c -I$libdir $stem.c
+
+clean:
+		rm -f datumshift.o convert.o
+

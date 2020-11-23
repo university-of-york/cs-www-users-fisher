@@ -1,0 +1,14 @@
+BUILTINS =
+
+libdir = ../lib
+
+gtcircle:	gtcircle.o $libdir/libio.a
+		cc gtcircle.o -L$libdir -lio -lm
+		mv a.out gtcircle
+
+%.o:		%.c $libdir/hdr.h
+		cc -O -c -I$libdir $stem.c
+
+clean:
+		rm -f gtcircle.o
+

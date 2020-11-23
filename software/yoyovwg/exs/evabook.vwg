@@ -1,0 +1,148 @@
+ALPHA:: a; b; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q;
+  r; s; t; u; v; w; x; y; z.
+
+ALPHABET:: abcdefghijklmnopqrstuvwxyz.
+
+DEC:: TYPE type TAG.
+
+DECS:: DEC; DECS DEC.
+
+DECSETY:: DECS; EMPTY.
+
+EMPTY:: .
+
+LETTER:: letter ALPHA.
+
+NEST:: new; new DECS; NEST new DECS.
+
+NOTETY:: NOTION; EMPTY.
+
+NOTION:: ALPHA; NOTION ALPHA.
+
+PARAMETER:: VALTYPE type TAG.
+
+PARAMETERS:: PARAMETER; PARAMETERS PARAMETER.
+
+TAG:: LETTER; TAG LETTER.
+
+TEST:: eq; neq.
+
+TYPE:: VALTYPE; proc; proc with PARAMETERS.
+
+VALTYPE:: char; string.
+
+
+
+program: new block containing DECS, where DECS consistent.
+
+NEST block containing DECS:
+  begin symbol, NEST new DECS declaration sequence for DECS,
+  NEST new DECS statement sequence, end symbol.
+
+NEST declaration sequence for DECS DEC:
+  NEST declaration sequence for DECS, NEST declaration of DEC.
+
+NEST declaration sequence for DEC:  NEST declaration of DEC.
+
+NEST declaration of VALTYPE type TAG: VALTYPE symbol, TAG symbol.
+
+NEST new DECSETY1 VALTYPE type TAG1 VALTYPE type TAG2 DECSETY declaration of
+  VALTYPE type TAG2:
+    comma symbol, TAG2 symbol.
+
+NEST declaration of proc type TAG:
+  proc symbol, TAG symbol, equals symbol, NEST statement.
+
+NEST declaration of proc with PARAMETERS type TAG:
+  proc symbol, TAG symbol, lpar symbol,
+  NEST new PARAMETERS definition part for PARAMETERS,
+  rpar symbol, equals symbol,
+  NEST new PARAMETERS statement, where PARAMETERS consistent.
+
+NEST definition part for PARAMETERS PARAMETER:
+  NEST definition part for PARAMETERS, comma symbol,
+  NEST definition of PARAMETER.
+
+NEST definition part for PARAMETER: NEST definition of PARAMETER.
+
+NEST definition of VALTYPE type TAG: VALTYPE symbol, TAG symbol.
+
+NEST new DECSETY1 VALTYPE type TAG1 VALTYPE type TAG2 DECSETY2 definition of
+  VALTYPE type TAG2:
+    TAG2 symbol.
+
+NEST statement sequence:
+  NEST statement; NEST statement sequence, NEST statement.
+
+NEST statement:
+  input symbol, char NEST name with TAG;
+  output symbol, char NEST expression;
+  call symbol, NEST call;
+  NEST block containing DECS, where DECS consistent;
+  lpar symbol, NEST statement sequence, rpar symbol;
+  TEST symbol, VALTYPE NEST expression, comma symbol,
+    VALTYPE NEST expression, colon symbol, NEST statement;
+  cons symbol, char NEST expression, comma symbol,
+    string NEST name with TAG.
+
+NEST call:
+  proc nest name with TAG;
+  proc with PARAMETERS NEST name with TAG, lpar symbol,
+    NEST arglist for PARAMETERS, rpar symbol.
+
+NEST arglist for PARAMETERS PARAMETER:
+  NEST arglist for PARAMETERS, comma symbol, NEST arglist for PARAMETERS.
+
+NEST arglist for VALTYPE type TAG:
+  VALTYPE NEST expression.
+
+char NEST expression:
+  char NEST name with TAG;
+  quote symbol, letter, quote symbol;
+  space symbol;
+  head symbol, string NEST expression.
+
+string NEST expression:
+  string NEST name with TAG;
+  quote symbol, quote symbol;
+  quote symbol, letter, letter sequence, quote symbol;
+  tail symbol, string NEST expression.
+
+letter sequence: letter; letter sequence, letter.
+
+letter: LETTER symbol.
+
+TYPE NEST name with TAG:
+  TAG symbol, where TYPE type TAG found in NEST.
+
+where TYPE type TAG found in NEST new DECS:
+  where TYPE type TAG one of DECS;
+  where TAG not in DECS, where TYPE type TAG found in NEST.
+
+where TYPE type TAG one of DECS DEC:
+  where TYPE type TAG one of DEC;
+  where TYPE type TAG one of DECS.
+
+where TYPE type TAG one of TYPE type TAG: EMPTY.
+
+where DEC consistent: EMPTY.
+
+where DECS TYPE type TAG consistent:
+  where DECS consistent, where TAG not in DECS.
+
+where TAG not in DECS DEC:
+  where TAG not in DECS, where TAG not in DEC.
+
+where TAG1 not in TYPE type TAG2: where TAG1 is not TAG2.
+
+where NOTETY1 ALPHA1 is not NOTETY2 ALPHA2:
+  where NOTETY1 is not NOTETY2;
+  where ALPHA1 precedes ALPHA2 in ALPHABET;
+  where ALPHA2 precedes ALPHA1 in ALPHABET.
+
+where NOTION is not EMPTY: EMPTY.
+
+where EMPTY is not NOTION: EMPTY.
+
+where ALPHA1 precedes ALPHA2 in NOTETY1 ALPHA1 NOTETY2 ALPHA2 NOTETY3:
+  EMPTY.

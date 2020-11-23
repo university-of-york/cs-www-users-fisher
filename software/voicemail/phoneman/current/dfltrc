@@ -1,0 +1,60 @@
+// Default voicemail script   A.J. Fisher   March 1996
+
+chdir "/usr/fisher/mipslib/phoneman"
+
+loop
+
+   print "Waiting for ring"
+   wtring
+   print
+   print "Incoming call on $time"
+   seize
+   speak "hello.au" 2           // This is a voicemail system
+   speak "press1.au"            // If you wish to leave a msg, press 1
+
+   accept
+      fax:
+	 print "IC FAX"
+	 run "modem -fax -ans -v" > "/tmp/$uid.g3"
+
+      1:
+	 print "MESSAGE"
+	 speak "spkafter.au"    // Pls speak after the tone
+	 speak "whistle.au"     // [tone]
+	 record "$HOME/mbox/ansphone.au"
+
+      20:
+	 accept
+	    9999:	// pin
+	       print "IC MODEM"
+	       modem "modem -V22a -ans -7" login
+	 end
+
+      21:
+	 accept
+	    9999:	// pin
+	       print "CB MODEM"
+	       release
+	       modem "modem -V22o $HOMETEL -7" login
+	 end
+
+      3:
+	 print "MUSIC"
+	 speak "j_bond.au"
+
+      4:
+	 accept
+	    9999:	// pin
+	       accept
+		  xxxx: // extn num to divert to
+		     print "DIVERT $num"
+		     release
+		     modem "modem =#9$num"
+	       end
+	 end
+   end
+
+   release
+
+end
+

@@ -1,0 +1,16 @@
+BUILTINS =
+
+libdir = ../lib
+
+all:V:	./polos ./ospol
+
+clean:
+	rm -f polos.o ospol.o convert.o
+
+./%:	%.o convert.o $libdir/libio.a
+	cc $stem.o convert.o -L$libdir -lio -lm
+	mv a.out ./$stem
+
+%.o:	%.c $libdir/hdr.h
+	cc -O -c -I$libdir $stem.c
+

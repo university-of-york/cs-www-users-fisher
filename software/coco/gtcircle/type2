@@ -1,0 +1,104 @@
+Script started on Wed Sep 13 16:38:42 1995
+$$ gtcircle -1 56 -2 60
+[[[Trying 192.5.41.239...
+Connected to tycho.usno.navy.mil.
+Escape character is '^]'.
+
+HP-UX tycho A.09.04 B 9000/897 (ttyp5)
+
+login: ]]]
+[[[ads
+
+        FOR OFFICIAL USE ONLY
+
+For Official Use Only
+---------------------------------------------------
+          -- AUTOMATED DATA SERVICE --
+US NAVAL OBSERVATORY -- WASHINGTON, D.C. 20392-5420
+---------------------------------------------------
+The following limits are in effect:  25 logins/day
+Response time: 1 minute;   Usage: 20 minutes/day
+Please be sure your terminal is set to: 8/N/1
+COMMENTS: Email to adsmgr@tycho.usno.navy.mil
+On at 15:39:12    Wednesday   September 13, 1995
+
+    AUTOMATED DATA SERVICE  - TIME SERVICE - U.S. NAVAL OBSERVATORY
+---------------------------------------------------------------------------
+                FOR OFFICIAL USE BY AUTHORIZED USERS ONLY
+---------------------------------------------------------------------------
+PHONES:(202)653-0155, 653-0068, 653-1079    <ALL BAUD RATES>     8N1
+       DSN: 294-0155, 294-0068, 294-1079  (8 bits - No parity - 1 Stop bit)
+---------------------------------------------------------------------------
+IMPORTANT NOTICE:   SEPT. 21, 22 hrs UT ALL PHONE NUMBERS WILL BE CHANGED!!!
+NEW NUMBERS: 762-1602      762-1610      762-1503  (AUTOVON = SAME NUMBERS) 
+        CALL FORWARDING WILL BE IN EFFECT FOR ONLY 90 DAYS!
+---------------------------------------------------------------------------
+   Obtain ADS data via return Email.  TYPE "email" from the main menu. 
+    INTERNET address 192.5.41.239 (tycho.usno.navy.mil) login: ads
+---------------------------------------------------------------------------
+
+
+Time left = 0 minutes and 0 seconds
+
+MAIN OPTIONS: email, info, note, ptti, exp, internet, nav, aust, tco, 
+gps, loran, omega, series, transit, astro, soft, vlf, goes, gpsftp, 
+modems, PAGE(/), HELP(?), MAIL, COMMENT, EXIT(Bye)
+Command ==> ]]]
+[[[
+MAIN OPTIONS: email, info, note, ptti, exp, internet, nav, aust, tco, 
+gps, loran, omega, series, transit, astro, soft, vlf, goes, gpsftp, 
+modems, PAGE(/), HELP(?), MAIL, COMMENT, EXIT(Bye)
+Command ==> ]]]
+[[[loran
+
+
+LORAN OPTIONS: Lorxp, Lor, Lorid, Lormc, Lorpd, Lorpr, ser41, Lortd, 
+L5930, L5990, L7930, L7960, L7970, L7980, L7990, L8290, L8970, L9610, 
+L9940, L9960, L9970, L9970pred, L9980, L9990, Ldx, toc, PAGE(/), HELP(?), MAIL, 
+MAIN(^), EXIT(Bye)
+Command ==> 
+LORAN OPTIONS: Lorxp, Lor, Lorid, Lormc, Lorpd, Lorpr, ser41, Lortd, 
+L5930, L5990, L7930, L7960, L7970, L7980, L7990, L8290, L8970, L9610, 
+L9940, L9960, L9970, L9970pred, L9980, L9990, Ldx, toc, PAGE(/), HELP(?), MAIL, 
+MAIN(^), EXIT(Bye)
+Command ==> Ldx
+
+
+LORAN-C BASELINE AND AZIMUTH COMPUTATION 
+USING THE SODANO FIFTH METHOD
+WGS (1972) OR NWL10F SPHEROID & DATUM
+
+LORAN-C BASE LINE AND AZIMUTH BETWEEN TWO STATIONS
+ENTER POSITIONS WITH N,S,E, OR W IN LAST PLACE (38 55 13.40 N)
+Position:1]]]
+[[[
+LATITUDE  N   LONGITUDE  E
+DG MN  SEC  S DEG MN  SEC  W
+XX XX XX.XX X XXX XX XX.XX X
+38 55 13.40 N 120 00 00.00 W
+
+Position:2]]]
+[[[
+LATITUDE  N   LONGITUDE  E
+DG MN  SEC  S DEG MN  SEC  W
+XX XX XX.XX X XXX XX XX.XX X
+
+ DISTANCE    SEAWATER  CORRECTED   DISTANCE IN MILES
+IN MICROSEC  CORRECTN   DISTANCE  NAUTICAL  INT.STAT. IN METERS
+ 41904.8058   26.6561  41931.4620  6781.05   7803.50  12558499.96
+
+GREAT CIRCLE TAKE-OFFS (AZIMUTHS) FROM
+ POSITION 1 TO 2       POSITION 2 TO 1
+  69 58 43.550 TRUE    312 56 54.040 TRUE
+
+
+LORAN OPTIONS: Lorxp, Lor, Lorid, Lormc, Lorpd, Lorpr, ser41, Lortd, 
+L5930, L5990, L7930, L7960, L7970, L7980, L7990, L8290, L8970, L9610, 
+L9940, L9960, L9970, L9970pred, L9980, L9990, Ldx, toc, PAGE(/), HELP(?), MAIL, 
+MAIN(^), EXIT(Bye)
+Command ==> ]]]
+Loc A: lon -1.000000 : -1:00:00.0000 lat 56.000000 : 56:00:00.0000 datum WGS72
+Loc B: lon -2.000000 : -2:00:00.0000 lat 60.000000 : 60:00:00.0000 datum WGS72
+Distance: 0.000 metres
+$$ ^D
+script done on Wed Sep 13 16:38:51 1995

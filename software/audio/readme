@@ -1,0 +1,18 @@
+Audio library for SGI Indy
+==========================
+
+Directory: /usr/fisher/audio
+
+Sub-Directories:
+
+    current  C++ source
+    exs	     some example audio files
+
+Dr A.J. Fisher
+Dept of Computer Science
+University of York
+York YO1 5DD, U.K.
+
+fisher@minster.york.ac.uk
+http://www.cs.york.ac.uk/~fisher
+

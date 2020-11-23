@@ -1,0 +1,8 @@
+program:   def.
+
+def:  abc; x symbol, x symbol.
+
+abc:  x symbol; x symbol, abc.
+
+x symbol: "X".
+

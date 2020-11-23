@@ -1,0 +1,17 @@
+LETTER::  h; i; j.
+
+NOTION::  LETTER NOTETY.
+
+NOTETY::  NOTION; EMPTY.
+
+EMPTY::   .
+
+program:  LETTER1 symbol, LETTER2 symbol, LETTER3 symbol,
+          where <LETTER1> is <LETTER2>,
+          where <LETTER2> is <LETTER3>.
+
+where <NOTION> is <NOTION>: EMPTY.
+
+h symbol:         'h'.
+i symbol:         'i'.
+j symbol:         'j'.

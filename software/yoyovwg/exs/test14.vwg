@@ -1,0 +1,37 @@
+VALUE::	 i VALETY.
+VALETY:: VALUE; EMPTY.
+EMPTY::	 .
+
+program:
+   expression value VALUE, equals symbol, expression value VALUE.
+
+expression value VALUE:
+   primary value VALUE.
+
+expression value VALUE1 VALUE2:
+   primary value VALUE1, plus symbol, primary value VALUE2.
+
+primary value VALUE:
+   constant value VALUE.
+
+{  lpar symbol, expression value VALUE, rpar symbol. }
+
+{ constant value EMPTY:
+   zero symbol. }
+
+constant value VALUE:
+   VALUE eyes.
+
+i eyes:
+   i symbol.
+
+i VALUE eyes:
+   i eyes, VALUE eyes.
+
+equals symbol:	'='.
+plus symbol:	'+'.
+times symbol:	'*'.
+lpar symbol:	'('.
+rpar symbol:	')'.
+i symbol:	'i'.
+

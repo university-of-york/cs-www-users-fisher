@@ -1,0 +1,28 @@
+BUILTINS =
+
+all:V:		    $MYBIN/pstog3 $MYBIN/g3tops $MYBIN/g3topbm
+
+$MYBIN/pstog3:	    pstog3.o
+		    gcc pstog3.o
+		    mv a.out $MYBIN/pstog3
+		    chmod a+x $MYBIN/pstog3
+
+$MYBIN/g3tops:	    g3tops.o
+		    gcc g3tops.o
+		    mv a.out $MYBIN/g3tops
+		    chmod a+x $MYBIN/g3tops
+
+$MYBIN/g3topbm:	    g3topbm.o
+		    gcc g3topbm.o -L/york/mips/lib -lpbm
+		    mv a.out $MYBIN/g3topbm
+		    chmod a+x $MYBIN/g3topbm
+
+%.o:		    %.C
+		    gcc -O -c -I$MYLIB $stem.C
+
+g3topbm.o:	    g3topbm.c pbm.h g3.h pbmplus.h
+		    gcc -O -c g3topbm.c
+
+clean:
+		    rm -f pstog3.o g3tops.o g3topbm.o
+

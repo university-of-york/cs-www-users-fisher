@@ -1,0 +1,174 @@
+    asm("li $30,0x12340002");   /* debug */
+    asm("j $0");                /* debug */
+#ifdef NOTDEF
+
+static void prdebugbuf()
+  { fprintf(stderr, "?? printing debug\r\n");
+    float maxr = 0.0;
+    for (int i=0; i < DBLEN; i++)
+      { float r = fabs(debugbuf[i].res);
+	if (r > maxr) maxr = r;
+      }
+    fprintf(stderr, "??? maxr = %g\n", maxr);
+    FILE *fi = fopen("debug.grap", "w");
+    if (fi == NULL) giveup("debug fopen failed");
+    for (i=0; i < DBLEN; i += 300)
+      { if (i > 0) fprintf(fi, ".bp\n");
+	fprintf(fi, ".sp 0.5i\n.G1 8i\n");
+	fprintf(fi, "new solid\n");
+	for (int j=0; j < 300; j++)
+	  { int n = i+j;
+	    fprintf(fi, "%d %g\n", n, atan2(debugbuf[n].z.im, debugbuf[n].z.re));
+	  }
+	fprintf(fi, "new solid\n");
+	for (j=0; j < 300; j++)
+	  { int n = i+j;
+	    fprintf(fi, "%d %g\n", n, debugbuf[n].res / maxr);
+	  }
+	fprintf(fi, "new solid\n");
+	for (j=0; j < 300; j++)
+	  { int n = i+j;
+	    fprintf(fi, "%d %g\n", n, debugbuf[n].car);
+	  }
+	for (j=0; j < 300; j++)
+	  { int n = i+j;
+	    if (debugbuf[n].tick) fprintf(fi, "\"+\" at %d, %g\n", n, atan2(debugbuf[n].z.im, debugbuf[n].z.re));
+	  }
+	fprintf(fi, ".G2\n");
+      }
+    fclose(fi);
+    fprintf(stderr, "?? done\r\n");
+  }
+
+#endif
+
+global int debugnum = -1;
+global float debugbuf[12000];
+
+static float debugtot[4096];
+
+extern "C" double log10(double);
+
+global void senddocpage()
+  { /* Debugging version computes spectrum */
+    int i, j;
+    for (i=0; i < 4096; i++) debugtot[i] = 0.0;
+    for (j=0; j < 100; j++)
+      { fprintf(stderr, "Collecting %d\n", j);
+	debugnum = 0;
+	for (i=0; i < 7200; i++) putbit(1);
+	dofft(debugbuf);
+	for (i=0; i < 4096; i++) debugtot[i] += debugbuf[i];
+      }
+    FILE *fi = fopen("debug.dat", "w");
+    if (fi == NULL) giveup("debug fopen 1 failed");
+    for (i=0; i < 4096; i++) fprintf(fi, "%g\t%g\n", (float) i * (6000.0 / 4096.0), 10.0 * log10(debugtot[i]));
+    fclose(fi);
+    giveup("debug exit");
+  }
+
+static void dofft()
+  { int i; FILE *fi;
+    fi = popen("fft -p | tac /tmp/tmp", "w");
+    if (fi == NULL) giveup("debug popen failed");
+    for (i=0; i < 8192; i++) fprintf(fi, "%g\n", debugbuf[i]);
+    int code = pclose(fi);
+    if (code != 0) giveup("debug pclose failed");
+    fi = fopen("/tmp/tmp", "r");
+    if (fi == NULL) giveup("debug fopen 2 failed");
+    for (i=0; i < 4096; i++)
+      { int ni = fscanf(fi, "%g\n", &debugbuf[i]);
+	unless (ni == 1) giveup("debug scanf failed, ni=%d, i=%d", ni, i);
+      }
+    fclose(fi);
+  }
+
+
+------
+
+#ifndef NOTDEF
+
+struct debug { complex z; float res, car; bool tick; };
+
+static debug debugbuf[DBLEN];
+
+static void prdebugbuf()
+  { fprintf(stderr, "?? printing debug\r\n");
+    FILE *fi = fopen("debug.grap", "w");
+    if (fi == NULL) giveup("debug fopen failed");
+    for (int i=0; i < DBLEN; i += 300)
+      { if (i > 0) fprintf(fi, ".bp\n");
+	fprintf(fi, ".sp 0.5i\n.G1 8i\n");
+	for (int j=0; j < 300; j++)
+	  { int n = i+j;
+	    complex z = debugbuf[n].z;
+	    fprintf(fi, "%g %g\n", z.re, z.im);
+	  }
+	fprintf(fi, ".G2\n");
+      }
+    fclose(fi);
+    fprintf(stderr, "?? done\r\n");
+  }
+
+#else
+
+static void prdebugbuf()
+  { fprintf(stderr, "?? printing debug\r\n");
+    float maxr = 0.0;
+    for (int i=0; i < DBLEN; i++)
+      { float r = fabs(debugbuf[i].res);
+	if (r > maxr) maxr = r;
+      }
+    fprintf(stderr, "??? maxr = %g\n", maxr);
+    FILE *fi = fopen("debug.grap", "w");
+    if (fi == NULL) giveup("debug fopen failed");
+    for (i=0; i < DBLEN; i += 300)
+      { if (i > 0) fprintf(fi, ".bp\n");
+	fprintf(fi, ".sp 0.5i\n.G1 8i\n");
+	fprintf(fi, "new solid\n");
+	for (int j=0; j < 300; j++)
+	  { int n = i+j;
+	    complex z = debugbuf[n].z;
+	    fprintf(fi, "%d %g\n", n, atan2(z.im, z.re));
+	  }
+	fprintf(fi, "new solid\n");
+	for (j=0; j < 300; j++)
+	  { int n = i+j;
+	    fprintf(fi, "%d %g\n", n, debugbuf[n].res / maxr);
+	  }
+	fprintf(fi, "new solid\n");
+	for (j=0; j < 300; j++)
+	  { int n = i+j;
+	    fprintf(fi, "%d %g\n", n, debugbuf[n].car);
+	  }
+	for (j=0; j < 300; j++)
+	  { int n = i+j;
+	    if (debugbuf[n].tick) fprintf(fi, "\"+\" at %d, %g\n", n, atan2(debugbuf[n].z.im, debugbuf[n].z.re));
+	  }
+	fprintf(fi, ".G2\n");
+      }
+    fclose(fi);
+    fprintf(stderr, "?? done\r\n");
+  }
+
+#endif
+#ifdef NOTDEF
+static float lp_yco[]  = { -0.7348708500, +3.1656514688, -5.1231807773, +3.6922342606 };    /* Bu Lp 450 Hz	     */
+static float lp_yco[]  = { -0.6630104844, +2.9240526562, -4.8512758825, +3.5897338871 };    /* Bu Lp 600 Hz	     */
+static float lp_yco[]  = { -0.4382651423, +2.1121553551, -3.8611943490, +3.1806385489 };    /* Bu Lp 1200 Hz	     */
+static float bpl_yco[] = { -0.6413515381, +2.7382519575, -4.5302509019, +3.4289454542 };    /* Bu Bp  600 .. 1800 Hz */
+static float bph_yco[] = { -0.6413515381, +2.3292962411, -3.7095751329, +2.9168352224 };    /* Bu Bp 1800 .. 3000 Hz */
+static float bpl_yco[] = { -0.7166338735, +2.9712202979, -4.7746229932, +3.5139768404 };    /* Bu Bp  750 .. 1650 Hz */
+static float bph_yco[] = { -0.7166338735, +2.5274709482, -3.9163060565, +2.9891672398 };    /* Bu Bp 1950 .. 2850 Hz */
+static float bph_yco[] =								    /* Bu Bp 1950 .. 2850 Hz */
+  { -0.5393551283,  +3.7853835895, -12.4712469127, +24.8738632977,
+    -32.7219646998, +29.0282182227, -16.9850331399, +6.0162704780,
+  };
+#endif
+
+static float bpl_yco[] = { -0.8008026467, +3.2247372820, -5.0363143692, +3.6048047851 };    /* Bu Bp  900 .. 1500 Hz */
+static float bph_yco[] = { -0.8008026467, +2.7431253756, -4.1359130458, +3.0664301044 };    /* Bu Bp 2100 .. 2700 Hz */
+static float lbp_yco[] =
+  { -0.6630104844, +5.3195795874, -18.9433682149, +39.0847521667,     /* Bu Bp	900 .. 1500 Hz */
+    -51.0880587708, +43.3162291990, -23.2667680099, +7.2405861811
+  };

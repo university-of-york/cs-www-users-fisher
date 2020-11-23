@@ -1,0 +1,128 @@
+		   Ordnance Survey Coordinate Conversion
+		   =====================================
+
+Directory: /usr/fisher/coco
+
+This directory contains some programs for converting between the UK
+Ordnance Survey and geographical (longitude/latitude) coordinate systems.
+Note that the OS is a modified transverse Mercator (TM), and the routines
+are easily adaptable to other ``flavours'' of the TM projection.
+
+The C programs in ``series'' and ``trig'' are accurate to better than 1mm
+with the correct choice of parameters.	``series'' is RECOMMENDED.
+More info is given in the README files in those directories.
+
+``itrig'' contains a fixed-point implementation, suitable for use with
+Real Hardware.	The rationale is that coordinate conversion is often
+the only task in a radionavigation system for which you might think you
+need floating point.  These routines show that you don't!
+
+``conformal'' contains code for a novel method for projecting multiple
+points along a meridian very efficiently - in favourable cases using
+less than one complex multiplication per point.
+
+``fortran'' contains some Fortran routines by C.P. Swan, believed to be
+accurate to ~1cm.
+
+``datumshift'' handles datum shifts:  you specify a latitude, longitude and
+height according to one datum (figure of the Earth), and the program tells you
+the same position according to a different, specified, datum.  The following
+datums (ugh) are recognized:
+
+    WGS84	   /* World Geodetic Standard 1984     */
+    WGS72	   /* World Geodetic Standard 1972     */
+    NAD27	   /* North American Datum 1927	       */
+    OSGB36	   /* Ordnance Survey of Great Britain */
+
+``idatumshift'' does the same, but uses fixed-point arithmetic.
+
+I also have some routines for converting from hyperbolic coords to OS
+(Transverse Mercator), and from hyperbolic to lat/long.
+Email me if you're interested in these.
+
+Input Formats
+=============
+
+Polar coordinates:
+
+    Longitude is specified first, then latitude.
+    Two forms are accepted:
+
+    deg:min:sec	    e.g.     1:02:56.82	    54:00:00
+			    -1:23:45.00	    53:30:00
+
+    decimal degrees e.g.    -2.0	    54.0
+			    +2.0	    54.7583
+
+Cartesian coordinates:
+
+    Easting is specified first, then northing.
+    Two forms are accepted:
+
+    in metres from
+    false origin    e.g.    462400.0000	    450700.0000
+
+    OS grid ref	    e.g.    SE 62400 50700
+
+    (In this form 5 figs must be specified for easting and northing
+    within the 100km square.)
+
+Heights:
+
+    Metres
+
+Datums: (ugh)
+
+    ``datumshift'' knows about the following:
+
+    WGS84	   /* World Geodetic Standard 1984     */
+    WGS72	   /* World Geodetic Standard 1972     */
+    NAD27	   /* North American Datum 1927	       */
+    OSGB36	   /* Ordnance Survey of Great Britain */
+
+Usage
+=====
+
+ospol - converts Ordnance Survey to polar.
+polos - converts polar to Ordnance Survey.
+datumshift - shifts datum.
+
+Example 1 : I'm at SE 624 507; what's that in lat/lon (WGS84 datum)?
+
+    $ ospol SE 62400 50700
+	462400.0000 E 450700.0000 N : SE 62400 50700
+    --> lon -1.049118 : -1:02:56.8239 lat 53.948437 : 53:56:54.3747 datum OSGB36
+    $ datumshift -I OSGB36 -O WGS84  -1.049118 53.948437 0
+	lon -1.049118 : -1:02:56.8248 lat 53.948437 : 53:56:54.3732 hgt 0.000 datum OSGB36
+    --> lon -1.050704 : -1:03:02.5341 lat 53.948647 : 53:56:55.1288 hgt 47.758 datum WGS84
+
+Example 2 : My GPS receiver says I'm at 1 deg W, 54 deg N; where's that on my OS map?
+
+    $ datumshift -I WGS84 -O OSGB36 -1 54 0
+	lon -1.000000 : -1:00:00.0000 lat 54.000000 : 54:00:00.0000 hgt 0.000 datum WGS84
+    --> lon -0.998407 : -0:59:54.2665 lat 53.999794 : 53:59:59.2597 hgt -47.735 datum OSGB36
+    $ polos -0.998407 53.999794
+	lon -0.998407 : -0:59:54.2652 lat 53.999794 : 53:59:59.2584 datum OSGB36
+    --> 465646.9220 E 456459.0060 N : SE 65647 56459
+
+Note that in Example 2 neglecting to shift the datum results in an error of
+105 m in easting and 21 m in northing.
+
+I know it ought to be possible to connect ospol/polos and datumshift by a Unix pipe -
+but it isn't, at the moment.
+
+Further information
+===================
+
+    http://www.cs.york.ac.uk/~fisher/geodesy.html
+
+*** CAUTION ***
+
+Most of the code is Standard K & R "C".
+One day I might update it to Ansi C or C++.
+
+--
+Tony Fisher
+fisher@minster.york.ac.uk
+http://www.cs.york.ac.uk/~fisher
+

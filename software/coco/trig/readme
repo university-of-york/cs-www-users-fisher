@@ -1,0 +1,22 @@
+Polar-to-OS conversion by Fourier series method
+===============================================
+
+Accuracy
+========
+
+Note that NHARMS, NDERIVS, EPS1 and EPS2 are linked:
+if you change one, accuracy will be adversely affected unless the others
+are changed to match.  Experimentation is necessary.
+
+with NHARMS = 8, NDERIVS = 10, EPS1 = 1e-6, EPS2 = 1e-10:
+
+    maxdx   0.00011 at lon  4.000000 :	4:00:00.0000 lat 58.250000 : 58:15:00.0000
+    maxdy   0.00046 at lon -4.400000 : -4:24:00.0000 lat 61.000000 : 61:00:00.0000
+    maxdh   0.00047 at lon  0.500000 :	0:30:00.0000 lat 61.000000 : 61:00:00.0000
+
+with NHARMS = 8, NDERIVS = 8, EPS1 = 1e-5, EPS2 = 1e-7:
+
+    maxdx   0.00552 at lon  4.000000 :	4:00:00.0000 lat 51.250000 : 51:15:00.0000
+    maxdy   0.07541 at lon  4.000000 :	4:00:00.0000 lat 49.000000 : 49:00:00.0000
+    maxdh   0.07560 at lon  4.000000 :	4:00:00.0000 lat 49.000000 : 49:00:00.0000
+

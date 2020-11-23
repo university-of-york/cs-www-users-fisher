@@ -1,0 +1,16 @@
+BUILTINS =
+
+libdir = /usr/fisher/linuxlib
+cgibin = /york/www/usr/fisher/cgi-bin
+objs   = lcfilter.o coeffs.o
+
+$cgibin/lcfilter:   $objs $libdir/libcgi.a
+		    olinux gcc $objs -L$libdir -lcgi -lm
+		    mv a.out $cgibin/lcfilter
+
+%.o:		    %.C $libdir/libcgi.h lcfilter.h
+		    olinux gcc -I$libdir -O -c $stem.C
+
+clean:
+		    rm -f $objs
+

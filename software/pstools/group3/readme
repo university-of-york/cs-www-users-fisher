@@ -1,0 +1,15 @@
+Format of a Group3 file produced by pstog3
+==========================================
+
+file		::=	header page*
+
+header		::=	"!<Group3>" vsn xdpi ydpi
+vsn		::=	"1"
+xdpi		::=	"200"
+ydpi		::=	"100" | "200"
+
+page		::=	line line ... line rtc fill	    (1170 lines for low res, 2340 for high res)
+line		::=	EOL data			    (1728 dots-worth of encoded data)
+rtc		::=	EOL EOL EOL EOL EOL EOL		    (six EOLs)
+fill		::=	"0"*                                (pad to byte boundary)
+

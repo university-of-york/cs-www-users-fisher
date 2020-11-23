@@ -1,0 +1,86 @@
+NOTION::   ALPHA NOTETY.
+NOTETY::   NOTION; EMPTY.
+
+TAGS::	   TAG TAGSETY.
+TAGSETY::  TAGS; EMPTY.
+TAG::	   LETTERS tag.
+
+LETTERS::  LETTER LETSETY.
+LETSETY::  LETTERS; EMPTY.
+LETTER::   letter ALPHA.
+
+ALPHA::	   a; b; c; d; e; f; g; h; i; j; k; l; m;
+	   n; o; p; q; r; s; t; u; v; w; x; y; z.
+
+EMPTY::	   .
+
+program:
+   TAGS statement sequence.
+
+TAG TAGS statement sequence:
+   TAGS statement sequence, TAG defining occurrence.
+
+TAGS statement sequence:
+   TAGS statement sequence, TAG applied occurrence,
+      where TAG is in TAGS.
+
+where TAG is in TAG TAGSETY:
+   EMPTY.
+
+where TAG1 is in TAG2 TAGS:
+   where TAG1 is in TAGS.
+
+TAG statement sequence:
+   TAG defining occurrence.
+
+TAG defining occurrence:
+   define symbol, TAG.
+
+TAG applied occurrence:
+   apply symbol, TAG, <TAG assignment> option.
+
+<NOTION> option:
+   NOTION; EMPTY.
+
+TAG assignment:
+   equals symbol, value symbol.
+
+LETTER TAG:
+   LETTER symbol, TAG.
+
+LETTER tag:
+   LETTER symbol.
+
+define symbol:	  "D".
+apply symbol:	  "A".
+value symbol:	  "V".
+
+equals symbol:	  "=".
+
+letter a symbol:  "a".
+letter b symbol:  "b".
+letter c symbol:  "c".
+letter d symbol:  "d".
+letter e symbol:  "e".
+letter f symbol:  "f".
+letter g symbol:  "g".
+letter h symbol:  "h".
+letter i symbol:  "i".
+letter j symbol:  "j".
+letter k symbol:  "k".
+letter l symbol:  "l".
+letter m symbol:  "m".
+letter n symbol:  "n".
+letter o symbol:  "o".
+letter p symbol:  "p".
+letter q symbol:  "q".
+letter r symbol:  "r".
+letter s symbol:  "s".
+letter t symbol:  "t".
+letter u symbol:  "u".
+letter v symbol:  "v".
+letter w symbol:  "w".
+letter x symbol:  "x".
+letter y symbol:  "y".
+letter z symbol:  "z".
+

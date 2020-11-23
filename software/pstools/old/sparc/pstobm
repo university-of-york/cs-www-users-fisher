@@ -1,0 +1,64 @@
+#! /bin/sh
+# pstobm -- cvt PostScript to bitmap
+
+mylib=/usr/fisher/sparclib
+mybin=/usr/fisher/sparcbin
+
+glog=/tmp/$$.glog
+itemp=/tmp/$$.psI
+otemp=/tmp/$$.psO
+
+trap "rmtemps; exit 4" 2 3
+
+fail()
+  { echo "pstobm: $1" >&2
+    rmtemps
+    exit 1
+  }
+
+rmtemps()
+  { rm -f $glog $itemp $otemp
+  }
+
+crop=yes
+xdpi=72
+ydpi=72
+
+while [ $# -gt 2 ]
+do
+    case "$1" in
+	-ppm)
+	    crop=no
+	    shift;;
+
+	-dpi)
+	    xdpi="$2"; ydpi="$3"
+	    shift; shift; shift;;
+
+	*)
+	    fail "bad option $1";;
+    esac
+done
+
+[ $# = 2 ] || fail "Usage:  pstobm [-ppm] [-dpi x y] fn.ps fn.bm   (either file can be -)"
+
+[ "$1" = - ] && { ifn=$itemp; cat >$ifn; } || ifn="$1"
+[ "$2" = - ] && ofn=$otemp || ofn="$2"
+
+[ -r $ifn ] || fail "can't open $ifn"
+
+rm -f $ofn
+
+echo "$xdpi $ydpi ppmsetdensity ($ifn) ($ofn) ppm1run" |
+  /sun4/bin/X11/gs -q -dNODISPLAY $mylib/pstoppm.ps >$glog
+
+[ -r $ofn ] || cat $glog >&2
+
+[ -r $ofn ] || { echo >&2; fail "GhostScript failed!"; }
+
+[ $crop = no ] || $mybin/cropbm $ifn $ofn
+
+[ "$2" = - ] && cat $ofn
+
+rmtemps
+

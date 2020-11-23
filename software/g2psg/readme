@@ -1,0 +1,52 @@
+G2PSG Parsing System
+
+Directory: /usr/fisher/lingu/g2psg
+
+				  Information
+				  ===========
+
+The author of this 2GPSG parsing system is:
+
+	Dr A.J. Fisher,
+	Dept of Computer Science,
+	The University of York,
+	York YO1 5DD, U.K.
+
+to whom enquiries should be addressed.
+
+Papers, Reports, etc.
+=====================
+
+Papers marked * are proprietary to British Telecom and not publicly available.
+
+1.*  C.J. Cullen, A.J. Fisher, E.C. Fudge and R.A. Vaughan
+     Final report I: The Grammar of Telephone Conversations
+     Research report for British Telecom Research Laboratories (Jan. 1987)
+
+2.*  J.S. Coleman, C.J. Cullen, A.J. Fisher and E.C. Fudge
+     Final report II: The Grammar of Telephone Conversations
+     Research report for British Telecom Research Laboratories (Feb. 1988)
+
+3.   A.J. Fisher
+     Practical parsing of generalised phrase structure grammars
+     Report YCS 95, Dept. of Computer Science, University of York
+     (1987)
+		[an early version of Ref. 4]
+
+4.   A.J. Fisher
+     Practical parsing of generalised phrase structure grammars
+     Computational Linguistics 15(3) 139-148 (Sept. 1989)
+
+5.   A.J. Fisher
+     A parser for GPSG
+     Internal report, Dept. of Computer Science, University of York (Feb. 1988)
+
+		[contains a full description of the GPSG parsing system
+		 which is the predecessor of this G2PSG system]
+
+6.   A.J. Fisher
+     Generalized generalized phrase-structure grammar
+     Lingua 85 17-40 (1991)
+
+		[the rationale for, and description of, G2PSG]
+

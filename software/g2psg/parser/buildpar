@@ -1,0 +1,38 @@
+#! /bin/sh
+# G2PSG parsing system	 A.J. Fisher   September 1990
+# shell script for building a test parser
+
+PATH=/usr/fisher/bin:/bin
+
+lib=/usr/fisher/lib
+
+opts=
+linkonly=no
+
+case $1 in
+   -v)	 opts=-v
+	 shift;;
+
+   -l)	 linkonly=yes
+	 shift;;
+esac
+
+case $1 in
+   *.g)	 fn=`bname $1`
+	 shift
+
+	 case $linkonly in
+	    no)	 metagee $fn.g | g2psg $opts $fn.o
+		 rc=$? # status from g2psg command
+		 case $rc in
+		    0)	;;
+		    *)	exit $rc;;
+		 esac
+	 esac
+
+	 cc $lib/parser.o $fn.o;;
+
+   *)	 echo "Usage: buildpar [-v] [-l] fn.g" 1>&2
+	 exit 1;;
+esac
+

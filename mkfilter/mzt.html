@@ -1,0 +1,73 @@
+<HTML>
+
+<title> The Matched Z-Transform </title>
+
+<h1> The Matched <i>z</i>-Transform </h1>
+
+<hr>
+
+Two transform methods are available:  the bilinear transform and the matched <i>z</i>-transform.
+
+<p>
+
+<b>In most circumstances the bilinear transform is superior.</b>  The principal disadvantage of the BLT
+is that the frequency scale is ``warped'', i.e. distorted in a non-linear fashion, so that, e.g. for a LP filter,
+
+<ul>
+   <table>
+      <tr> <td> 0 Hz	    <td> in the analogue domain maps on to <td> 0 Hz	    <td> in the digital domain
+      <tr> <td> <i>fc</i>   <td> in the analogue domain maps on to <td> <i>fc</i>   <td> in the digital domain
+      <tr> <td> infinity Hz <td> in the analogue domain maps on to <td> <i>fs</i>/2 <td> in the digital domain
+   </table>
+</ul>
+
+where <i>fc</i> is the corner frequency and <i>fs</i> is the sampling frequency.
+
+<p>
+
+In most cases this is just what you want:  for a LP or BP filter you want a response which is exactly
+zero at the Nyquist frequency (<i>fs</i>/2), and for a HP filter you want the response to be exactly unity
+at this frequency.
+
+<p>
+
+The one exception to this is the Bessel filter.	 The only advantage of a Bessel design over a Butterworth
+or Chebyshev is that the phase response is nearly linear throughout the passband, i.e. the group delay is
+almost constant throughout the passband.  The ``warping'' inherent in the bilinear transform method
+upsets this linearity.	To get round this problem, tick (check) the ``matched <i>z</i>-transform'' box.
+The matched <i>z</i>-transform does not warp the frequency scale, so a digital Bessel filter designed by
+this method will have the near-linear phase characteristic you'd like to see.
+
+<p>
+
+In fact, a low-pass filter designed by MZT is impulse-invariant with the analogue prototype, which
+means that it has the same impulse response, so it behaves identically to the corresponding analogue
+filter.	 Strictly speaking this is true only if you ignore aliasing:  if the response of the digital
+LP filter is not negligible at <i>fs</i>/2, the response in the vicinity of this frequency will be perturbed
+by the spurious response at frequencies above <i>fs</i>/2, which are folded down into the band below <i>fs</i>/2.
+That's why you're advised to check the frequency response graphs carefully if you use this method!
+
+<p>
+
+A further advantage of the MZT is that the number of zeros is reduced, compared with the BLT case.
+Further information is given in the
+<a href=/~fisher/software/mkfilter/current/doc.ps.gz> PostScript documentation </a>
+for the <tt>mkfilter</tt> program.  An LP filter designed by MZT has no <i>z</i>-plane zeros.  This means that no
+<tt>xvals</tt> vector is required; this improves efficiency.  Have a look at the generated code.
+
+<p>
+
+To summarize:  you might use the matched <i>z</i>-transform if
+
+<ul>
+   <li> you want a Bessel filter with an optimally linear phase response; or
+   <li> you are more concerned with efficiency than with the quality of the frequency response.
+</ul>
+
+<hr>
+
+<address>
+   <a href=/~fisher> Tony Fisher </a> /
+   fisher@minster.york.ac.uk
+</address>
+

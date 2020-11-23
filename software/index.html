@@ -1,0 +1,142 @@
+<HTML>
+
+<title> Tony Fisher's Freely Available Software </title>
+
+<h1> Tony Fisher's Freely Available Software </h1>
+
+<hr>
+
+There's much more where this came from.	 More will be available here soon!  In
+the mean time, if there is no link here to a package you want, please send me
+email and I'll be happy to parcel it up for you and put it in our
+<a href=//www.cs.york.ac.uk/ftpserver.html> ftp directory.</a> <p>
+
+<h3> List of Packages </h3>
+
+<h4> Linguistics / Formal Language Theory </h4>
+
+<ul>
+   <li> <a href=g2psg> g2psg</a> - A parser for generalized generalized phrase structure grammars <p>
+   <li> <a href=yoyovwg> yoyovwg</a> - A ``yo-yo'' parser for van Wijngaarden grammars <p>
+</ul>
+
+<h4> Navigation / Cartography / Geodesy </h4>
+
+<ul>
+   <li> <a href=coco> coco</a> - Routines and programs (some by me, some by others) for performing
+	conversions between various geographic coordinate systems <p>
+</ul>
+
+<h4> Digital Signal Processing / Modems / Fax / Telephones / Audio </h4>
+
+<ul>
+   <li> <a href=modem> modem</a> - Fax modem software -
+	makes an SGI Indy workstation behave like a fax machine or a modem <p>
+   <li> <a href=voicemail> voicemail</a> - Telephone manager - voicemail, remote diversion, music on hold, . . . <p>
+   <li> <a href=pstools> pstools</a> - various PostScript tools,
+	including a filter for converting PostScript to Group 3 fax format <p>
+   <li> <a href=mkfilter> mkfilter, gencode, genplot</a> - programs for designing digital filters <p>
+   <li> <a href=audio> audio</a> - Audio library for SGI Indy - used by fax modem software etc. <p>
+   <li> <a href=fft> fft</a> - Fast Fourier Transform code <p>
+</ul>
+
+<h4> Miscellaneous </h4>
+
+<ul>
+</ul>
+
+<hr>
+
+<h3> Instructions for Browsing or Down-Loading </h3>
+
+Click on a link.  If it's a plain file, the file will be displayed in your
+borwser window.	 If it's a directory, a directory listing will be displayed. <p>
+
+In the latter case, there will be a big bold link at the top:
+
+<p> <center> <font size=+1> Download this directory </font> </center> <p>
+
+If you click on this link, a script will be run in our server which
+packages up and (optionally) compresses the software and squirts it down the line to you.
+You will be asked what format you want.	 If you don't know, I sugges pkzip (if you're using a PC) or
+gzipped tar (if you're runnng Unix). <p>
+
+Finally, your browser will prompt you for a filename
+(on your local system) and will store the package in that file.
+
+<h3> Instructions for Uncompressing and Unpacking </h3>
+
+<h4> Uncompressed tar: </h4>
+
+Save the results locally in a file called (e.g.) <tt>temp.tar</tt>.
+Unpack by
+
+<pre>
+    tar xf temp.tar
+</pre>
+
+This will create a new directory below your current directory,
+containing the software.
+
+<h4> Gnu zipped tar: </h4>
+
+Save the results locally in a file called (e.g.) <tt>temp.tar.gz</tt>.
+Uncompress and unpack by
+
+<pre>
+    gunzip temp.tar.gz
+    tar xf temp.tar
+</pre>
+
+This will create a new directory below your current directory,
+containing the software.
+
+<h4> Compressed tar: </h4>
+
+Save the results locally in a file called (e.g.) <tt>temp.tar.Z</tt>.
+Uncompress and unpack by
+
+<pre>
+    uncompress temp.tar.Z
+    tar xf temp.tar
+</pre>
+
+This will create a new directory below your current directory,
+containing the software.
+
+<h4> Zip: </h4>
+
+Save the results locally in a file called (e.g.) <tt>temp.zip</tt>.
+Uncompress and unzip by
+
+<pre>
+    unzip temp.zip
+</pre>
+
+This will create a new directory below your current directory,
+containing the software. <p>
+
+In case of difficulty, don't suffer in silence - <a href=mailto:fisher@minster.york.ac.uk> email me.</a> <p>
+
+<h3> Technical Note </h3>
+
+This directory implements ``Publishing on Demand'' for software packages.
+All packages are held as zip files, which are unzipped by the server whenever
+you request a package or a file within a package.  Similarly, when you click on
+a ``download'' link, the server zips (or tars, compresses, gzips, etc) the file for you. <p>
+
+The zip files are updated from their respective master directories each night in the wee small hours.
+The master directories are on a separate machine and are not visible to the server, for security reasons. <p>
+
+All this happens transparently to the user.  You just click on a link as usual.
+The system has been thoroughly tested, but on only a small range of browsers.
+If you have any problems whatsoever, please <a href=mailto:fisher@minster.york.ac.uk> let me know</a>
+and I shall try to sort them out. <p>
+
+<hr>
+
+<address>
+   <a href=/~fisher> Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+

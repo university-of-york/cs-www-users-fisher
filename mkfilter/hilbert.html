@@ -1,0 +1,68 @@
+<HTML>
+
+<title> Hilbert Transformers </title>
+
+<h1> Hilbert Transformers </h1>
+
+<hr>
+
+<h2> Introduction </h2>
+
+To be written
+
+<h2> Design </h2>
+
+To be written
+
+<p> <hr>
+
+<form action=/~fisher/cgi-bin/mkfscript method=POST>
+
+   <input type=hidden name=filtertype value="Hilbert Transformer">
+   <input type=hidden name=window value=yes>
+
+   <p>
+
+   We need to know the sample rate (in samples per second). <br>
+   Sample rate: <input name=samplerate size=10>
+
+   <p>
+
+   Enter the length of the finite-impulse response, in samples.
+   The larger the value, the more accurate the filter, but the slower its execution. <br>
+   Impulse length: <input name=impulselen size=10>
+
+   <p>
+
+   If you are going to execute the generated filter on a fixed-point processor,
+   you will want to know how the filter behaves when the coefficents are truncated to <i>n</i> bits.
+   To find out, enter the value of <i>n</i> in the box.
+   (If you are not interested in this feature, leave the field blank.
+   For more information, <a href=trunc.html>click here</a>.) <br>
+   Truncate coefficients to <input name=bits size=10> bits
+
+   <p>
+
+   By default, the frequency response graph has a <i>linear</i> magnitude scale.
+   If that is what you want, leave the following box blank.
+   If you want a <i>logarithmic</i> magnitude scale in dB,
+   enter the lower limit of the magnitude scale in dB here (e.g. -80). <br>
+   Lower limit (dB), or blank for linear scale: <input name=logmin size=10>
+
+   <p>
+
+   Submit form: <input type=submit>
+
+   <p>
+
+   Reset form: <input type=reset>
+
+</form>
+
+<hr>
+
+<address>
+   <a href=/~fisher>Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+

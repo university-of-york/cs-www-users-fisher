@@ -1,0 +1,64 @@
+<HTML>
+
+<title> Proportional-Integral Filters </title>
+
+<h1> Proportional-Integral Filters </h1>
+
+<hr>
+
+<h2> Introduction </h2>
+
+To be written
+
+<h2> Design </h2>
+
+To be written
+
+<hr>
+
+<form action=/~fisher/cgi-bin/mkfscript method=POST>
+
+   <input type=hidden name=filtertype value=Pi>
+
+   <p>
+
+   <table>
+      <tr> <td> Sample rate (samples per second): <td> <input name=samplerate>
+      <tr> <td> Time constant ``tau2'' (seconds): <td> <input name=tau2>
+   </table>
+
+   <p>
+
+  By default, the filter is designed by the bilinear transform method, which is
+  <i>recommended</i> for most applications.
+  Tick (check) here: <input name=mzt value=yes type=checkbox> and the matched <i>z</i>-transform
+  will be used instead.
+  <b>Warning:</b> inspect the frequency response carefully if you use this option.
+  <a href=mzt.html> Click here </a> for further information about the matched <i>z</i>-transform,
+  and about Bessel filters in particular.
+
+  <p>
+
+   By default, the frequency response graph has a <i>linear</i> magnitude scale.
+   If that is what you want, leave the following box blank.
+   If you want a <i>logarithmic</i> magnitude scale in dB,
+   enter the lower limit of the magnitude scale in dB here (e.g. -80). <br>
+   Lower limit (dB), or blank for linear scale: <input name=logmin>
+
+   <p>
+
+   Submit form: <input type=submit>
+
+   <p>
+
+   Reset form: <input type=reset>
+
+</form>
+
+<hr>
+
+<address>
+   <a href=/~fisher> Tony Fisher </a> /
+   fisher@minster.york.ac.uk
+</address>
+

@@ -1,0 +1,105 @@
+<HTML>
+
+<title> Resonators </title>
+
+<h1> Resonators </h1>
+
+<hr>
+
+<h2> Introduction </h2>
+
+A resonator is a digital equivalent of a tuned circuit.	 There are three varieties:
+
+<ul>
+   <li> the <i>bandpass</i> resonator, which has a
+	high gain at its centre frequency and low gain elsewhere; <p>
+   <li> the <i>bandstop</i> resonator (or <i>notch filter</i>), which has zero gain (-inf dB) at its centre
+	frequency and about unity (0 dB) elsewhere; <p>
+   <li> the <i>allpass</i> resonator, which has unity gain (0 dB) everywhere, with a phase shift which varies
+	with frequency.
+</ul>
+
+The phase response of the bandpass resonator approximates to +pi/2 at frequencies below the centre and
+-pi/2 at frequencies above the centre, and is exactly zero at the centre.  The bandstop and allpass resonators
+both have approximately zero phase shift except at the centre frequency, at which the phase shift is
+nominally &#177;pi; however in the case of the bandstop resonator, since the gain is zero at the centre
+frequency, the phase shift at that frequency is not defined.
+<p>
+In both respects (magnitude and phase) the resonator behaves like a ``real'' analogue tuned circuit.
+<p>
+If you want a narrow bandpass or bandstop filter, a resonator is often more efficient and better behaved
+than a traditional (e.g. Butterworth) filter.
+
+<h2> Design </h2>
+
+All types of resonator are designed directly in the <i>z</i>-plane.  The bilinear transform
+is not used here.  A bandpass resonator is constructed first; if you asked for one of the other
+types, the bandpass resonator is transformed accordingly. <p>
+
+The number of poles is fixed at 2,
+initially at <i>z</i> = <i>r</i> exp &#177;j theta, where <i>r</i> is close to 1.
+Two zeros are added at <i>z</i> = &#177;1, to ensure zero response at d.c. and h.f. <p>
+
+The presence of the conjugate poles affects the response slightly:  the ``correct'' pole
+positions are not exactly where you would expect them to be.  Consequently,
+the initial pole positions are next refined iteratively, to place
+the peak as close as possible to where you said you wanted it. <p>
+
+If you asked for a bandstop or allpass resonator, the zeros at <i>z</i> = &#177;1 are
+then removed.  For a bandstop design, new zeros are added on the unit circle at <i>z</i> = exp &#177;j theta,
+where theta is the <i>unrefined</i> initial value of theta.  This gives a zero response at
+the precise centre frequency.  For an allpass design, zeros are added at (1/r) exp &#177;j theta,
+where theta this time is the <i>refined</i> value, to balance the existing poles. <p>
+
+<hr>
+
+<form action=/~fisher/cgi-bin/mkfscript method=POST>
+
+   <input type=hidden name=filtertype value=Resonator>
+
+   Select filter type: <br>
+
+   <ul> <table border> <td> <table>
+     <tr> <td> <input type=radio name=passtype value=Bandpass checked> </td> <td> Bandpass </td> </tr>
+     <tr> <td> <input type=radio name=passtype value=Bandstop>	       </td> <td> Bandstop </td> </tr>
+     <tr> <td> <input type=radio name=passtype value=Allpass>	       </td> <td> Allpass  </td> </tr>
+   </table> </td> </table> </ul>
+
+   We need to know the sample rate (in samples per second). <br>
+   Sample rate: <input name=samplerate>
+
+   <p>
+
+   Enter centre frequency, in Hz: <input name=centre> <br>
+
+   <p>
+
+   Enter the Q (quality factor) of the filter.
+   Values in the range 10 .. 1000 are typical. <br>
+   Quality factor: <input name=qfactor>
+
+   <p>
+
+   By default, the frequency response graph has a <i>linear</i> magnitude scale.
+   If that is what you want, leave the following box blank.
+   If you want a <i>logarithmic</i> magnitude scale in dB,
+   enter the lower limit of the magnitude scale in dB here (e.g. -80). <br>
+   Lower limit (dB), or blank for linear scale: <input name=logmin>
+
+   <p>
+
+   Submit form: <input type=submit>
+
+   <p>
+
+   Reset form: <input type=reset>
+
+</form>
+
+<hr>
+
+<address>
+   <a href=/~fisher> Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+

@@ -1,0 +1,30 @@
+D:: n; s; e; w.
+
+TALLY:: i TALLETY.
+
+TALLETY:: TALLY; EMPTY.
+
+EMPTY:: .
+
+program: eswn iii hilbert.
+
+D1 D2 D3 D4 i TALLY hilbert:
+  lpar symbol,
+  D2 D1 D4 D3 TALLY hilbert,
+  direction D1 symbol,
+  D1 D2 D3 D4 TALLY hilbert,
+  direction D2 symbol,
+  D1 D2 D3 D4 TALLY hilbert,
+  direction D3 symbol,
+  D4 D3 D2 D1 TALLY hilbert,
+  rpar symbol.
+
+D1 D2 D3 D4 i hilbert: EMPTY.
+
+direction n symbol: 'n'.
+direction s symbol: 's'.
+direction e symbol: 'e'.
+direction w symbol: 'w'.
+
+lpar symbol: '('.
+rpar symbol: ')'.

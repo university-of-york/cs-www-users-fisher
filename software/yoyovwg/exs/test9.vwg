@@ -1,0 +1,64 @@
+// --- Metasyntax --- //
+
+ALPHA:: a; b; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q;
+  r; s; t; u; v; w; x; y; z.
+
+ALPHABET:: abcdefghijklmnopqrstuvwxyz.
+
+DEC:: TYPE type TAG.
+
+DECS:: DEC DECSETY.
+
+DECSETY:: DECS; EMPTY.
+
+EMPTY:: .
+
+LAYER:: new DECSETY.
+
+LAYERS:: LAYER LAYERSETY.
+
+LAYERSETY:: LAYERS; EMPTY.
+
+LETTER:: letter ALPHA.
+
+NEST:: LAYERS.
+
+NOTION:: ALPHA NOTETY.
+
+NOTETY:: NOTION; EMPTY.
+
+PARAMETER:: VALTYPE type TAG.
+
+PARAMETERS:: PARAMETER PARAMSETY.
+
+PARAMSETY:: PARAMETERS; EMPTY.
+
+TAG:: LETTER TAGETY.
+
+TAGETY:: TAG; EMPTY.
+
+TEST:: eq; neq.
+
+TYPE:: VALTYPE; proc WITHPARAMSETY.
+
+WITHPARAMSETY:: with PARAMETERS; EMPTY.
+
+VALTYPE:: char; string.
+
+// --- Hypersyntax --- //
+
+program: a symbol, where DEC are consistent;
+	 b symbol, where LAYERS are consistent;
+	 c symbol, where DECS are boggled;
+	 d symbol, where LAYER are boggled.
+
+where DECS are consistent:  EMPTY.
+where LAYER are consistent: EMPTY.
+where DEC are boggled:	    EMPTY.
+where LAYERS are boggled:   EMPTY.
+
+a symbol: "a".
+b symbol: "b".
+c symbol: "c".
+d symbol: "d".
+

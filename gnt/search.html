@@ -1,0 +1,214 @@
+<HTML>
+
+<title> Search for a word </title>
+
+<body bgcolor=#ffffff>
+
+<h2 align=center> Search for a word </h2>
+
+<form action=/~fisher/cgi-bin/gnt#h method=POST>
+
+<input type=hidden name=occurnum value=0>
+
+<h3> Word to search for (or leave blank): </h3>
+
+<ul>
+   <select name=smode1>
+      <option value=2> Base
+      <option value=1> Inflected
+   </select>
+   form is: &nbsp; <input type=text name=sword1> &nbsp; (Latin transliteration)
+</ul>
+
+<h3> Occurring close to (or leave blank): </h3>
+
+<ul>
+   <select name=smode2>
+      <option value=2> Base
+      <option value=1> Inflected
+   </select>
+   form is: &nbsp; <input type=text name=sword2> &nbsp; (Latin transliteration)
+</ul>
+
+Here is a summary of the Latin transliteration used, from the
+``<a href=//www.perseus.tufts.edu>Perseus</a>'' web site:
+
+<ul>
+   <img src=//www.perseus.tufts.edu/icons/latin.gif>
+</ul>
+
+and here is a <a href=trlit.html>full definition</a>. <p>
+
+<h3> Occurring in book: </h3>
+
+<ul>
+   <select name=book>
+      <option value=00> Any
+      <option value=01> Matthew
+      <option value=02> Mark
+      <option value=03> Luke
+      <option value=04> John
+      <option value=05> Acts
+      <option value=06> Romans
+      <option value=07> 1 Corinthians
+      <option value=08> 2 Corinthians
+      <option value=09> Galatians
+      <option value=10> Ephesians
+      <option value=02> Philippians
+      <option value=12> Colossians
+      <option value=13> 1 Thessalonians
+      <option value=14> 2 Thessalonians
+      <option value=15> 1 Timothy
+      <option value=16> 2 Timothy
+      <option value=17> Titus
+      <option value=18> Philemon
+      <option value=19> Hebrews
+      <option value=20> James
+      <option value=21> 1 Peter
+      <option value=22> 2 Peter
+      <option value=23> 1 John
+      <option value=24> 2 John
+      <option value=25> 3 John
+      <option value=26> Jude
+      <option value=27> Revelation
+   </select>
+</ul>
+
+<h3> Limit to grammatical category: </h3>
+
+<ul>
+   <table border cellpadding=0 cellspacing=0>
+      <tr align=center>
+	 <td width=33%>
+	    <b>Major1</b> <br>
+	    <select name=Major1>
+	       <option value=0>
+	       <option value=1> noun
+	       <option value=2> adjective
+	       <option value=3> pronoun
+	       <option value=4> conjunction
+	       <option value=5> particle
+	       <option value=6> interjection
+	       <!-- no 7 -->
+	       <option value=8> preposition
+	       <option value=9> adverb
+	       <option value=10> verb
+	    </select>
+	 <td width=33%>
+	    <b>Major2</b> <br>
+	    <select name=Major2>
+	       <option value=0>
+	       <option value=1> article
+	       <option value=2> demonstrative
+	       <option value=3> interrog/indef
+	       <option value=4> personal/poss
+	       <option value=5> relative
+	    </select>
+	 <td width=33%>
+	    <b>Person</b> <br>
+	    <select name=Person>
+	       <option value=0>
+	       <option value=1> 1st
+	       <option value=2> 2nd
+	       <option value=3> 3rd
+	    </select>
+      <tr align=center>
+	 <td width=33%>
+	    <b>Tense</b> <br>
+	    <select name=Tense>
+	       <option value=0>
+	       <option value=1> present
+	       <option value=2> imperfect
+	       <option value=3> future
+	       <option value=4> aorist
+	       <option value=5> perfect
+	       <option value=6> pluperfect
+	    </select>
+	 <td width=33%>
+	    <b>Voice</b> <br>
+	    <select name=Voice>
+	       <option value=0>
+	       <option value=1> active
+	       <option value=2> middle
+	       <option value=3> passive
+	    </select>
+	 <td width=33%>
+	    <b>Mood</b> <br>
+	    <select name=Mood>
+	       <option value=0>
+	       <option value=1> indicative
+	       <option value=2> imperative
+	       <option value=3> subjunctive
+	       <option value=4> optative
+	       <option value=5> infinitive
+	       <option value=6> participle
+	    </select>
+      <tr align=center>
+	 <td width=33%>
+	    <b>Case</b> <br>
+	    <select name=Case>
+	       <option value=0>
+	       <option value=1> nominative
+	       <option value=2> genitive
+	       <option value=3> dative
+	       <option value=4> accusative
+	       <option value=5> vocative
+	    </select>
+	 <td width=33%>
+	    <b>Number</b> <br>
+	    <select name=Number>
+	       <option value=0>
+	       <option value=1> singular
+	       <option value=2> dual
+	       <option value=3> plural
+	    </select>
+	 <td width=33%>
+	    <b>Gender</b> <br>
+	    <select name=Gender>
+	       <option value=0>
+	       <option value=1> masculine
+	       <option value=2> feminine
+	       <option value=3> neuter
+	    </select>
+      <tr align=center>
+	 <td width=33%>
+	    <b>Degree</b> <br>
+	    <select name=Degree>
+	       <option value=0>
+	       <option value=1> comparative
+	       <option value=2> superlative
+	    </select>
+	 <td width=33%> &nbsp;
+	 <td width=33%> &nbsp;
+   </table>
+</ul>
+
+<h3> Choose format of results: </h3>
+
+<ul>
+   <table border> <td>
+      <table>
+	 <tr> <td> <input type=radio name=numoccs value=1>	    </td> <td> Show first verse in context   </td> </tr>
+	 <tr> <td> <input type=radio name=numoccs value=10 checked> </td> <td> Show first 10 matching verses </td> </tr>
+	 <tr> <td> <input type=radio name=numoccs value=20>	    </td> <td> Show first 20 matching verses </td> </tr>
+	 <tr> <td> <input type=radio name=numoccs value=40>	    </td> <td> Show first 40 matching verses </td> </tr>
+      </table>
+   </table>
+</ul>
+
+<h3> Press Go!: </h3>
+
+<ul>
+   <input type=submit value="Go!"> &nbsp; &nbsp;
+   <input type=reset value="Reset Form">
+</ul>
+
+</form>
+
+<!--
+<hr>
+<address>
+   <a href=/~fisher>Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+-->

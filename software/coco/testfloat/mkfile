@@ -1,0 +1,20 @@
+BUILTINS =
+
+libdir = ../lib
+
+all:V:	tester polos
+
+clean:
+	rm -f tester.o polos.o convert.o
+
+tester: tester.o
+	gcc tester.o -lm
+	mv a.out tester
+
+polos:	polos.o convert.o $libdir/libio.a
+	gcc polos.o convert.o -L$libdir -lio -lm
+	mv a.out polos
+
+%.o:	%.C hdr.h
+	gcc -O -c $stem.C
+

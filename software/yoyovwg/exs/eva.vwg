@@ -1,0 +1,216 @@
+// --- Metasyntax --- //
+
+ALPHA:: a; b; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q;
+  r; s; t; u; v; w; x; y; z.
+
+ALPHABET:: abcdefghijklmnopqrstuvwxyz.
+
+DEC:: TYPE type TAG.
+
+DECS:: DEC DECSETY.
+
+DECSETY:: DECS; EMPTY.
+
+EMPTY:: .
+
+LAYER:: new DECSETY.
+
+LAYERS:: LAYER LAYERSETY.
+
+LAYERSETY:: LAYERS; EMPTY.
+
+LETTER:: letter ALPHA.
+
+NEST:: LAYERS.
+
+NOTION:: ALPHA NOTETY.
+
+NOTETY:: NOTION; EMPTY.
+
+PARAMETER:: VALTYPE type TAG.
+
+PARAMETERS:: PARAMETER PARAMSETY.
+
+PARAMSETY:: PARAMETERS; EMPTY.
+
+TAG:: LETTER TAGETY.
+
+TAGETY:: TAG; EMPTY.
+
+TEST:: eq; neq.
+
+TYPE:: VALTYPE; proc WITHPARAMSETY.
+
+WITHPARAMSETY:: with PARAMETERS; EMPTY.
+
+VALTYPE:: char; string.
+
+// --- Hypersyntax --- //
+
+program: new block containing DECS, where DECS are consistent.
+
+NEST block containing DECS:
+  begin symbol, new DECS NEST declaration sequence for DECS,
+  new DECS NEST instruction sequence, end symbol.
+
+NEST declaration sequence for DEC DECS:
+  NEST declaration of DEC, NEST declaration sequence for DECS.
+
+NEST declaration sequence for DEC:  NEST declaration of DEC.
+
+NEST declaration of VALTYPE type TAG: VALTYPE symbol, TAG symbol.
+
+{ NEST new DECSETY1 VALTYPE type TAG1 VALTYPE type TAG2 DECSETY declaration of
+  VALTYPE type TAG2:
+    comma symbol, TAG2 symbol. }
+
+NEST declaration of proc type TAG:
+  proc symbol, TAG symbol, equals symbol, NEST instruction.
+
+NEST declaration of proc with PARAMETERS type TAG:
+  proc symbol, TAG symbol, lpar symbol,
+  new PARAMETERS NEST definition part for PARAMETERS,
+  rpar symbol, equals symbol,
+  new PARAMETERS NEST instruction, where PARAMETERS are consistent.
+
+NEST definition part for PARAMETER PARAMETERS:
+  NEST definition of PARAMETER, comma symbol,
+  NEST definition part for PARAMETERS.
+
+NEST definition part for PARAMETER: NEST definition of PARAMETER.
+
+NEST definition of VALTYPE type TAG: VALTYPE symbol, TAG symbol.
+
+{ NEST new DECSETY1 VALTYPE type TAG1 VALTYPE type TAG2 DECSETY2 definition of
+  VALTYPE type TAG2:
+    TAG2 symbol. }
+
+NEST instruction sequence:
+  NEST instruction; NEST instruction sequence, NEST instruction.
+
+NEST instruction:
+  skip symbol.
+{ input symbol, char NEST ident with TAG;
+  output symbol, char NEST expression;
+  rcall symbol, NEST rcall;
+  NEST block containing DECS, where DECS are consistent;
+  lpar symbol, NEST instruction sequence, rpar symbol;
+  TEST symbol, VALTYPE NEST expression, comma symbol,
+    VALTYPE NEST expression, colon symbol, NEST instruction;
+  cons symbol, char NEST expression, comma symbol,
+    string NEST ident with TAG. ??? }
+
+NEST rcall:
+  proc NEST ident with TAG;
+  proc with PARAMETERS NEST ident with TAG, lpar symbol,
+    NEST arglist for PARAMETERS, rpar symbol.
+
+NEST arglist for PARAMETER PARAMETERS:
+  NEST arglist for PARAMETER, comma symbol, NEST arglist for PARAMETERS.
+
+NEST arglist for VALTYPE type TAG:
+  VALTYPE NEST expression.
+
+char NEST expression:
+  char NEST ident with TAG;
+  quote symbol, letter, quote symbol;
+  space symbol;
+  head symbol, string NEST expression.
+
+string NEST expression:
+  string NEST ident with TAG;
+  quote symbol, quote symbol;
+  quote symbol, letter, letter sequence, quote symbol;
+  tail symbol, string NEST expression.
+
+letter sequence: letter; letter sequence, letter.
+
+letter: LETTER symbol.
+
+TYPE NEST ident with TAG:
+  TAG symbol, where TYPE type TAG found in NEST.
+
+{ where TYPE type TAG found in NEST new DECS:
+  where TYPE type TAG one of DECS;
+  where TAG not in DECS, where TYPE type TAG found in NEST. }
+
+where TYPE type TAG one of DEC DECS:
+  where TYPE type TAG one of DECS;
+  where TYPE type TAG one of DEC.
+
+where TYPE type TAG one of TYPE type TAG: EMPTY.
+
+where DEC are consistent: EMPTY.
+
+{ where DECS TYPE type TAG are consistent:
+  where DECS are consistent, where TAG not in DECS. }
+
+where TAG not in DEC DECS:
+  where TAG not in DEC, where TAG not in DECS.
+
+where TAG1 not in TYPE type TAG2: where < TAG1 > is not < TAG2 >.
+
+where < ALPHA1 NOTETY1 > is not < ALPHA2 NOTETY >:
+  where < NOTETY1 > is not < NOTETY2 >;
+  where ALPHA1 precedes ALPHA2 in ALPHABET;
+  where ALPHA2 precedes ALPHA1 in ALPHABET.
+
+where < NOTION > is not < EMPTY >: EMPTY.
+
+where < EMPTY > is not < NOTION >: EMPTY.
+
+{ where ALPHA1 precedes ALPHA2 in NOTETY1 ALPHA1 NOTETY2 ALPHA2 NOTETY3:
+  EMPTY. }
+
+// --- Representation rules --- //
+
+TAG symbol:	"tag".
+begin symbol:	"begin".
+char symbol:	"char".
+colon symbol:	":".
+comma symbol:	",".
+cons symbol:	"cons".
+end symbol:	"end".
+eq symbol:	"eq".
+equals symbol:	"=".
+head symbol:	"head".
+input symbol:	"input".
+lpar symbol:	"(".
+neq symbol:	"neq".
+output symbol:	"output".
+proc symbol:	"proc".
+quote symbol:	"'".
+rcall symbol:	"call".
+rpar symbol:	")".
+skip symbol:	"skip".
+space symbol:	"space".
+string symbol:	"string".
+tail symbol:	"tail".
+
+letter a symbol:  "a".
+letter b symbol:  "b".
+letter c symbol:  "c".
+letter d symbol:  "d".
+letter e symbol:  "e".
+letter f symbol:  "f".
+letter g symbol:  "g".
+letter h symbol:  "h".
+letter i symbol:  "i".
+letter j symbol:  "j".
+letter k symbol:  "k".
+letter l symbol:  "l".
+letter m symbol:  "m".
+letter n symbol:  "n".
+letter o symbol:  "o".
+letter p symbol:  "p".
+letter q symbol:  "q".
+letter r symbol:  "r".
+letter s symbol:  "s".
+letter t symbol:  "t".
+letter u symbol:  "u".
+letter v symbol:  "v".
+letter w symbol:  "w".
+letter x symbol:  "x".
+letter y symbol:  "y".
+letter z symbol:  "z".
+

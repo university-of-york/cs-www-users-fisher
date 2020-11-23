@@ -1,0 +1,23 @@
+BUILTINS =
+
+all:V:		    $MYBIN/bbox $MYBIN/mkbox
+
+$MYBIN/bbox:	    bbox.o
+		    gcc bbox.o
+		    mv a.out $MYBIN/bbox
+		    chmod a+x $MYBIN/bbox
+
+$MYBIN/mkbox:	    mkbox.o
+		    cc -cckr mkbox.o
+		    mv a.out $MYBIN/mkbox
+		    chmod a+x $MYBIN/mkbox
+
+%.o:		    %.c
+		    cc -cckr -O -c -I$MYLIB $stem.c
+
+%.o:		    %.C
+		    gcc -O -c $stem.C
+
+clean:
+		    rm -f *.o
+

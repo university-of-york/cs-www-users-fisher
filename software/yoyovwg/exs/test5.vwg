@@ -1,0 +1,15 @@
+EMPTY::  .
+
+NOTION:: ALPHA NOTETY; <NOTION>.
+NOTETY:: NOTION; EMPTY.
+ALPHA:: a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z.
+
+program:          abc.
+
+abc:              pack of <abc>; star symbol.
+
+pack of <NOTION>: lpar symbol, NOTION, rpar symbol.
+
+lpar symbol:   '('.
+rpar symbol:   ')'.
+star symbol:   '*'.

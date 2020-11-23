@@ -1,0 +1,24 @@
+BUILTINS =
+
+all:V:		    $MYBIN/bbox $MYBIN/pstobm $MYBIN/cropbm
+
+$MYBIN/bbox:	    bbox.o $MYLIB/gfxlib.a
+		    cc bbox.o $MYLIB/gfxlib.a -lX11
+		    mv a.out $MYBIN/bbox
+		    chmod a+x $MYBIN/bbox
+
+$MYBIN/pstobm:	    pstobm
+		    cp pstobm $MYBIN/pstobm
+		    chmod a+rx $MYBIN/pstobm
+
+$MYBIN/cropbm:	    cropbm.o $MYLIB/gfxlib.a
+		    cc cropbm.o $MYLIB/gfxlib.a -lX11
+		    mv a.out $MYBIN/cropbm
+		    chmod a+x $MYBIN/cropbm
+
+%.o:		    %.c $MYLIB/gfxlib.h
+		    cc -O -c -I$MYLIB $stem.c
+
+clean:
+		    rm -f bbox.o cropbm.o
+

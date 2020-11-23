@@ -1,0 +1,35 @@
+This directory contains some programs for converting between various
+geographic coordinate systems - mainly between the UK Ordnance Survey and
+spherical polar (latitude/longitude).  Note that the OS is a modified
+transverse Mercator, so the routines ought to be adaptable to other TM
+projections.
+
+There are at least 3 approaches to this problem:
+
+1.  Assume a spherical Earth.  This gives results that are way out:
+    better than 96m in X and 3000m in Y, over almost all of the UK
+    (worse in Shetland!).
+
+2.  Use the spherical trig formulae, with "fudge factors" to account for
+    the fact that the Earth is a spheroid, not a sphere (i.e. it's
+    squashed).	This is the technique used in polos.c.	The results are
+    accurate to better than 20m over almost all of the UK.
+
+3.  Use the series expansion given in [1] (see refs. below).  This is
+    fine - the results are accurate to about 2cm - but the method doesn't
+    really give much clue about what is going on.  This might not matter
+    to you.  This is the technique used in the Fortran 77 programs
+    polar_os.f and os_polar.f.
+
+I also have some routines for converting from hyperbolic coords to OS (TM),
+and from hyperbolic to lat/long.  Email me if you're interested in these.
+
+ACKNOWLEDGEMENT:  polar_os.f and os_polar.f - that's the accurate ones! -
+		  are by C.P. Swan.
+
+------
+[1] Ordnance Survey:  Constants, formulae and methods used by the Ordnance
+    Survey for computing in the Transverse Mercator Projection, with some
+    notes on the triangulation of Great Britain and choice of projection.
+    London:  Her Majesty's Stationery Office (1952; reprinted 1975).
+

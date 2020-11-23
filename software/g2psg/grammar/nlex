@@ -1,0 +1,189 @@
+{Noun lexicon}
+
+{Common nouns - plural take affix, singular take base form}
+N0[PLU -, POSS -]: Noun[H]
+N0[PLU +, MORPH S, POSS -]: Noun[H], pluaffix
+pluaffix: "s"
+
+N0[POSS +]: Noun[H], posaffix[H]
+
+{Possessive affixes}
+posaffix[POSS +, PLU -]: "'s"
+posaffix[POSS +, PLU +, MORPH S]: "'"
+posaffix[POSS +, PLU +, MORPH C]: "'s"
+
+{Unquantified nouns}
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, NOM -, POSS -]: "ear"
+       {by ear}
+
+{Pronouns}
+N2[PRO +, RE -, PLU -, PER 1, NOM +, POSS -]: "I"
+N2[PRO +, RE -, PLU -, PER 1, NOM -, POSS -]: "me"
+N2[PRO +, RE -, PER 2, POSS -, NFORM NORM]: "you"
+N2[PRO +, RE -, PLU -, PER 3, GEN F, NOM +, POSS -]: "she"
+N2[PRO +, RE -, PLU -, PER 3, GEN F, NOM -, POSS -]: "her"
+N2[PRO +, RE -, PLU -, PER 3, GEN M, NOM +, POSS -]: "he"
+N2[PRO +, RE -, PLU -, PER 3, GEN M, NOM -, POSS -]: "him"
+N2[PRO +, RE -, PLU +, PER 1, NOM +, POSS -]: "we"
+N2[PRO +, RE -, PLU +, PER 1, NOM -, POSS -]: "us"
+N2[PRO +, RE -, PLU +, PER 3, NOM +, POSS -]: "they"
+N2[PRO +, RE -, PLU +, PER 3, NOM -, POSS -]: "them"
+N2[PRO +, RE -, PLU -, PER 3, POSS -, NFORM NORM]: "it"
+N2[PRO +, RE -, PLU -, PER 3, POSS -]: "this"
+N2[PRO +, PLU -, PER 3, POSS -]: "that"
+
+{Possessive pronouns}
+N2[PRO +, RE -, PLU -, PER 1, POSS +]: "my"
+N2[PRO +, RE -, PLU -, PER 3, POSS -]: "mine"
+N2[PRO +, RE -, PER 2, POSS +]: "your"
+N2[PRO +, RE -, PER 3, POSS -]: "yours"
+N2[PRO +, RE -, PLU -, PER 3, GEN F, POSS +]: "her"
+N2[PRO +, RE -, PLU -, PER 3, POSS -]: "hers"
+N2[PRO +, RE -, PLU -, PER 3, GEN M, POSS +]: "his"
+N2[PRO +, RE -, PLU -, PER 3, POSS -]: "his"
+N2[PRO +, RE -, PLU +, PER 1, POSS +]: "our"
+N2[PRO +, RE -, PLU +, PER 3, POSS -]: "ours"
+N2[PRO +, RE -, PLU +, PER 3, POSS +]: "their"
+N2[PRO +, RE -, PLU +, PER 3, POSS -]: "theirs"
+
+{Reflexive pronouns}
+N2[PRO +, RE +, PLU -, PER 1, POSS -, NOM -]: "myself"
+N2[PRO +, RE +, PLU -, PER 2, POSS -, NOM -]: "yourself"
+N2[PRO +, RE +, PLU -, PER 3, GEN F, POSS -, NOM -]: "herself"
+N2[PRO +, RE +, PLU -, PER 3, GEN M, POSS -, NOM -]: "himself"
+N2[PRO +, RE +, PLU +, PER 1, POSS -, NOM -]: "ourselves"
+N2[PRO +, RE +, PLU +, PER 2, POSS -, NOM -]: "yourselves"
+N2[PRO +, RE +, PLU +, PER 3, POSS -, NOM -]: "themselves"
+
+{NFORM it, there}
+N2[NFORM it, RE -, POSS -]: "it"
+N2[NFORM there, RE -, POSS -]: "there"
+
+{Proper nouns}
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN F]: "Ruth"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN F]: "Carol"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN M]: "Stephen"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN M]: "Dave"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN M]: "Charles"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN M]: "Paul"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN M]: "Mick"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN M]: "John Birch"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN M]: "Mick Chandler"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN N]: "Chelmsford"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN N]: "Baddow"
+N2[CONJ NIL, PRO -, RE -, PLU -, PER 3, GEN N]: "Great Baddow"
+N2[CONJ NIL, PRO -, RE -, PER 3, GEN N]: "Marconi Great Baddow"
+N2[CONJ NIL, PRO -, RE -, PER 3]: "Hurst Research"
+N2[CONJ NIL, PRO -, RE -, PER 3]: "GEC Hurst Research"
+N2[CONJ NIL, PRO -, RE -, PER 3]: "TAB"
+N2[CONJ NIL, PRO -, RE -, PER 3]: "GEC"
+N2[CONJ NIL, PRO -, RE -, PER 3]: "Marconi"
+N2[CONJ NIL, PRO -, RE -, PER 3]: "Marconi Research"
+
+{Non-count nouns}
+N1[RE -, PLU -]: "involvement"
+N1[RE -, PLU -]: "stuff"
+N1[RE -, PLU -]: "multi-layer"
+N1[RE -, PLU -]: "plant"
+N1[RE -, PLU -]: "17th"
+
+N2[RE -, PLU -]: "stuff"
+
+
+{Common nouns}
+Noun[RE -, MORPH S]: "respect"
+Noun[RE -, MORPH S]: "mini-lab"
+Noun[RE -, MORPH S]: "PCB"
+Noun[RE -, MORPH S]: "bit"
+Noun[RE -, MORPH S]: "lot"
+Noun[RE -, MORPH S]: "tape"
+Noun[RE -, MORPH S]: "helmet"
+Noun[RE -, MORPH S]: "report"
+Noun[RE -, MORPH S]: "job"
+Noun[RE -, MORPH S]: "system"
+Noun[RE -, MORPH S]: "rivalry"
+Noun[RE -, MORPH S]: "clash"
+Noun[RE -, MORPH S]: "ability"
+Noun[RE -, MORPH S]: "appointment"
+Noun[RE -, MORPH S]: "quote"
+Noun[RE -, MORPH S]: "way"
+Noun[RE -, MORPH S]: "thing"
+Noun[RE -, MORPH S]: "recommendation"
+Noun[RE -, MORPH S]: "moment"
+Noun[RE -, MORPH S]: "factory"
+Noun[RE -, MORPH S]: "computer"
+Noun[RE -, MORPH S]: "tree"
+Noun[RE -, MORPH S]: "article"
+Noun[RE -, MORPH S]: "number"
+Noun[RE -, MORPH S]: "possibility"
+Noun[RE -, MORPH S]: "copy"
+N1[RE -, PLU -]: "software"
+N1[RE -, PLU -]: "TAB"
+Noun[RE -, MORPH S]: "implementation"
+Noun[RE -, MORPH S]: "printer"
+Noun[RE -, MORPH S]: "problem"
+N1[RE -, PLU -]: "analysis"
+N1[RE -, PLU +, MORPH S]: "analyses"
+Noun[RE -, MORPH S]: "phone"
+Noun[RE -, MORPH S]: "telephone"
+Noun[RE -, MORPH S]: "line"
+Noun[RE -, MORPH S, GEN M]: "chap"
+Noun[RE -, MORPH S, GEN M]: "guy"
+Noun[RE -, MORPH S]: "device"
+N1[RE -, PLU -, GEN M]: "man"
+N1[RE -, PLU +, MORPH C]: "men"
+N1[RE -, PLU -, GEN F]: "woman"
+N1[RE -, PLU +, MORPH C]: "women"
+Noun[RE -, MORPH S]: "rat"
+Noun[RE -, MORPH S]: "girl"
+Noun[RE -, MORPH S]: "boy"
+Noun[RE -, MORPH S]: "book"
+Noun[RE -, MORPH S]: "cat"
+Noun[RE -, MORPH S]: "dog"
+Noun[RE -, MORPH S]: "house"
+Noun[RE -, MORPH S]: "table"
+Noun[RE -, MORPH S]: "promise"
+Noun[RE -, MORPH S]: "dial"
+Noun[RE -, MORPH S]: "year"
+Noun[RE -, MORPH S]: "bite"
+Noun[RE -, MORPH S]: "switch"
+Noun[RE -, MORPH S]: "test"
+Noun[RE -, MORPH S]: "office"
+Noun[RE -, MORPH S]: "programmer"
+Noun[RE -, MORPH S]: "manager"
+Noun[RE -, MORPH S]: "laboratory"
+Noun[RE -, MORPH S]: "engineer"
+Noun[RE -, MORPH S]: "desk"
+
+
+{WH nouns, relative and interrogative pronouns}
+N2[RE -, WH, PRO +, PER 3, NFORM NORM]: "who"
+N2[RE -, WH, PRO +, POSS -, PER 3]: "which"
+     {which is it to be?}
+N2[RE -, NOM -, WH, PRO +]: "whom"
+N2[RE -, WH, POSS +, PRO +]: "whose"
+N2[RE -, WH, WHMOR Q, PRO +, PER 3]: "what"
+N2[RE -, WH, WHMOR R, PRO +, PER 3]: "what"
+
+{Time nouns for adverbial phrases}
+Noun[RE -, PRO -, MORPH S]: "Monday"
+Noun[RE -, PRO -, MORPH S]: "Tuesday"
+Noun[RE -, PRO -, MORPH S]: "Wednesday"
+Noun[RE -, PRO -, MORPH S]: "Thursday"
+Noun[RE -, PRO -, MORPH S]: "Friday"
+Noun[RE -, PRO -, MORPH S]: "Saturday"
+Noun[RE -, PRO -, MORPH S]: "Sunday"
+
+{N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "January"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "February"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "March"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "April"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "May"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "June"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "July"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "August"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "September"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "October"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "November"
+N2[CONJ NIL, RE -, PRO -, PER 3, MORPH S]: "December"}
+

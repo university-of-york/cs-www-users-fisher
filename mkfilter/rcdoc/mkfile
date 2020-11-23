@@ -1,0 +1,7 @@
+BULTINS =
+
+rcdoc.ps.gz:	rcdoc.al
+		alpha rcdoc.al -p | tac rcdoc.ps
+		gzip -f rcdoc.ps
+		chmod 644 rcdoc.ps.gz
+

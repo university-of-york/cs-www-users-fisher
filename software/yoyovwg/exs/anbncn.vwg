@@ -1,0 +1,14 @@
+TALLY::		  i TALLETY.
+TALLETY::	  TALLY; EMPTY.
+EMPTY::		  .
+LETTER::	  a; b; c.
+
+program:	  TALLY as, TALLY bs, TALLY cs.
+
+i TALLY LETTER s: i LETTER s, TALLY LETTER s.
+i LETTER s:	  LETTER symbol.
+
+a symbol:	  "a".
+b symbol:	  "b".
+c symbol:	  "c".
+

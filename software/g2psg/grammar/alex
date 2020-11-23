@@ -1,0 +1,97 @@
+{Adjective lexicon}
+
+{Subcat 401: V1[INF] complement}
+A0[SUBCAT 401]: "able"
+A0[SUBCAT 401]: "right"
+A0[SUBCAT 401]: "glad"
+A0[SUBCAT 401]: "happy"
+A0[SUBCAT 401]: "angry"
+A0[SUBCAT 401]: "quick"
+
+{Subcat 402: V2[BSE] complement}
+A0[SUBCAT 402]: "insistent"
+
+{Subcat 403: V2[FIN] complement}
+A0[SUBCAT 403]: "glad"
+A0[SUBCAT 403]: "happy"
+A0[SUBCAT 403]: "angry"
+
+{Subcat 404}
+A0[SUBCAT 404]: "apparent"
+
+{Subcat 405: P2[about]}
+A0[SUBCAT 405]: "right"
+A0[SUBCAT 405]: "angry"
+A0[SUBCAT 405]: "wrong"
+A0[SUBCAT 405]: "happy"
+A0[SUBCAT 405]: "glad"
+
+{Subcat 406: intransitive adjectives}
+A0[SUBCAT 406]: "specialized"
+A0[SUBCAT 406]: "particular"
+A0[SUBCAT 406]: "roundabout"
+A0[SUBCAT 406]: "same"
+A0[SUBCAT 406]: "bent"
+A0[SUBCAT 406]: "bad"
+A0[SUBCAT 406]: "glad"
+A0[SUBCAT 406]: "happy"
+A0[SUBCAT 406]: "friendly"
+A0[SUBCAT 406]: "interested"
+A0[SUBCAT 406]: "interesting"
+A0[SUBCAT 406]: "wrong"
+A0[SUBCAT 406]: "new"
+A0[SUBCAT 406, ADV -]: "right"
+A0[SUBCAT 406]: "good"
+A0[SUBCAT 406]: "angry"
+A0[SUBCAT 406]: "quick"
+A0[PRD -]: "high-technology"
+A0[PRD -]: "specialist-type"
+A0[PRD -]: "two-layer"
+A0[PRD -]: "TAB"
+A0[PRD -]: "PCB"
+
+{Subcat 407: V1[PRP] complement}
+A0[SUBCAT 407]: "happy"
+
+{Subcat 408: P2[in] complement}
+A0[SUBCAT 408]: "interested"
+
+{Subcat 409: P2[of] complement}
+A0[SUBCAT 409]: "aware"
+
+A0[PRD -]: "best"
+A0[PRD -]: "latest"
+
+
+ASPEC: "too"
+ASPEC: "so"
+ASPEC: "quite"
+ASPEC: "very"
+
+ADV1[FREE +]: "obviously"
+ADV1[FREE +]: "quickly"
+ADV1[FREE +]: "slowly"
+ADV1[FREE +]: "gladly"
+ADV1[FREE +]: "happily"
+ADV1[FREE +]: "angrily"
+
+ADV2[FREE +]: "actually"
+ADV2[FREE +]: "apparently"
+ADV2[FREE +]: "basically"
+ADV2[FREE +]: "even"
+ADV2[FREE +]: "really"
+ADV2[FREE +]: "already"
+ADV2[FREE +]: "now"
+ADV2[FREE +]: "later"
+ADV2[FREE +]: "soon"
+ADV2[FREE -]: "anyway"
+ADV2[FREE -]: "today"
+ADV2[FREE -]: "yesterday"
+ADV2[FREE -]: "tomorrow"
+ADV2[FREE +]: "later"
+ADV2[FREE +]: "again"
+ADV2[FREE +]: "just"
+
+ADV2[TEMP +, WH, WHMOR Q]: "when"
+
+A2[TEMP -, WH, WHMOR Q]: "how"

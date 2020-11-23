@@ -1,0 +1,180 @@
+Error RG100 - unknown error, please report
+Error RG101 - non-terminal is too long
+Error RG102 - malformed <=> or => symbol
+Error RG103 - illegal character (%y)
+Error RG104 - : expected
+Error RG105 - compound feature representation is too long (%s ...)
+Error RG106 - starting symbol has non-empty category %m
+Error RG107 - non-terminal expected
+Error RG108 - malformed pragmat
+Error RG109 - terminal or non-terminal expected after :
+Error RG110 - right-hand side of ID rule is too long
+Error RG111 - illegal character in terminal (%y)
+Error RG112 - feature specification [%s] is not defined in a GROUP
+Error RG113 - grammar has too many feature-value pairs; giving up!
+Error RG114 - terminal has zero length
+Error RG115 - ] or , expected
+Error RG116 - grammar has too many terminals
+Error RG117 - missing ' or " at end of terminal
+Error RG118 - feature specs defined in GROUPs but not used: %m
+Error RG119 - illegal pragmat type $%y
+Error RG120 - unexpected symbol at start of rule
+Error RG121 - ( [ ~ expected at start of predicate
+Error RG122 - ) expected
+Error RG123 - starting symbol has more than one rule
+Error RG124 - [*] and [M *] are illegal
+Error RG125 - mismatched [ ]
+Error RG126 - FCR contains a non-Horn clause; set = %m
+Error RG127 - grammar sections in wrong order; must be: GROUPs, FCRs, idrules
+Error RG128 - can't find group for [%s *]
+Error RG129 - misuse of []
+Error RG130 - can't substitute for [%s *]; groups of different sizes
+Error RG131 - grammar has too many non-terminals; giving up!
+Error RG132 - illegal name; +- only allowed as feature values
+Error RG133 - group constraints are not satisfied on category %m
+Error RG134 - grammar has too many FCR clauses; giving up!
+Error RG135 - misuse of ~ or + e.g. ~+[...]
+Error RG136 - grammar has too many groups; giving up!
+Error RG137 - FCR specifies both trickling and percolating
+Error RG138 - unknown error, please report
+Error RG139 - unknown error, please report
+Error XX140 - unknown error, please report
+Error XX141 - unknown error, please report
+Error XX142 - unknown error, please report
+Error XX143 - unknown error, please report
+Error XX144 - unknown error, please report
+Error XX145 - unknown error, please report
+Error XX146 - unknown error, please report
+Error XX147 - unknown error, please report
+Error XX148 - unknown error, please report
+Error XX149 - unknown error, please report
+Error TS150 - unknown error, please report
+Error TS151 - rule is a blind alley, no rule for non-terminal %s
+Error TS152 - rule is a blind alley, no rule for %s %m
+Error TS153 - rule is not connected
+Error TS154 - rule is a blind alley, no starters
+Error TS155 - unknown error, please report
+Error TS156 - unknown error, please report
+Error TS157 - unknown error, please report
+Error TS158 - unknown error, please report
+Error TS159 - unknown error, please report
+Error XX160 - unknown error, please report
+Error XX161 - unknown error, please report
+Error XX162 - unknown error, please report
+Error XX163 - unknown error, please report
+Error XX164 - unknown error, please report
+Error XX165 - unknown error, please report
+Error XX166 - unknown error, please report
+Error XX167 - unknown error, please report
+Error XX168 - unknown error, please report
+Error XX169 - unknown error, please report
+Error XX170 - unknown error, please report
+Error XX171 - unknown error, please report
+Error XX172 - unknown error, please report
+Error XX173 - unknown error, please report
+Error XX174 - unknown error, please report
+Error XX175 - unknown error, please report
+Error XX176 - unknown error, please report
+Error XX177 - unknown error, please report
+Error XX178 - unknown error, please report
+Error XX179 - unknown error, please report
+Error MT180 - unknown error, please report
+Error MT181 - no rule for starting symbol
+Error MT182 - unknown error, please report
+Error MT183 - system error, please report
+Error MT184 - unknown error, please report
+Error MT185 - unknown error, please report
+Error MT186 - unknown error, please report
+Error MT187 - unknown error, please report
+Error MT188 - unknown error, please report
+Error MT189 - unknown error, please report
+Error MT190 - unknown error, please report
+Error MT191 - unknown error, please report
+Error MT192 - unknown error, please report
+Error MT193 - unknown error, please report
+Error MT194 - unknown error, please report
+Error MT195 - unknown error, please report
+Error MT196 - unknown error, please report
+Error MT197 - unknown error, please report
+Error MT198 - unknown error, please report
+Error MT199 - unknown error, please report
+Error MG200 - unknown error, please report
+Error MG201 - name is too long
+Error MG202 - mismatched { }
+Error MG203 - can't access INCLUDE file %s
+Error MG204 - mismatched ' ' or " "
+Error MG205 - : expected
+Error MG206 - system error, please report
+Error MG207 - system error, please report (%d)
+Error MG208 - name expected
+Error MG209 - INCLUDEd files nested too deeply
+Error MG210 - system error, please report
+Error MG211 - BEGIN ... WITH sequence is too long (WITH expected)
+Error MG212 - WITH ... END sequence is too long (END expected)
+Error MG213 - too many formal names
+Error MG214 - unknown error, please report
+Error MG215 - WITH or END encountered when not expected
+Error MG216 - EMPTY encountered when not expected
+Error MG217 - wrong number of parameters in substitution (wanted %d, got %d)
+Error MG218 - unknown error, please report
+Error MG219 - << ... >> sequence is too long (>> expected)
+Error MG220 - unknown error, please report
+Error MG221 - unknown error, please report
+Error MG222 - unknown error, please report
+Error MG223 - unknown error, please report
+Error MG224 - unknown error, please report
+Error MG225 - unknown error, please report
+Error MG226 - unknown error, please report
+Error MG227 - unknown error, please report
+Error MG228 - unknown error, please report
+Error MG229 - unknown error, please report
+Error XX230 - unknown error, please report
+Error XX231 - unknown error, please report
+Error XX232 - unknown error, please report
+Error XX233 - unknown error, please report
+Error XX234 - unknown error, please report
+Error XX235 - unknown error, please report
+Error XX236 - unknown error, please report
+Error XX237 - unknown error, please report
+Error XX238 - unknown error, please report
+Error XX239 - unknown error, please report
+Error XX240 - unknown error, please report
+Error XX241 - unknown error, please report
+Error XX242 - unknown error, please report
+Error XX243 - unknown error, please report
+Error XX244 - unknown error, please report
+Error XX245 - unknown error, please report
+Error XX246 - unknown error, please report
+Error XX247 - unknown error, please report
+Error XX248 - unknown error, please report
+Error XX249 - unknown error, please report
+Error XX250 - unknown error, please report
+Error XX251 - unknown error, please report
+Error XX252 - unknown error, please report
+Error XX253 - unknown error, please report
+Error XX254 - unknown error, please report
+Error XX255 - unknown error, please report
+Error XX256 - unknown error, please report
+Error XX257 - unknown error, please report
+Error XX258 - unknown error, please report
+Error XX259 - unknown error, please report
+Error BG260 - unknown error, please report
+Error BG261 - Bug! %d
+Error BG262 - unknown error, please report
+Error BG263 - unknown error, please report
+Error BG264 - unknown error, please report
+Error BG265 - unknown error, please report
+Error BG266 - unknown error, please report
+Error BG267 - unknown error, please report
+Error BG268 - unknown error, please report
+Error BG269 - unknown error, please report
+Error BG270 - unknown error, please report
+Error BG271 - unknown error, please report
+Error BG272 - unknown error, please report
+Error BG273 - unknown error, please report
+Error BG274 - unknown error, please report
+Error BG275 - unknown error, please report
+Error BG276 - unknown error, please report
+Error BG277 - unknown error, please report
+Error BG278 - unknown error, please report
+Error BG279 - unknown error, please report

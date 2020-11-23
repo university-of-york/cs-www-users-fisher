@@ -1,0 +1,336 @@
+// Syntax of Pascal
+// Pascal user manual and report, 2nd edition, p.110 et seq.
+
+// metasyntax
+
+LIGIT:: LETTER; DIGIT.
+
+LETTER:: letter ALPHA.
+
+DIGIT:: digit NUM.
+
+ALPHA:: a; b; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q; r;
+  s; t; u; v; w; x; y; z.
+
+NUM:: zero; one.
+
+NOTION:: ALPHA NOTETY.
+
+NOTETY:: NOTION; EMPTY.
+
+EMPTY:: .
+
+ROUTINE:: function; procedure.
+
+SPECIES:: label; constant; type; variable; routine.
+
+SEP:: comma; semicolon.
+
+MULTOP:: times; slash; div; mod; and.
+
+ADDOP:: SIGN; or.
+
+SIGN:: plus; minus.
+
+UPDOWNTO:: to; down to.
+
+// abbreviations
+
+optional NOTION: NOTION; EMPTY.
+
+SEP list of NOTION:
+  NOTION;
+  NOTION, SEP symbol, SEP list of NOTION.
+
+packet of NOTION: left paren symbol, comma list of NOTION, right paren symbol.
+
+parcel of NOTION: left paren symbol, semicolon list of NOTION, right paren symbol.
+
+box of NOTION: left bracket symbol, comma list of NOTION, right bracket symbol.
+
+// syntax proper
+
+program: program heading, block, dot symbol.
+
+program heading: program symbol, identifier, packet of identifier.
+
+identifier: LETTER symbol, optional sequence of LIGIT symbol.
+
+block:
+  label declaration part, constant declaration part,
+  type declaration part, variable declaration part,
+  routine declaration part, statement part.
+
+SPECIES declaration part: optional SPECIES decls.
+
+SPECIES decls: SPECIES declarations, semicolon symbol.
+
+label declarations: label symbol, comma list of label.
+
+label: unsigned integer.
+
+constant declarations:
+  const symbol, semicolon list of constant definition.
+
+constant definition: identifier, equals symbol, constant.
+
+constant:
+  optional SIGN symbol, unsigned number;
+  optional SIGN symbol, identifier;
+  string.
+
+unsigned number:
+  unsigned integer;
+  unsigned real.
+
+unsigned integer: sequence of DIGIT symbol.
+
+unsigned real:
+  unsigned integer, dot symbol, sequence of DIGIT symbol;
+  unsigned integer, dot symbol, sequence of DIGIT symbol, letter e symbol, optional SIGN symbol, unsigned integer;
+  unsigned integer, letter e symbol, optional SIGN symbol, unsigned integer.
+
+sequence of LIGIT symbol:
+  LIGIT symbol, optional sequence of LIGIT symbol.
+
+string: string symbol.
+
+type declarations: type symbol, semicolon list of type definition.
+
+type definition: identifier, equals symbol, type.
+
+type:
+  simple type;
+  structured type;
+  pointer type.
+
+simple type:
+  scalar type;
+  subrange type;
+  type identifier.
+
+scalar type: packet of identifier.
+
+subrange type: constant, dotdot symbol, constant.
+
+type identifier: identifier.
+
+structured type:
+  optional packed symbol, unpacked structured type.
+
+unpacked structured type:
+  array symbol, box of simple type, of symbol, type;
+  record symbol, fields, end symbol;
+  set symbol, of symbol, simple type;
+  file symbol, of symbol, type.
+
+fields:
+  fixed part;
+  fixed part, semicolon symbol, variant part;
+  variant part.
+
+fixed part: semicolon list of optional record section.
+
+record section:
+  comma list of identifier, colon symbol, type.
+
+variant part:
+  case symbol, optional tag field, type identifier, of symbol,
+  semicolon list of optional variant.
+
+tag field: identifier, colon symbol.
+
+variant: comma list of case label, colon symbol, left paren symbol, fields, right paren symbol.
+
+case label: constant.
+
+pointer type: arrow symbol, type identifier.
+
+variable declarations: var symbol,
+  semicolon list of variable declaration.
+
+variable declaration: comma list of identifier, colon symbol, type.
+
+routine declarations: semicolon list of routine declaration.
+
+routine declaration: ROUTINE heading, block.
+
+procedure heading:
+  procedure symbol, identifier, optional formal parameter section, semicolon symbol.
+
+formal parameter section:
+  parameter group;
+  var symbol, parameter group;
+  function symbol, parameter group;
+  procedure symbol, comma list of identifier.
+
+parameter group:
+  comma list of identifier, colon symbol, type identifier.
+
+function heading:
+  function symbol, identifier, optional parcel of formal parameter section,
+  colon symbol, type identifier, semicolon symbol.
+
+statement part: begin symbol, semicolon list of statement, end symbol.
+
+statement:
+  label, colon symbol, unlabelled statement;
+  unlabelled statement.
+
+unlabelled statement:
+  variable, becomes symbol, expression;
+  function identifier, becomes symbol, expression;
+  procedure identifier, optional packet of actual parameter;
+  goto symbol, label;
+  begin symbol, semicolon list of statement, end symbol;
+  if symbol, expression, then symbol, statement, optional else statement;
+  case symbol, expression, of symbol, semicolon list of optional cases element, end symbol;
+  while symbol, expression, do symbol, statement;
+  repeat symbol, semicolon list of statement, until symbol, expression;
+  for symbol, control variable, becomes symbol, initial value, UPDOWNTO symbol, final value, do symbol, statement;
+  with symbol, comma list of variable, do symbol, statement;
+  EMPTY.
+
+variable:
+  identifier, optional tail for variable.
+
+tail for variable:
+  box of expression, optional tail for variable;
+  dot symbol, identifier, optional tail for variable;
+  arrow symbol, optional tail for variable;
+  arrow symbol, optional tail for variable.
+
+expression: simple expression;
+  simple expression, relational operator, simple expression.
+
+relational operator: equals symbol;
+  not equals symbol;
+  less than symbol;
+  less than or equals symbol;
+  greater than or equals symbol;
+  greater than symbol;
+  in symbol.
+
+simple expression:
+  optional SIGN symbol, term, optional tail for simple expression.
+
+tail for simple expression:
+  ADDOP symbol, simple expression.
+
+term:
+  factor, optional tail for term.
+
+tail for term:
+  MULTOP symbol, factor.
+
+factor:
+  variable;
+  unsigned constant;
+  left paren symbol, expression, right paren symbol;
+  function designator;
+  set;
+  not symbol, factor.
+
+unsigned constant: unsigned number;
+  string;
+  identifier;
+  nil symbol.
+
+function designator:
+  function identifier;
+  function identifier, packet of actual parameter.
+
+set:
+  box of element;
+  left bracket symbol, right bracket symbol.
+
+element: expression;
+  expression, dotdot symbol, expression.
+
+ROUTINE identifier: identifier.
+
+actual parameter: expression;
+  variable;
+  ROUTINE identifier.
+
+else statement:
+  else symbol, statement.
+
+cases element:
+  comma list of case label, colon symbol, statement.
+
+control variable: identifier.
+
+initial value: expression.
+
+final value: expression.
+
+// terminal symbols
+
+letter a symbol:		'a'.
+letter b symbol:		'b'.
+letter c symbol:		'c'.
+letter d symbol:		'd'.
+letter e symbol:		'e'.
+
+digit zero symbol:		'0'.
+digit one symbol:		'1'.
+
+string symbol:			'"'.
+plus symbol:			'+'.
+minus symbol:			'-'.
+times symbol:			'*'.
+slash symbol:			'/'.
+becomes symbol:			':='.
+dot symbol:			'.'.
+comma symbol:			','.
+semicolon symbol:		';'.
+colon symbol:			':'.
+equals symbol:			'='.
+not equals symbol:		'<>'.
+less than symbol:		'<'.
+less than or equals symbol:	'<='.
+greater than or equals symbol:	'>='.
+greater than symbol:		'>'.
+left paren symbol:		'('.
+right paren symbol:		')'.
+left bracket symbol:		'['.
+right bracket symbol:		']'.
+arrow symbol:			'^'.
+dotdot symbol:			'..'.
+
+and symbol:			'AND'.
+array symbol:			'ARRAY'.
+begin symbol:			'BEGIN'.
+case symbol:			'CASE'.
+const symbol:			'CONST'.
+div symbol:			'DIV'.
+do symbol:			'DO'.
+downto symbol:			'DOWNTO'.
+else symbol:			'ELSE'.
+end symbol:			'END'.
+file symbol:			'FILE'.
+for symbol:			'FOR'.
+function symbol:		'FUNCTION'.
+goto symbol:			'GOTO'.
+if symbol:			'IF'.
+in symbol:			'IN'.
+label symbol:			'LABEL'.
+mod symbol:			'MOD'.
+nil symbol:			'NIL'.
+not symbol:			'NOT'.
+of symbol:			'OF'.
+or symbol:			'OR'.
+packed symbol:			'PACKED'.
+procedure symbol:		'PROCEDURE'.
+program symbol:			'PROGRAM'.
+record symbol:			'RECORD'.
+repeat symbol:			'REPEAT'.
+set symbol:			'SET'.
+then symbol:			'THEN'.
+to symbol:			'TO'.
+type symbol:			'TYPE'.
+until symbol:			'UNTIL'.
+var symbol:			'VAR'.
+while symbol:			'WHILE'.
+with symbol:			'WITH'.

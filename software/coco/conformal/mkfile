@@ -1,0 +1,24 @@
+BUILTINS =
+
+objs	 = mkderivs.o fft.o tmcvt.o othercvt.o common.o
+
+all:V:		testit genprog tmprog
+
+testit:		testit.C
+		gcc testit.C
+		mv a.out testit
+
+%prog:		%prog.o routines.a
+		gcc ${stem}prog.o routines.a -lm
+		mv a.out ${stem}prog
+
+routines.a:	$objs
+		rm -f routines.a; ar cr routines.a $objs
+
+%.o:		%.C hdr.h projconsts.h
+		gcc -c -O $stem.C
+
+clean:
+		rm -f tmprog.o genprog.o routines.a
+		rm -f $objs
+

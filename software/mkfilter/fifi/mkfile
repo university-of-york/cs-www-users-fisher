@@ -1,0 +1,13 @@
+BUILTINS =
+
+$MYBIN/fifi:	fifi.o
+		gcc fifi.o -lregexp -lm
+		mv a.out $MYBIN/fifi
+		chmod a+x $MYBIN/fifi
+
+%.o:		%.C
+		gcc -c -O $stem.C
+
+clean:
+		rm -f fifi.o
+

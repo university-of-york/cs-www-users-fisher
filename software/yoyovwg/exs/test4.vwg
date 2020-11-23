@@ -1,0 +1,9 @@
+LETTER::  h; i; j.
+
+program:  LETTER thing.
+
+LETTER thing: LETTER symbol, LETTER symbol, LETTER symbol.
+
+h symbol:         'Percy'.
+i symbol:         'Jim'.
+j symbol:         'Terry'.

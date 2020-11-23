@@ -1,0 +1,14 @@
+Polar-to-OS & v.v. conversion by power series method
+====================================================
+
+This can be considered a "standard reference implementation".  The power
+series method is used by almost all polar-to-OS and OS-to-polar programs.
+
+The accuracy of the other implementations in this package is given
+with respect to this one.
+
+References:
+
+1. Bomford
+2. Maling
+

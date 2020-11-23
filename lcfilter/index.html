@@ -1,0 +1,186 @@
+<HTML>
+
+<title> LC Filter Design </title>
+
+<center><h1> LC Filter Design </h1>
+
+<table cellpadding=10 cellspacing=3 bgcolor=#ffcc99 border=2>
+<tr><td>
+<center><u><b>Condition of Use</u></b><br>
+The University grants you permission to use this web site for non-profit making purposes <u><b>only</b></u>.</center>
+</td>
+</tr>
+</table>
+<br>
+</center>
+&nbsp;
+<p>
+
+<!--
+<h3> Recent changes &nbsp; <img src=//www.york.ac.uk/icons/new.gif> </h3>
+
+<ul> <table>
+
+   <tr valign=top>
+      <td> 7 Oct 1999
+      <td> You can now specify an optional impedance matching network.
+
+   <tr valign=top>
+      <td> 9 Nov 1999
+      <td> 0.2 dB ripple option for Chebyshev filters
+
+</table> </ul>
+-->
+<hr>
+
+<h2> Introduction </h2>
+
+This is an interactive design package for designing analogue (i.e. hardware) filters
+made of inductors and capacitors (<i>L</i>s and <i>C</i>s). <p>
+
+Fill in the form and press the ``Submit'' button, and a filter will be designed for you. <p>
+
+If you've come here by mistake and are looking for a <i>digital</i> filter designer,
+look <a href=/~fisher/mkfilter>here</a> instead. <p>
+
+I've been advised to say that, although I believe the package to be bug-free,
+you use the results at your own peril, and you're advised to check them for
+correctness before using them.	Don't blame me if your aircraft falls out of the sky! <p>
+
+The graphs are produced with the help of the excellent
+<a href=//www.boutell.com/gd> <tt>gd</tt> GIF manipulation library</a>,
+originally from Quest Protein Database Center. <p>
+
+<img src=excct.gif align=right hspace=10>
+
+When you press ``Submit'', you will be shown a circuit (schematic) diagram of the filter, with component values,
+as in the example on the right.	 The round circle is a voltage source and represents the input to the filter.
+The resistor in series with the input (R1 in the example) represents the filter input impedance, and the
+resistor at the output (R2) represents the filter output impedance.  The circle with an M represents
+a voltmeter measuring the filter output.
+
+<br clear=all> <p>
+
+The design procedure is given in the superb book
+``<a href=/~fisher/lkbk/0521553563>Radio-Frequency Electronics</a>''
+by Jon B. Hagen. <p>
+
+An email message, saying what you like and don't like about this package,
+will be appreciated. <br>
+
+<form action=/~fisher/cgi-bin/lcfilter method=POST>
+
+   <p> <hr> <p>
+
+   <h3> <i>Specify Your Filter:</i> </h3>
+
+   Select filter type: &nbsp; (Note that Bandstop is not yet implemented.) <br>
+
+   <ul> <table border>
+      <td> <table>
+	 <tr> <td> <input type=radio name=filtertype value=Butterworth checked> </td> <td> Butterworth </td> </tr>
+	 <tr> <td> <input type=radio name=filtertype value=Cheb/0.01> </td> <td> Chebyshev (ripple: 0.01 dB) </td> </tr>
+	 <tr> <td> <input type=radio name=filtertype value=Cheb/0.1>  </td> <td> Chebyshev (ripple: 0.1 dB)  </td> </tr>
+	 <tr> <td> <input type=radio name=filtertype value=Cheb/0.2>  </td> <td> Chebyshev (ripple: 0.2 dB)  </td> </tr>
+	 <tr> <td> <input type=radio name=filtertype value=Cheb/1.0>  </td> <td> Chebyshev (ripple: 1.0 dB)  </td> </tr>
+	 <tr> <td> <input type=radio name=filtertype value=Cheb/3.0>  </td> <td> Chebyshev (ripple: 3.0 dB)  </td> </tr>
+      </table> </td>
+      <td> <table>
+	 <tr> <td> <input type=radio name=passtype value=Lowpass checked>   </td> <td> Lowpass	</td> </tr>
+	 <tr> <td> <input type=radio name=passtype value=Highpass>	    </td> <td> Highpass </td> </tr>
+	 <tr> <td> <input type=radio name=passtype value=Bandpass>	    </td> <td> Bandpass </td> </tr>
+	 <tr> <td> <!-- <input type=radio name=passtype value=Bandstop> --> </td> <td> Bandstop </td> </tr>
+      </table> </td>
+   </table> </ul>
+
+   <p>
+
+   Enter the filter order.  For lowpass and highpass, this is the number of poles.
+   For bandpass and bandstop, the number of poles is twice the order. <br>
+   Order: <input name=order> <p>
+
+   Enter the corner frequency/ies, in Hz.
+   For lowpass and highpass, one corner frequency is required:
+   enter this in the first slot and leave the second one blank.
+   For bandpass and bandstop, two corner frequencies are required.
+   The corner frequency is defined as the -3dB point for Butterworth designs, as the
+   highest frequency at which the response is equal to the ripple for Chebyshev lowpass designs,
+   and in an obviously corresponding way for other Chebyshev designs. <br>
+   Corner frequency 1: <input name=corner1> Hz <br>
+   Corner frequency 2: <input name=corner2> Hz <br> <p>
+
+   Enter the filter characteristic impedance.
+   In all cases, unless you specify a matching network (see below),
+   this is equal to the filter input (source) impedance.
+   For Butterworth and odd-order Chebyshev filters, this is also the filter output (termination) impedance.
+   For odd-order Chebyshev filters, the output impedance is slightly less than the input impedance.
+   You will be told the exact value of the output impedance. <br>
+   Characteristic impedance: <input name=impedance> ohms <p>
+
+   Filters come in two dual configurations.
+   Do you want the filter to start with a series branch or a shunt branch? <br>
+
+   <ul> <table border> <td> <table>
+      <tr> <td> <input type=radio name=config value=series_first checked> </td> <td> Series </td> </tr>
+      <tr> <td> <input type=radio name=config value=shunt_first>	  </td> <td> Shunt  </td> </tr>
+   </table> </td> </table> </ul>
+
+   <p> <hr> <p>
+
+   <h3> <i>Optional Matching Network:</i> </h3>
+
+   If you are getting unreasonable component values, perhaps you have specified an
+   inappropriate characteristic impedance for the filter.  Multiplying the characteristic
+   impedance by <i>x</i> multiples the inductor values by <i>x</i> and divides the capacitor values
+   by <i>x</i>, so if you want smaller inductors you should reduce the characteristic impedance. <p>
+
+   If you change the characteristic impedance, you can ask the program to add matching sections at
+   either end to transform the impedance to the values you require, by filling in the optional fields below.
+   A typical value for <i>Q</i> is 3, and for <i>f</i><sub><small>0</small></sub> is the centre frequency
+   (for a bandpass filter) or the corner frequency (for a lowpass or highpass filter). <p>
+
+   For further details, see the book
+   ``Solid State Design for the Radio Amateur'' by W. Hayward &amp; D. DeMaw (ARRL, 1986) [out of print]. <p>
+
+   To create a matching network on its own (without a filter), specify an ``order 0'' filter.
+   For a really rather boring design, specify ``order 0'' and no matching network. <p>
+
+   <table>
+      <tr> <td> Transform source impedance to				     <td> <input name=simped> ohms
+      <tr> <td> Transform termination impedance to			     <td> <input name=timped> ohms
+      <tr> <td> <i>Q</i> of LCC matching network:			     <td> <input name=matchq>
+      <tr> <td> <i>f</i><sub><small>0</small></sub> of LCC matching network: <td> <input name=matchf>
+   </table>
+
+   <p> <hr> <p>
+
+   <h3> <i>Graph Plotting Parameters:</i> </h3>
+
+   You may enter the frequency limits for the response graph.
+   If you leave these fields blank, suitable values will be chosen for you. <br>
+   Plot from <input name=minf> Hz to <input name=maxf> Hz <p>
+
+   By default, the frequency response graph has a <i>linear</i> magnitude scale.
+   If that is what you want, leave the following box blank.
+   If you want a <i>logarithmic</i> magnitude scale in dB,
+   enter the lower limit of the magnitude scale in dB here (e.g. -80). <br>
+   Lower limit (dB), or blank for linear scale: <input name=logmin> <br>
+
+   <p> <hr> <p>
+
+   <h3> <i>Submit Form:</i> </h3>
+
+   When you've filled in the form, press ``Submit'': <br>
+   Submit form: <input type=submit> &nbsp; &nbsp;
+   Reset form: <input type=reset> <br>
+
+</form>
+
+<!--
+<p> <hr>
+<address>
+   <a href=/~fisher>Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+-->
+<P>&nbsp;

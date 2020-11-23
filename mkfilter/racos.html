@@ -1,0 +1,136 @@
+<HTML>
+
+<title> Raised Cosine Filters </title>
+
+<h1> Raised Cosine Filters </h1>
+
+<hr>
+
+<h2> Introduction </h2>
+
+A <i>raised cosine filter</i> is a low-pass filter which is commonly used for pulse shaping in
+data transmission systems (e.g. <a href=/~fisher/modem> modems</a>).
+The frequency response |<i>H</i>(<i>f</i>)| of a perfect raised cosine filter
+is symmetrical about 0 Hz, and is divided into three parts
+(just like <a href=//ccat.sas.upenn.edu/jod/texts/bg1.html> Gallia</a>):
+it is flat (constant) in the pass-band;
+it sinks in a graceful cosine curve to zero
+through the transition region; and it is zero outside the pass-band.
+The response of a real filter is an approximation to this behaviour.
+
+<p>
+
+The equations which defined the filter contain a parameter ``beta'',
+which is known as the <i>roll-off factor</i> or the <i>excess bandwidth</i>.
+``beta'' lies between 0 and 1.
+
+<p>
+
+I'd like to show you the equations which define the frequency-domain and time-domain response, but
+HTML is not up to it.  If you can view PostScript, you can see the equations <a href=rcdoc/rcdoc.ps.gz>here</a>,
+or consult <a href=textbooks.html>Proakis</a>.
+
+<p>
+
+<h2> Design </h2>
+
+The filter is designed as a finite-impulse-response (FIR) filter.  You specify the length of the impulse
+response; that is equal to the number (<i>n</i>, say) of <i>x</i> coefficients in the ``C'' code.
+The filter will have:
+
+<ul>
+   <li> <i>n</i> - 1 zeros, and
+   <li> <i>n</i> - 1 poles at <i>z</i> = 0, just for causality.
+</ul>
+
+Here we go:
+
+<p> <hr>
+
+<form action=/~fisher/cgi-bin/mkfscript method=POST>
+
+   <input type=hidden name=filtertype value="Raised Cosine">
+
+   We need to know the sample rate (in samples per second). <br>
+   Sample rate: <input name=samplerate size=10>
+
+   <p>
+
+   Enter corner frequency ``alpha'', in Hz.  This is the frequency at which
+   the response is 0.5 = -6 dB (unless you select ``square root'' below, in which case it's -3 dB).
+   In a pulse-shaping application, ``alpha'' is half the baud rate. <br>
+   Corner frequency: <input name=corner size=10>
+
+   <p>
+
+   Enter the value of ``beta'', in the range 0 to 1: <input name=beta size=10> <br>
+
+   <p>
+
+   Enter the length of the finite-impulse response, in samples.
+   A suggested starting value is
+
+   <ul>
+      4 &#215; (sample rate / corner frequency) + 1 .
+   </ul>
+
+   The larger the value, the more accurate the filter, but the slower its execution. <br>
+   Impulse length: <input name=impulselen size=10>
+
+   <p>
+
+   Do you want the filter to include <i>x</i> / sin <i>x</i> compensation for the step output
+   of real-life DACs?
+   You may select the raised-cosine response and the compensation individually.
+   Tick (check) the ``Sqrt'' button for a square-root raised-cosine response.
+
+   <ul> <table border>
+      <tr> <td> Raised-cosine response: <td> Yes   <input type=radio name=racos value=yes checked>
+					<td> Sqrt  <input type=radio name=racos value=sqrt>
+					<td> No	   <input type=radio name=racos value=no>
+      <tr> <td> Compensation function:	<td> Yes   <input type=radio name=comp value=yes>
+					<td> &nbsp;
+					<td> No	   <input type=radio name=comp value=no checked>
+   </table> </ul>
+
+   <p>
+
+   You may apply a Hamming window to the time-domain impulse response.
+   This can improve the frequency-domain response by significantly reducing the amplitude of the sidelobes,
+   but for short filters it can distort the shape of the response in the passband.
+   Tick (check) here to apply windowing: <input type=checkbox name=window value=yes>
+
+   <p>
+
+   If you are going to execute the generated filter on a fixed-point processor,
+   you will want to know how the filter behaves when the coefficents are truncated to <i>n</i> bits.
+   To find out, enter the value of <i>n</i> in the box.
+   (If you are not interested in this feature, leave the field blank.
+   For more information, <a href=trunc.html>click here</a>.) <br>
+   Truncate coefficients to <input name=bits size=10> bits
+
+   <p>
+
+   By default, the frequency response graph has a <i>linear</i> magnitude scale.
+   If that is what you want, leave the following box blank.
+   If you want a <i>logarithmic</i> magnitude scale in dB,
+   enter the lower limit of the magnitude scale in dB here (e.g. -80). <br>
+   Lower limit (dB), or blank for linear scale: <input name=logmin size=10>
+
+   <p>
+
+   Submit form: <input type=submit>
+
+   <p>
+
+   Reset form: <input type=reset>
+
+</form>
+
+<hr>
+
+<address>
+   <a href=/~fisher>Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+

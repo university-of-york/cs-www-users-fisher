@@ -1,0 +1,22 @@
+These routines compute the transverse Mercator projection by means of a
+novel Fourier-based technique, which is much more efficient than
+conventional methods based on the evaluation of power series if you want
+to project a large number of points (say 32 or more along a meridian).
+
+The method is described in a paper, "Efficient computation of the
+transverse Mercator projection", which is currently being refereed.  The
+paper is not available on-line.
+
+I haven't tried to optimize this code to the fullest extent.
+In particular, in places, trivial multiplications are avoided by a run-
+time test to see if either operand is 0 or 1.  This is not cheating
+(although it looks like it), because in each case the fact that the
+multiplication is trivial is known "a priori", independently of the
+data, and a "proper" implementation would make the appropriate
+optimizations.	So the operation counts reported by the program, and
+documented in the paper, really are realistic and accurate.
+
+Honestly!
+
+A.J. Fisher
+

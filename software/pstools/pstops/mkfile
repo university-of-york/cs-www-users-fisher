@@ -1,0 +1,15 @@
+BUILTINS =
+
+all:V:		    $MYBIN/pstops
+
+$MYBIN/pstops:	    pstops.o
+		    cc -cckr pstops.o
+		    mv a.out $MYBIN/pstops
+		    chmod a+x $MYBIN/pstops
+
+%.o:		    %.c
+		    cc -cckr -O -c -I$MYLIB $stem.c
+
+clean:
+		    rm -f pstops.o
+

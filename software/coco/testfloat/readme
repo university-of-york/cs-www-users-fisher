@@ -1,0 +1,23 @@
+Polar-to-OS conversion by the series method
+===========================================
+
+The programs are based on the series expansions given in [1-3], which are
+almost universally used for these conversions.	The paper by Lee [4]
+gives a derivation of the equations.
+
+The results are accurate to better than 1mm for locations in the British Isles.
+
+------
+[1] Ordnance Survey.  Constants, formulae and methods used by the Ordnance
+    Survey for computing in the Transverse Mercator Projection, with some
+    notes on the triangulation of Great Britain and choice of projection.
+    London:  Her Majesty's Stationery Office (1952; reprinted 1975).
+
+[2] Bomford, Guy.  Geodesy (4th ed.), Oxford, 1980.
+
+[3] Maling, D.H.  Coordinate systems and map projections, Philip, 1973.
+
+[4] Lee, L.P.  The transverse Mercator projection of the spheroid.
+    Empire Survey Review 58, 142-152 (1945).
+
+

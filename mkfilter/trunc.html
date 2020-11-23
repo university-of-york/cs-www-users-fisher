@@ -1,0 +1,46 @@
+<HTML>
+
+<title> Truncated Coefficients </title>
+
+<h1> Truncated Coefficients </h1>
+
+<hr> <p>
+
+The design program calculates and displays the filter coefficients as floating-point numbers.
+If you intend to execute your filter on a floating-point process, you can use the coefficients
+directly.  If however you are targetting a fixed-point processor, or a dedicated FIR chip
+which uses fixed-point, then you will have to convert the coefficients to fixed-point numbers.
+This entails truncation of the coefficients, so that they will fit in a given number of bits.
+This truncation will affect the response of the filter to some extent.	The ``truncate to ... bits'' option
+allows you to investigate the extent of this distortion of the response. <p>
+
+Entering a value (an integer, <i>n</i> say) in the ``truncate to ... bits'' box tells the filter
+generation program to generate coefficients which can be represented exactly in 1:(<i>n</i>-1) fixed-point,
+that is with a sign bit and <i>n</i>-1 bits after the binary point.  It doesn't actually display the
+coefficients in that form:  that's up to you.  (C doesn't have a syntax for fixed-point.) <p>
+
+In more detail, what happens is this.
+First, the coefficients are all scaled so that they lie in the range
+
+<ul>
+   -1 .. +(2<sup><i>n</i>-1</sup>-1) / 2<sup><i>n</i>-1</sup> .
+</ul>
+
+Then each coefficient <i>x</i> is adjusted to the closest value which can be represented in
+1:(<i>n</i>-1) fixed-point, namely
+
+<ul>
+   fix(2<sup><i>n</i>-1</sup> <i>x</i>) / 2<sup><i>n</i>-1</sup>
+</ul>
+
+where fix denotes ``nearest integer to''. <p>
+
+<hr>
+
+<address>
+   <a href=/~fisher>Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+
+
+

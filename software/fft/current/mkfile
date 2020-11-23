@@ -1,0 +1,7 @@
+BUILTINS =
+
+$MYBIN/fft:	fft.C complex.h
+		gcc -O fft.C -lm
+		mv a.out $MYBIN/fft
+		chmod a+x $MYBIN/fft
+

@@ -1,0 +1,14 @@
+BUILTINS =
+
+objs = mkmovie.o
+
+$MYBIN/mkmovie: $objs
+		gcc $objs -L$MYLIB -lgd -lm
+		mv a.out $MYBIN/mkmovie
+
+%.o:		%.C
+		gcc -O -c -I$MYLIB $stem.C
+
+clean:
+		rm -f $objs
+

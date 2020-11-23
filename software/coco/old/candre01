@@ -1,0 +1,331 @@
+
+From candre01@harris.com Thu, 1 Jun 1995 13:16:03
+Path: cs.york.ac.uk!sunsite.doc.ic.ac.uk!decwrl!olivea!spool.mu.edu!sol.ctr.columbia.edu!news.ess.harris.com!jabba.ess.harris.com!jabba.ess.harris.com!candre01
+From: candre01@harris.com (Carl Andren)
+Newsgroups: sci.geo.satellite-nav
+Subject: Re: Bearing and distance
+Message-ID: <candre01.19.000D44DA@harris.com>
+Date: Thu, 1 Jun 1995 13:16:03
+References: <3qff3f$pm8@ns5.nba.TRW.COM> <lthfbjk-3005951902330001@uaf-du-05-05.alaska.edu> <3qhvc9$1g0@bubba.NMSU.Edu>
+Organization: Harris Corporation, Aerospace Division
+Lines: 316
+NNTP-Posting-Host: candren10.ess.harris.com
+X-Newsreader: Trumpet for Windows [Version 1.0 Rev Final Beta #6]
+
+>>In article <3qff3f$pm8@ns5.nba.TRW.COM>, John Godden
+>><jgodden@amelia.sp.trw.com> wrote:
+>>
+>>> Anyone know the formula for bearing and distance between two locations
+>>> where the locations log/lat are known. 
+>>> Thanks in advance.   John 
+
+
+Here is a program in Basic that will do the calculation for you.  Just 
+save this posting to a text file, snip off the stuff up to the program and 
+save it as NAVALGOR.BAS.   Then run it with QBASIC, the program that comes 
+with DOS.   It will calculate the range/bearing in several forms.  
+
+Carl Andren
+Andren Software Co.
+
+This program is from Rex Shudde of the Naval Postgraduate School, Montery, CA.
+
+'The program starts here!   
+PRINT "NAVIGATION ALGORITHMS REX H. SHUDDE, 03-12-85.   REV. 03-13-87  1630 "
+   ' NAVALGOR
+     COLOR 7, 1
+     SCREEN 0, 1
+   DEFDBL A-Y
+   PI4 = ATN(1#): PI2 = PI4 + PI4: PI = PI2 + PI2: TP = PI + PI: RD = PI / 180#: EPS = 1D-33
+   FL = 1# / 298.26#: AE = 6378135# / 1852#: ECC = SQR(FL * (2 - FL))
+   DEF FNM (X) = X - M0 * INT(X / M0): ' X MOD M0 FUNCTION.
+   DEF FNL (X) = X - TP * INT((X + PI) / TP): ' LONGITUDE ADJUST (-PI,PI)
+   DEF FNR (X) = INT(X * M0 + .5) / M0: ' ROUNDING FUNCTION.
+   DEF FNG (X) = X + PI * SGN(X) * (ABS(X) > PI2): ' LATITUDE ADJUST (-PI/2,PI/2)
+    DEF FNACS (X) = ATN(SQR(1# - X * X) / (X - EPS * (X = 0#))) - PI * (X < 0#): ' ARCCOS
+    DEF FNASN (X) = ATN(X / (SQR(1# - X * X) - EPS * (ABS(X) = 1#))): '      ARCSIN
+    'QATN (-PI,PI) FUNCTION:
+    DEF FNATN2 (Y, X) = ATN(Y / (X - EPS * (X = 0#))) - PI * (X < 0#) * (SGN(Y) - (Y = 0#))
+    'QATN (0,TWOPI) FUNCTION:
+    DEF FNATNP (Y, X) = ATN(Y / (X - EPS * (X = 0#))) - PI * (X < 0#) + TP * (X >= 0#) * (Y < 0#)
+    GOTO 2000
+    '
+    'DIRECT SOLUTION, SPHEROID EARTH. ALL ANGLES MUST BE IN RADIANS.
+    'INPUT: LATITUDE P1, LONGITUDE L1, FORWARD AZIMUTH A12 AND
+    ' DISTANCE DD=(S/AE) TO A POINT P2. NOTE: DD HAS RADIAN UNITS.
+    'OUTPUT: LATITUDE P2, LONGITUDE L2 AND BACKWARD AZIMUTH A21.
+240 SA12 = SIN(A12): CA12 = COS(A12)
+    TH1 = ATN((1# - FL) * TAN(P1)): IF ABS(ABS(P1) - PI2) < 1D-16 THEN TH1 = P1
+    STH1 = SIN(TH1): CTH1 = COS(TH1): M = -SA12 * CTH1: C1 = FL * M
+    C2 = FL * (1# - M * M) / 4#: D = (1# - C2) * (1# - C2 - C1 * M)
+    P = C2 * (1# + .5# * C1 * M) / D: N = CTH1 * CA12
+    SIG1 = FNATN2(N, STH1): SD = DD / D: U = 2# * (SIG1 - SD)
+    W = 1# - 2# * P * COS(U): V = COS(U + SD): X = C2 * C2 * SIN(SD) * COS(SD * (2# * V * V - 1#))
+    Y = 2# * P * V * W * SIN(SD): DSIG = SD + X - Y: SDS = SIN(DSIG): CDS = COS(DSIG)
+    K = SQR(M * M + (N * CDS - STH1 * SDS) ^ 2): P2 = ATN((STH1 * CDS + N * SDS) / K / (1# - FL))
+    DETA = FNATN2(-SDS * SA12, CTH1 * CDS - STH1 * SDS * CA12)
+    H = C1 * (1# - C2) * DSIG - C1 * C2 * SDS * COS(SIG1 + SIG1 - DSIG)
+    L2 = FNL(L1 + DETA - H): A21 = FNATNP(M, -(N * CDS - STH1 * SDS))
+    RETURN
+    '
+    'INVERSE SOLUTION, SPHEROID EARTH. ALL ANGLES MUST BE IN RADIANS.
+    'INPUT:  LATITUDES P1 & P2, AND LONGITUDES L1 & L2.
+    'OUTPUT: DISTANCE DD=(S/AE), FORWARD AZIMUTH A12, AND BACKWARD
+    ' AZIMUTH A21. NOTE: DD HAS RADIAN UNITS.
+440 DLAM = L2 - L1
+    TH1 = ATN((1# - FL) * TAN(P1)): IF ABS(ABS(P1) - PI2) < 1D-16 THEN TH1 = P1: DLAM = 0
+    TH2 = ATN((1# - FL) * TAN(P2)): IF ABS(ABS(P2) - PI2) < 1D-16 THEN TH2 = P2: DLAM = 0
+    DTHM = (TH2 - TH1) / 2#: THM = (TH1 + TH2) / 2#
+    SDTH = SIN(DTHM): CDTH = COS(DTHM): STHM = SIN(THM): CTHM = COS(THM)
+    H = CDTH * CDTH - STHM * STHM: L = SDTH * SDTH + H * (SIN(DLAM / 2#)) ^ 2
+    SD = 2# * FNASN(SQR(L)): U = 2# * STHM * STHM * CDTH * CDTH / ((1# - L) - (EPS * (L = 1#)))
+    V = 2# * SDTH * SDTH * CTHM * CTHM / L: X = U + V: Y = U - V: T = SD / SIN(SD)
+    D = 4# * T * T: E = 2# * COS(SD): A = D * E: C = T - (A - E) / 2#: N1 = X * (A + C * X)
+    B = D + D: N2 = Y * (B + E * Y): N3 = D * X * Y: D2D = FL * FL * (N1 - N2 + N3) / 64#
+    D1D = FL * (T * X - Y) / 4#: DD = (T - D1D + D2D) * SIN(SD)
+    M = 32# * T - (20# * T - A) * X - (B + 4#) * Y: F = Y + Y - E * (4# - X)
+    G = FL * (T / 2# + FL * M / 64#): Q = -(F * G * TAN(DLAM)) / 4#
+    DLP = (DLAM + Q) / 2#: SLP = SIN(DLP): CLP = COS(DLP)
+    T1 = FNATN2(SDTH * CLP, CTHM * SLP)
+    T2 = FNATN2(-CDTH * CLP, STHM * SLP)
+    M0 = TP: A12 = FNM(T1 + T2): A21 = FNM(T1 - T2): RETURN
+    '
+    'DIRECT SOLUTION, SPHERICAL EARTH. ALL ANGLES MUST BE IN RADIANS.
+    'INPUT: LATITUDE P1, LONGITUDE L1, FORWARD AZIMUTH A12 AND
+    ' DISTANCE DD TO A POINT P2. NOTE: DD IS IN RADIANS.
+    'OUTPUT: LATITUDE P2, LONGITUDE L2 AND BACKWARD AZIMUTH A21.
+640 SA12 = SIN(A12): CA12 = COS(A12): SPH1 = SIN(P1): CPH1 = COS(P1)
+    SD = SIN(DD): CD = COS(DD)
+    L2 = FNL(L1 - FNATN2(SD * SA12, CPH1 * CD - SPH1 * CA12 * SD))
+    A21 = FNATNP(-SA12 * CPH1, SD * SPH1 - CD * CA12 * CPH1)
+    P2 = FNASN(SPH1 * CD + CPH1 * SD * CA12): RETURN
+    '
+    'INVERSE SOLUTION, SPHERICAL EARTH. ALL ANGLES MUST BE IN RADIANS.
+    'INPUT: LATITUDES P1 & P2, AND LONGITUDES L1 & L2.
+    'OUTPUT: DISTANCE DD TO A POINT P2. (NOTE: 0 <= DD <= PI RADIANS).
+    ' FORWARD AZIMUTH A12, AND BACKWARD AZIMUTH A21.
+740 SPH1 = SIN(P1): CPH1 = COS(P1): SPH2 = SIN(P2): CPH2 = COS(P2)
+    DL = L1 - L2
+    IF ABS(ABS(P1) - PI2) < 1D-16 THEN DL = 0
+    IF ABS(ABS(P2) - PI2) < 1D-16 THEN DL = 0
+    SDL = SIN(DL): CDL = COS(DL)
+    DD = FNACS(SPH1 * SPH2 + CPH1 * CPH2 * CDL)
+    A12 = FNATNP(SDL * CPH2, CPH1 * SPH2 - SPH1 * CPH2 * CDL)
+    A21 = FNATNP(-SDL * CPH1, CPH2 * SPH1 - SPH2 * CPH1 * CDL): RETURN
+    '
+    'INVERSE SOLUTION, RHUMB LINE FOR SPHERICAL & SPHEROIDAL EARTH.
+    'INPUT:  LATITUDES P1 & P2, AND LONGITUDES L1 & L2.
+    'OUTPUT: DISTANCES DDA & DDB, AND AZIMUTHS AZA & AZB.
+830 G1 = TAN(PI4 + P1 / 2#): G2 = TAN(PI4 + P2 / 2#): DL = FNL(L1 - L2)
+    IF ABS(ABS(P1) - PI2) < 1D-16 THEN DL = 0
+    IF ABS(ABS(P2) - PI2) < 1D-16 THEN DL = 0
+    DLA = ABS(DL / RD): G1 = G1 - EPS * (G1 = 0): G2 = G2 - EPS * (G2 = 0)
+    DPHI = (P2 - P1) / RD: AZA = FNATNP(DL, LOG(G2) - LOG(G1))
+    CZ = COS(AZA): IF ABS(CZ) > .0001 THEN DDA = 60 * DPHI / CZ ELSE DDA = 60 * DLA * COS(P1)
+    ES1 = ECC * SIN(P1): ES2 = ECC * SIN(P2): ECC2 = ECC / 2
+    AZB = FNATNP(DL, LOG(G2 / ((1 + ES2) / (1 - ES2)) ^ ECC2) - LOG(G1 / ((1 + ES1) / (1 - ES1)) ^ ECC2))
+    CZ = COS(AZB): IF ABS(CZ) > .0001 THEN DDB = 60 * DPHI / CZ ELSE DDB = 60 * DLA * COS(P1)
+    RETURN
+    '
+     'DIRECT SOLUTION, RHUMB LINE FOR SPHERICAL & SPHEROIDAL EARTH.
+     'INPUT: LATITUDE P1, LONGITUDE L1, FORWARD AZIMUTH A12 AND
+     ' DISTANCE DD TO A POINT P2. NOTE: DD IS IN RADIANS.
+     'OUTPUT: LATITUDE P2 AND LONGITUDE LAM2A & LAM2B
+1040 F% = 0: CAZ = COS(A12)
+     IF ABS(CAZ) < .000000000000001# THEN LAM2A = L1 + (DD / COS(P1)) * SGN(A12 - PI): LAM2B = LAM2A: P2 = P1: RETURN
+     P2 = P1 + DD * CAZ
+     G1 = TAN(PI4 + P1 / 2#): G2 = TAN(PI4 + P2 / 2#): TAZ = TAN(A12)
+     IF G2 <= 0 THEN F% = 1: RETURN
+     LAM2A = L1 - TAZ * (LOG(G2) - LOG(G1))
+     ES1 = ECC * SIN(P1): ES2 = ECC * SIN(P2): ECC2 = ECC / 2
+     LAM2B = L1 - TAZ * (LOG(G2 / ((1 + ES2) / (1 - ES2)) ^ ECC2) - LOG(G1 / ((1 + ES1) / (1 - ES1)) ^ ECC2))
+     RETURN
+     '
+     ' DECIMAL TO DDD MM.F
+1210 V$ = " ": IF X < 0 THEN V$ = "-": X = -X
+     X = X + 1 / 1200#: Y = INT(X): V$ = V$ + RIGHT$("  " + STR$(Y), 3) + CHR$(248)
+     X = 600# * (X - Y): Y = INT(X): X$ = STR$(1000 + Y)
+     V$ = V$ + MID$(X$, 3, 2) + "." + RIGHT$(X$, 1) + "'": RETURN
+     '
+     ' DDD.MMSS TO DECIMAL
+1270 IX = 0: FOR Z = 1 TO LEN(V$): C$ = MID$(V$, Z, 1): IF C$ = "." THEN IX = Z
+     NEXT: IF IX = 0 THEN X = VAL(V$): RETURN
+     X = VAL(LEFT$(V$, IX)): SN = 1: IF X < 0# THEN SN = -SN: X = -X
+     V$ = V$ + "0000": Y = VAL(MID$(V$, IX + 1, 2)): Z = VAL(MID$(V$, IX + 3, 2))
+     X = SN * ((Z / 60# + Y) / 60# + X): RETURN
+     '
+2000 CLS : PRINT SPC(15); "NAVIGATION ALGORITHM DEMO"
+     PRINT : PRINT : PRINT
+     PRINT SPC(15); "1) DIRECT SOLUTION"
+     PRINT SPC(15); "2) INVERSE SOLUTION"
+     PRINT SPC(15); "3) RHUMB LINE APPROXIMATIONS"
+     PRINT SPC(15); "    TO GREAT CIRCLE ROUTES"
+     PRINT : PRINT SPC(15); "4) QUIT"
+     GOSUB 6010: C = VAL(C$): ON C GOSUB 3000, 3500, 4000, 5500
+     GOTO 2000
+     '
+3000 CLS : PRINT SPC(15); "DIRECT SOLUTION": PRINT : PRINT
+     PRINT SPC(10); : PRINT "1st LATITUDE   DD.MMSS (-S) ";
+     INPUT V$: GOSUB 1270: P1 = X * RD
+     PRINT SPC(10); : PRINT "1st LONGITUDE DDD.MMSS (-E) ";
+     INPUT V$: GOSUB 1270: L1 = X * RD
+     PRINT SPC(10); : PRINT "INITIAL COURSE  DDD.MMSS    ";
+     INPUT V$: GOSUB 1270: A12 = X * RD
+     PRINT SPC(10); : INPUT "DISTANCE (n. mi.)           ? ", D
+     D1 = D * RD / 60#: DD = D / AE
+     GOSUB 240: PRINT : PRINT SPC(8); "SPHEROID EARTH DIRECT SOLUTION"
+     M0 = 100: GOSUB 3210
+     DD = D1: GOSUB 640: PRINT : PRINT SPC(8); "SPHERICAL EARTH DIRECT SOLUTION"
+     GOSUB 3210
+     GOSUB 1040: IF F% = 1 THEN PRINT : PRINT SPC(8); "RHUMB LINE SOLUTIONS NOT POSSIBLE.": GOTO 3190
+     PRINT : PRINT SPC(8); "RHUMB LINE SOLUTIONS": PRINT SPC(12); "SPHERICAL        ";
+     X = FNG(P2): X = X / RD: GOSUB 1210: VS$ = V$: PRINT V$; SPC(8);
+     X = FNL(LAM2A): X = X / RD: GOSUB 1210: PRINT V$
+     PRINT SPC(12); "SPHEROID         "; VS$; SPC(8);
+     X = FNL(LAM2B): X = X / RD: GOSUB 1210: PRINT V$
+3190 GOSUB 6000: GOTO 2000
+     '
+3210 PRINT SPC(12); "2nd LATITUDE  "; : X = P2 / RD: GOSUB 1210: PRINT V$
+     PRINT SPC(12); "2nd LONGITUDE "; : X = L2 / RD: GOSUB 1210: PRINT V$
+     PRINT SPC(12); "BACK AZIMUTH  "; : X = A21 / RD: GOSUB 1210: PRINT V$: RETURN
+     '
+3500 CLS : PRINT SPC(15); "INVERSE SOLUTION": PRINT : PRINT
+     PRINT SPC(10); : PRINT "1st LATITUDE   DD.MMSS (-S) ";
+     INPUT V$: GOSUB 1270: P1 = X
+     PRINT SPC(10); : PRINT "1st LONGITUDE DDD.MMSS (-E) ";
+     INPUT V$: GOSUB 1270: L1 = X
+     PRINT SPC(10); : PRINT "2nd LATITUDE   DD.MMSS (-S) ";
+     INPUT V$: GOSUB 1270: P2 = X
+     PRINT SPC(10); : PRINT "2nd LONGITUDE DDD.MMSS (-E) ";
+     INPUT V$: GOSUB 1270: L2 = X
+     P1 = P1 * RD: P2 = P2 * RD: L1 = L1 * RD: L2 = L2 * RD
+     GOSUB 440: PRINT : PRINT SPC(8); "SPHEROID EARTH INVERSE SOLUTION"
+     M0 = 100: I% = 1: GOSUB 3700
+     DD = D1: GOSUB 740: PRINT : PRINT SPC(8); "SPHERICAL INVERSE SOLUTION"
+     I% = 2: GOSUB 3700: GOSUB 830
+     PRINT : PRINT SPC(8); "RHUMB LINE SOLUTIONS: SPHERE          SPHEROID"
+     PRINT SPC(12); "DISTANCE         "; FNR(DDA); SPC(8); FNR(DDB); "  n.mi."
+     PRINT SPC(12); "COURSE           "; : X = AZA / RD: GOSUB 1210: PRINT V$; SPC(6);
+     X = AZB / RD: GOSUB 1210: PRINT V$
+     GOSUB 6000: GOTO 2000
+     '
+3700 PRINT SPC(12); "DISTANCE         ";
+     IF I% = 1 THEN PRINT FNR(DD * AE); " n.mi."
+     IF I% = 2 THEN PRINT FNR(60# * DD / RD); " n.mi."
+     PRINT SPC(12); "FORWARD COURSE   "; : X = A12 / RD: GOSUB 1210: PRINT V$
+     PRINT SPC(12); "BACK COURSE      "; : X = A21 / RD: GOSUB 1210: PRINT V$: RETURN
+     '
+4000 CLS : PRINT SPC(15); "RHUMB LINE APPROXIMATIONS": PRINT : PRINT
+     PRINT SPC(10); : PRINT "INITIAL LATITUDE   DD.MMSS (-S) ";
+     INPUT V$: GOSUB 1270: P1 = X * RD: PHI1 = P1
+     PRINT SPC(10); : PRINT "INITIAL LONGITUDE DDD.MMSS (-E) ";
+     INPUT V$: GOSUB 1270: L1 = X * RD: LAM1 = L1
+     PRINT SPC(10); : PRINT "FINAL LATITUDE     DD.MMSS (-S) ";
+     INPUT V$: GOSUB 1270: P2 = X * RD: PHI2 = P2
+     PRINT SPC(10); : PRINT "FINAL LONGITUDE   DDD.MMSS (-E) ";
+     INPUT V$: GOSUB 1270: L2 = X * RD: LAM2 = L2
+     GOSUB 740: M0 = 10: PRINT : PRINT SPC(12); "GREAT CIRCLE SOLUTION"
+     PRINT SPC(15); "INITIAL COURSE "; : ALP12 = A12: X = A12 / RD: GOSUB 1210: PRINT V$
+     PRINT SPC(15); "DISTANCE       "; FNR(60# * DD / RD); " n.mi."
+     GOSUB 830: PRINT : PRINT SPC(12); "RHUMB LINE (MERCATOR) SOLUTION"
+     PRINT SPC(15); "COURSE         "; : X = AZB / RD: GOSUB 1210: PRINT V$
+     PRINT SPC(15); "DISTANCE       "; FNR(DDB); " n.mi."
+     GOSUB 4610
+     PRINT : PRINT SPC(12); "VERTEX: LATITUDE  "; : X = PHIV / RD: GOSUB 1210: PRINT V$
+     PRINT SPC(20); "LONGITUDE "; : X = LAMV / RD: GOSUB 1210: PRINT V$
+     GOSUB 6000
+4190 CLS : PRINT SPC(15); "RHUMB LINE APPROXIMATIONS": PRINT
+     PRINT : PRINT SPC(10); "INPUT THE MAXIMUM NUMBER OF DEGREES"
+     PRINT SPC(10); "  OF LONGITUDE ON EACH RHUMB LINE LEG ";
+     INPUT V$: GOSUB 1270: INCR = X * RD
+     GS = 0: RS = 0: IF INCR = 0 THEN INCR = TP
+     DL = FNL(LAM2 - LAM1): IF DL = 0 THEN F = 1
+     DV = FNL(LAMV - LAM1): IF DL <> 0 THEN F = DV / DL
+     L% = 0: IF F <= 0 OR F >= 1 THEN L% = 1: GOTO 4370
+     PRINT : PRINT SPC(10); "LIMITING LATITUDE  DD.MMSS (-S)"
+     PRINT SPC(10); "  (0 TO OMIT)  "; : INPUT V$: GOSUB 1270: LLAT = X * RD
+     L8 = 0: L9 = 0: P1 = PHI1: PH1 = P1: L1 = LAM1: LA1 = L1: PH = LLAT: P2 = PHI2: L2 = LAM2
+     IF LLAT = 0 THEN L% = 1: GOTO 4370
+     Q1 = ABS(PHIV - PHI1): Q2 = ABS(PHIV - PHI2): A = Q1: IF Q2 < A THEN A = Q2
+     A = A * SGN(PHIV): B = PHIV - LLAT: IF A = 0 THEN G = 5: GOTO 4340
+     G = B / A
+4340 IF G <= 0 OR G > 1 THEN L% = 1: PRINT SPC(10); "CAN'T USE. - IGNORED.": GOTO 4370
+     GOSUB 4810: PRINT SPC(10); "LIMITING LONGITUDES:"
+     X = L8 / RD: GOSUB 1210: PRINT SPC(13); V$; SPC(4); : X = L9 / RD: GOSUB 1210: PRINT V$
+4370 GOSUB 6000: GOSUB 5220
+     D8 = FNL(L8 - L1): D9 = FNL(L9 - L1): IF ABS(D9) < ABS(D8) THEN T = L9: L9 = L8: L8 = T
+     M% = 1: LX = LAM1: PX = PHI1: IF L% = 1 THEN 4450
+     LY = L8: PY = LLAT: GOSUB 4910
+     L1 = L8: P1 = LLAT: L2 = L9: P2 = LLAT: GOSUB 740: GOSUB 830
+     GOSUB 5110: GS = GS + DD: RS = RS + DDB
+     LX = L9: PX = LLAT: L1 = LX: P1 = PX
+     L2 = LAM2: P2 = PHI2
+4450 M% = 0: LY = LAM2: PY = PHI2: GOSUB 4910
+     '
+     PRINT : PRINT SPC(10); "1) NEW APPROXIMATION OR 2) NEW PROBLEM?"
+4480 GOSUB 6010: C = VAL(C$): ON C GOSUB 4190, 2000
+     GOTO 4480
+     '
+     'COMPUTE VERTEX
+4610 SA = SIN(ALP12): CA = COS(ALP12): SP = SIN(P1): CP = COS(P1)
+     IF SA = 0 THEN PHIV = PI2: LAMV = LAM1: RETURN
+     TEMP = PI2: IF SP <> 0 THEN TEMP = ATN(1# / SP / TAN(ALP12))
+     LAMV = L1 - TEMP: LA = L1: LAMV = FNL(LAMV): LAM = LAMV: GOSUB 4720
+     PHIV = PH: RETURN
+     '
+     'FIND LATITUDE GIVEN LONGITUDE
+     SA = SIN(ALP12): CA = COS(ALP12): SP = SIN(PA): CP = COS(PA)
+4720 DL = LA - LAM: PH = FNATN2((SP * COS(DL) * SA + SIN(DL) * CA), (CP * SA))
+     PH = FNG(PH): RETURN
+     '
+     'FIND LONGITUDE GIVEN LATITUDE
+4810 K% = 0: IF ABS(PH) >= ABS(PHIV) THEN K% = 1: RETURN
+     SA = SIN(ALP12): CA = COS(ALP12): SP = SIN(PH1): CP = COS(PH1)
+     K = CP * SA * TAN(PH): C = SP * SA: S = CA: RO = SQR(S * S + C * C): NU = FNATN2(S, C)
+     CC = FNACS(K / RO): DD = LA1 - NU: L8 = FNL(DD - CC): L9 = FNL(DD + CC): RETURN
+     '
+     'RHUMB APPROXIMATIONS SUBROUTINE. INPUT: LX, PX, LY & PY.
+4910 DL = FNL(LY - LX): INC = ABS(INCR): AG = ABS(DL) / INC
+     IF INC / RD < 1 THEN NP = INT(AG + .5): M0 = .1#
+     IF INC / RD >= 1 THEN NP = INT(AG): M0 = 1#
+     IF NP < 1 THEN INC = DL: L2 = LY: GOTO 4970
+     INC = SGN(DL) * INC
+     L2 = FNR((LX + (DL - (NP - 1) * INC) / 2) / RD + .5 * SGN(DL)) * RD
+4970 L1 = LX: P1 = PX: LAM = L2: GOSUB 4720: P2 = PH
+     IF DL = 0 AND F = 1 THEN P2 = PY
+     GOSUB 740: GOSUB 830: GOSUB 5110: GS = GS + DD: RS = RS + DDB
+     IF NP < 1 THEN 5060
+     NC = 1: IF NP = 1 THEN 5040
+5010 L1 = L2: P1 = P2: L2 = FNL(L1 + INC): LAM = L2: GOSUB 4720: P2 = PH
+     GOSUB 740: GOSUB 830: GOSUB 5110: GS = GS + DD: RS = RS + DDB
+     NC = NC + 1: IF NC < NP THEN 5010
+5040 L1 = L2: P1 = P2: L2 = LY: P2 = PY
+     GOSUB 740: GOSUB 830: GOSUB 5110: GS = GS + DD: RS = RS + DDB: IF M% = 1 THEN RETURN
+5060 L1 = LY: P1 = PY: M0 = TP: A12 = FNM(A21 + PI): GOSUB 5110: RETURN
+     '
+     'PRINT LINE OF OUTPUT
+5110 M0 = 1: X = P1 / RD: GOSUB 1210: PRINT V$; SPC(2);
+     X = L1 / RD: GOSUB 1210: PRINT V$;
+     X = FNR(A12 / RD): GOSUB 5200: PRINT V$; SPC(4);
+     X = FNR(60 * GS / RD): GOSUB 5200: PRINT V$; SPC(4);
+     X = FNR(AZB / RD): GOSUB 5200: PRINT V$; SPC(3);
+     X = FNR(RS): GOSUB 5200: PRINT V$
+     NL = NL + 1: IF NL = 20 THEN GOSUB 6000: GOSUB 5220
+     RETURN
+     '
+5200 V$ = "       " + STR$(X): V$ = RIGHT$(V$, 7): RETURN
+     '
+5220 CLS : PRINT SPC(10); "RHUMB LINE APPROXIMATION TO GREAT CIRCLE COURSE": PRINT
+     PRINT "                        GREAT      GREAT      RHUMB     RHUMB"
+     PRINT "                        CIRCLE     CIRCLE     LINE      LINE"
+     PRINT "    LAT        LONG     COURSE     DIST       COURSE    DIST"
+     NL = 5: RETURN
+     '
+5500 CLS : END
+     '
+6000 PRINT : PRINT SPC(10); "PRESS ANY KEY TO CONTINUE"
+6010 FOR I! = 1 TO 9: C$ = INKEY$: NEXT
+6020 C$ = INKEY$: IF C$ = "" THEN 6020
+     RETURN
+
+

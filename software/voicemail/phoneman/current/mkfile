@@ -1,0 +1,33 @@
+BUILTINS =
+
+objs	 = main.o parse.o obey.o dtmf.o runprog.o common.o filters.o
+libs	 = $MYLIB/fishaudio.a
+hdrs	 = $MYLIB/fishaudio.h phoneman.h filters.h
+phonedir = $MYLIB/phoneman
+
+all:V:		    $MYBIN/phoneman $MYBIN/connect $phonedir/dfltrc
+
+$MYBIN/phoneman:    $objs $libs
+		    gcc $objs $libs -lm
+		    mv a.out $MYBIN/phoneman
+		    chmod a+x $MYBIN/phoneman
+
+%.C:		    %.F
+		    fifi $stem.F $stem.C
+
+%.o:		    %.C $hdrs
+		    gcc -O -c -I$MYLIB $stem.C
+
+$MYBIN/connect:	    connect.C
+		    gcc -O connect.C
+		    mv a.out $MYBIN/connect
+		    chmod a+x $MYBIN/connect
+
+$phonedir/dfltrc:   dfltrc
+		    cp dfltrc $phonedir/dfltrc
+		    chmod a+r $phonedir/dfltrc
+
+clean:
+		    rm -f $objs dtmf.C obey.C
+
+

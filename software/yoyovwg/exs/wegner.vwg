@@ -1,0 +1,16 @@
+BETY::	 b BETY; EMPTY.
+
+EMPTY::	 .
+
+program:	  growing.
+
+growing BETY:	  a symbol, growing b BETY, c symbol;
+		  terminal BETY.
+
+terminal b BETY:  b symbol, terminal BETY.
+
+terminal b:	  b symbol.
+
+a symbol:   "a".
+b symbol:   "b".
+c symbol:   "c".

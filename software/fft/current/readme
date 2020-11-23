@@ -1,0 +1,10 @@
+Directory: /usr/fisher/fft/current
+
+Typical use:
+
+    PATH=$PATH:/usr/fisher/mipsbin export PATH
+    cat file.dat | fft -pw | plotit
+
+Tony Fisher <fisher@minster.york.ac.uk>
+http://www.cs.york.ac.uk/~fisher
+

@@ -1,0 +1,113 @@
+<HTML>
+
+<title> Butterworth / Bessel / Chebyshev Filters </title>
+
+<h1> Butterworth / Bessel / Chebyshev Filters </h1>
+
+<hr> <p>
+
+This is an interactive filter design package, for designing digital filters
+by the bilinear transform or matched <i>z</i>-transform method.
+Fill in the form and press the ``Submit'' button, and a filter will be designed for you.
+
+<p> <hr>
+
+<form action=/~fisher/cgi-bin/mkfscript method=POST>
+
+<ol>
+
+   <li> Select filter type: <br>
+
+	<p> <ul> <table border>
+	  <td> <table>
+	    <tr> <td> <input type=radio name=filtertype value=Butterworth checked> </td> <td> Butterworth </td> </tr>
+	    <tr> <td> <input type=radio name=filtertype value=Bessel>		   </td> <td> Bessel	  </td> </tr>
+	    <tr> <td> <input type=radio name=filtertype value=Chebyshev>	   </td> <td> Chebyshev	  </td> </tr>
+	  </table> </td>
+	  <td> <table>
+	    <tr> <td> <input type=radio name=passtype value=Lowpass checked> </td> <td> Lowpass	 </td> </tr>
+	    <tr> <td> <input type=radio name=passtype value=Highpass>	     </td> <td> Highpass </td> </tr>
+	    <tr> <td> <input type=radio name=passtype value=Bandpass>	     </td> <td> Bandpass </td> </tr>
+	    <tr> <td> <input type=radio name=passtype value=Bandstop>	     </td> <td> Bandstop </td> </tr>
+	  </table> </td>
+	</table> </ul> <p>
+
+   <li> If you specified ``Chebyshev'' above, enter ripple in dB here: <input name=ripple> <br>
+
+	<p> <ul> <small>
+	   (The ripple, if specified, must be a negative number.
+	   For other filter types, leave this field blank.)
+	</small> </ul> </p>
+
+   <li> Enter the filter order: <input name=order> <br>
+
+	<p> <ul> <small>
+	   (For lowpass and highpass, this is the number of poles.
+	   For bandpass and bandstop, the number of poles is twice the order.)
+	</small> </ul> </p>
+
+   <li> Sample rate, in samples per second: <input name=samplerate> <br>
+
+	<p>
+
+   <li> Enter corner frequency/ies, in Hz. <p>
+
+	Corner frequency 1: <input name=corner1> Hz <br>
+	Corner frequency 2: <input name=corner2> Hz <br>
+
+	<p> <ul> <small>
+	   (For Butterworth and Bessel lowpass designs, the corner frequency is the frequency at which the
+	   magnitude of the response is -3 dB.	For Chebyshev lowpass designs, the corner frequency is the
+	   highest frequency at which the magnitude of the response is equal to the specified ripple.
+	   For highpass, bandpass and bandstop, the above definition is modified in an obvious way.
+	</small> </ul> </p>
+
+	<p> <ul> <small>
+	   For lowpass and highpass, one corner frequency is required:
+	   enter this in the first slot and leave the second one blank.
+	   For bandpass and bandstop, two corner frequencies are required.)
+	</small> </ul> </p>
+
+	<p>
+
+   <li> If you wish, you can add one additional zero at a particular frequency,
+	normally in the stop-band, to give infinite attenuation at that frequency.
+	For a standard Butterworth / Bessel / Chebyshev design, leave this field blank. <br>
+	Additional zero at: <input name=adzero> Hz <br>
+
+	<p>
+
+   <li> By default, the filter is designed by the bilinear transform method, which is
+	<i>recommended</i> for most applications.
+	Tick (check) here: <input name=mzt value=yes type=checkbox> and the matched <i>z</i>-transform
+	will be used instead.
+	<b>Warning:</b> inspect the frequency response carefully if you use this option.
+	<a href=mzt.html>Click here</a> for further information about the matched <i>z</i>-transform,
+	and about Bessel filters in particular.
+
+	<p>
+
+   <li> By default, the frequency response graph has a <i>linear</i> magnitude scale.
+	If that is what you want, leave the following box blank.
+	If you want a <i>logarithmic</i> magnitude scale in dB,
+	enter the lower limit of the magnitude scale in dB here (e.g. -80). <br>
+	Lower limit (dB), or blank for linear scale: <input name=logmin>
+
+	<p>
+
+   <li> Submit form: <input type=submit> &nbsp; &nbsp;
+	Reset form: <input type=reset>
+
+	<p>
+
+</ol>
+
+</form>
+
+<hr>
+
+<address>
+   <a href=/~fisher> Tony Fisher</a> /
+   fisher@minster.york.ac.uk
+</address>
+

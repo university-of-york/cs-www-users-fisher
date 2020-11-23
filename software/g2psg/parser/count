@@ -1,0 +1,3 @@
+wc -l makefile g2build g2psg.h base.c readgr.c features.c \
+      starters.c maketab.c prerror.c common.c trans.c emf.text g2parser.c |
+sort

@@ -1,0 +1,17 @@
+BUILTINS =
+
+objs = play.o
+libs = $MYLIB/audio.a
+hdrs = $MYLIB/audio.h
+
+play:		$objs $libs
+		cc $objs $libs -lm
+		mv a.out play
+		chmod a+x play
+
+%.o:		%.c $hdrs
+		cc -O -c $stem.c
+
+clean:
+		rm -f $objs
+

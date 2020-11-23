@@ -1,0 +1,14 @@
+BUILTINS =
+
+objs = bessel.o zroots.o complex.o
+
+bessel: $objs
+	gcc $objs -lm
+	mv a.out bessel
+
+%.o:	%.C bessel.h complex.h
+	gcc -c -O $stem.C
+
+clean:
+	rm -f $objs
+

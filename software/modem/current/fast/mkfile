@@ -1,0 +1,25 @@
+BUILTINS =
+LIB	 = ../lib
+
+objs = main.o v32rx.o v32tx.o coder.o cancel.o common.o
+
+libs = $LIB/library.a $MYLIB/fishaudio.a $MYLIB/coro.a
+
+hdrs = $LIB/sinegen.h $LIB/equalize.h $LIB/filters.h $LIB/debug.h $LIB/complex.h $LIB/scramble.h \
+       $LIB/myaudio.h $LIB/mystdio.h $LIB/tonedec.h $LIB/bitrates.h \
+       $MYLIB/coro.h \
+       modem.h coder.h cancel.h
+
+$MYLIB/fmodem:	    $objs $libs
+		    gcc $objs $libs -lm
+		    mv a.out $MYLIB/fmodem
+
+%.o:		    %.C $hdrs
+		    gcc -O -c -I$MYLIB -I$LIB $stem.C
+
+%.C:		    %.F
+		    fifi $stem.F $stem.C
+
+clean:
+		    rm -f $objs v32rx.C
+

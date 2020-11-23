@@ -1,0 +1,22 @@
+BUILTINS =
+
+objs = audio.o
+
+all:V:		  $MYLIB/audio.a $MYLIB/audio.h
+
+$MYLIB/audio.a:	  $objs
+		  rm -f temp.a
+		  ar cr temp.a $objs
+		  mv temp.a $MYLIB/audio.a
+		  chmod a+r $MYLIB/audio.a
+
+%.o:		  %.c audio.h private.h
+		  cc -O -c $stem.c
+
+$MYLIB/audio.h:	  audio.h
+		  cp audio.h $MYLIB/audio.h
+		  chmod a+r $MYLIB/audio.h
+
+clean:
+		  rm -f $objs
+

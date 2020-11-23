@@ -1,0 +1,75 @@
+%! PS-Adobe-2.0
+%% Program for reading a .ps file and writing out a PPM file.
+%% For Ghostscript 2.4.
+%%
+%% Original version by Phillip Conrad - Perfect Byte, Inc.
+%% Simplified by AJF - lots of stuff removed.
+%% Also now takes *2* params, viz. input & output filenames.
+
+% Define the directory for holding the PPM information
+
+/ppmdict 30 dict def
+
+ppmdict begin
+
+    /Horz_dpi 72 def	% defaults to screen density
+    /Vert_dpi 72 def
+
+    /Palette1 <ff 00> def
+
+    % Redefine copypage and showpage appropriately.
+
+    /copypage
+      { ppmdict begin
+	    FileNameOut (w) file /FileDescOut exch def
+	    %%% (Writing ) print FileNameOut print (\n) print flush
+	    FileDescOut Device writeppmfile
+	    FileDescOut closefile
+	end
+      }
+    userdict begin def end
+
+    /showpage
+      { copypage erasepage initgraphics
+      }
+    userdict begin def end
+
+    % the main procedure
+    % <in_filename> <out_filename> <palette> Convert -
+
+    /Convert
+      { /Palette exch def
+	/FileNameOut exch def
+	/FileNameIn exch def
+
+	/ScaleX Horz_dpi 72 div def
+	/ScaleY Vert_dpi 72 div def
+	/Width 8.32 Horz_dpi mul cvi def
+	/Height 11.75 Vert_dpi mul cvi def	 % was 11.25
+	[ScaleX 0.0 0.0 ScaleY neg 0.0 Height]
+	Width Height Palette makeimagedevice /Device exch def
+	Device setdevice
+
+	% For running the file, remove ppmdict from the dict stack
+	FileNameIn end run
+      }
+    def
+
+end
+
+% Define the user-callable procedures
+
+/ppmsetdensity
+  { ppmdict begin
+	/Vert_dpi exch def
+	/Horz_dpi exch def
+    end
+  }
+def
+
+/ppm1run
+  { ppmdict begin
+	Palette1 Convert
+  }
+def
+

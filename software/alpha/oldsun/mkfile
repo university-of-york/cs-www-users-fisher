@@ -1,0 +1,44 @@
+# Mkfile for alpha (C version)	 AJF   May 1988
+
+BUILTINS =
+
+bin  = /usr/fisher/bin
+lib  = /usr/fisher/lib
+alib = $lib/alpha
+
+a_objects = alpha.o edit.o readstyle.o format.o translit.o psout.o scrout.o common.o
+w_objects = windows.o
+headers	  = alpha.h $lib/fishfont.h $lib/sunlib.h	# some redundancy here...
+
+all:		    $bin/alpha $alib/windows \
+		    $alib/icon $alib/menu $alib/prelude.ps
+		    touch all
+
+$bin/alpha:	    $a_objects $lib/fishfont.a $lib/sunlib.a $lib/spawn.a
+		    cc $a_objects $lib/fishfont.a $lib/sunlib.a $lib/spawn.a
+		    mv a.out $bin/alpha
+		    chmod a+x $bin/alpha
+
+$alib/windows:	    $w_objects $lib/sunlib.a $lib/spawn.a
+		    cc $w_objects $lib/sunlib.a $lib/spawn.a
+		    mv a.out $alib/windows
+		    chmod a+x $alib/windows
+
+$alib/icon:	    alphaicon
+		    cp alphaicon $alib/icon
+		    chmod a+r $alib/icon
+
+$alib/menu:	    alphamenu
+		    cp alphamenu $alib/menu
+		    chmod a+r $alib/menu
+
+$alib/prelude.ps:   prelude.ps
+		    cp prelude.ps $alib/prelude.ps
+		    chmod a+r $alib/prelude.ps
+
+%.o:		    %.c $headers
+		    cc -O -c $stem.c
+
+clean:
+		    rm -f $a_objects $w_objects
+

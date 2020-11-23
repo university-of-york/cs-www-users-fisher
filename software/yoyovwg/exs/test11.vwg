@@ -1,0 +1,17 @@
+AS::	    a ASETY.
+ASETY::	    AS; EMPTY.
+
+BS::	    b BSETY.
+BSETY::	    BS; EMPTY.
+
+THINGS::    a TAIL.
+TAIL::	    b; THINGS b.
+
+EMPTY::	    .
+
+program:    AS BS.
+
+THINGS:	    x symbol.
+
+x symbol:   "x".
+

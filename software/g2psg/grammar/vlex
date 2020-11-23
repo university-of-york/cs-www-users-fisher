@@ -1,0 +1,437 @@
+{Verb lexicon}
+
+{Morphological rules}
+V0[PAST -, VFORM FIN, 3SG -]: Vstem[H]
+V0[PAST -, VFORM FIN, PER 3, PLU -, 3SG +]: Vstem[H], 3affix
+3affix: "s"
+
+V0[PAST +, VFORM FIN, REGPAST +]: Vstem[H], pastaffix
+
+V0[VFORM PAS, REGPAS +]: Vstem[H, PAS +], pastaffix
+V0[VFORM PSP, REGPAS +]: Vstem[H], pastaffix
+pastaffix: "ed"
+
+V0[VFORM  BSE]: Vstem[H]
+
+V0[VFORM PRP]: Vstem[H], presaffix
+presaffix: "ing"
+
+
+{Subcat 1: Intransitive verbs}
+Vstem[SUBCAT 1, REGPAST -, REGPAS -]: "speak"
+V0[SUBCAT 1, PAST +]: "spoke"
+V0[SUBCAT 1, VFORM PAS]: "spoken"
+V0[SUBCAT 1, VFORM PSP]: "spoken"
+
+Vstem[SUBCAT 1, REGPAST -, REGPAS -]: "run"
+V0[SUBCAT 1, PAST +]: "ran"
+V0[SUBCAT 1, VFORM PAS]: "run"
+V0[SUBCAT 1, VFORM PSP]: "run"
+
+Vstem[SUBCAT 1, REGPAST -, PAS -, REGPAS -]: "eat"
+V1[SUBCAT 1, PAST +]: "ate"
+V1[SUBCAT 1, VFORM PSP]: "eaten"
+
+Vstem[SUBCAT 1, PAS -]: "work"
+
+Vstem[SUBCAT 1, PAS -]: "start"
+
+Vstem[SUBCAT 1, PAS -, REGPAST -, REGPAS -]: "come"
+V1[SUBCAT 1, PAST +]: "came"
+V1[SUBCAT 1, VFORM PSP]: "come"
+
+Vstem[SUBCAT 1, PAS -, REGPAST -, REGPAS -]: "go"
+V1[SUBCAT 1, PAST +]: "went"
+V1[SUBCAT 1, VFORM PSP]: "gone"
+
+Vstem[SUBCAT 1]: "know"
+V0[SUBCAT 1, PAST +]: "knew"
+V0[SUBCAT 1, VFORM PSP]: "known"
+
+Vstem[SUBCAT 1, PAS -]: "promise"
+
+Vstem[SUBCAT 1, PAS -]: "dial"
+
+Vstem[SUBCAT 1, PAS -]: "stop"
+
+Vstem[SUBCAT 1, PAS -]: "look"
+
+Vstem[SUBCAT 1, PAS -]: "die"
+
+Vstem[SUBCAT 1, PAS -]: "talk"
+
+
+
+{Subcat 2: Simple transitives - N2 complement}
+Vstem[SUBCAT 2, REGPAST -, REGPAS -]: "make"
+V0[SUBCAT 2, PAST +]: "made"
+V0[SUBCAT 2, VFORM PSP]: "made"
+V0[SUBCAT 2, VFORM PAS]: "made"
+
+Vstem[SUBCAT 2, REGPAST -, REGPAS -]: "see"
+V0[SUBCAT 2, PAST +]: "saw"
+V0[SUBCAT 2, VFORM PSP]: "seen"
+V0[SUBCAT 2, VFORM PAS]: "seen"
+
+Vstem[SUBCAT 2, REGPAST -, REGPAS -]: "meet"
+V0[SUBCAT 2, PAST +]: "met"
+V0[SUBCAT 2, VFORM PSP]: "met"
+V0[SUBCAT 2, VFORM PAS]: "met"
+
+Vstem[SUBCAT 2, REGPAST -, REGPAS -]: "eat"
+V0[SUBCAT 2, PAST +]: "ate"
+V0[SUBCAT 2, VFORM PSP]: "eaten"
+V0[SUBCAT 2, VFORM PAS]: "eaten"
+
+Vstem[SUBCAT 2, REGPAST -, REGPAS -]: "send"
+V0[SUBCAT 2, PAST +]: "sent"
+V0[SUBCAT 2, VFORM PAS]: "sent"
+V0[SUBCAT 2, VFORM PSP]: "sent"
+
+Vstem[SUBCAT 2, AUX -, PAS -, REGPAS -, REGPAST -]: "get"
+V0[SUBCAT 2, AUX -, PAST +]: "got"
+V0[SUBCAT 2, AUX -, VFORM PSP]: "got"
+
+Vstem[SUBCAT 2, AUX -, PAS -, REGPAS -, REGPAST -]: "have"
+V0[SUBCAT 2, AUX -, PAST -, 3SG +]: "has"
+V0[SUBCAT 2, AUX -, PAST +]: "had"
+V0[SUBCAT 2, AUX -, VFORM PSP]: "had"
+
+V0[SUBCAT 2, VFORM BSE]: "do"
+V0[SUBCAT 2, PAST -, 3SG -]: "do"
+V0[SUBCAT 2, PAST -, 3SG +]: "does"
+V0[SUBCAT 2, PAST +]: "did"
+V0[SUBCAT 2, VFORM PSP]: "done"
+V0[SUBCAT 2, VFORM PAS]: "done"
+
+Vstem[SUBCAT 2]: "involve"
+
+Vstem[SUBCAT 2]: "run"
+
+Vstem[SUBCAT 2]: "play"
+
+Vstem[SUBCAT 2]: "manufacture"
+
+Vstem[SUBCAT 2]: "phone"
+
+Vstem[SUBCAT 2]: "receive"
+
+Vstem[SUBCAT 2]: "believe"
+
+Vstem[SUBCAT 2]: "stop"
+
+Vstem[SUBCAT 2]: "love"
+
+Vstem[SUBCAT 2]: "like"
+
+Vstem[SUBCAT 2]: "amuse"
+
+Vstem[SUBCAT 2, PAS -]: "want"
+
+Vstem[SUBCAT 2, REGPAS -, REGPAST -]: "bite"
+V0[SUBCAT 2, VFORM PAS]: "bitten"
+V0[SUBCAT 2, VFORM PSP]: "bitten"
+V0[SUBCAT 2, PAST +]: "bit"
+
+Vstem[SUBCAT 2]: "require"
+
+Vstem[SUBCAT 2, PAS -]: "prefer"
+
+Vstem[SUBCAT 2]: "bother"
+
+Vstem[SUBCAT 2]: "produce"
+
+Vstem[SUBCAT 2]: "analyse"
+
+Vstem[SUBCAT 2]: "dial"
+
+Vstem[SUBCAT 2]: "zap"
+
+Vstem[SUBCAT 2]: "know"
+V0[SUBCAT 2, PAST +]: "knew"
+V0[SUBCAT 2, VFORM PSP]: "known"
+
+Vstem[SUBCAT 2]: "copy"
+
+Vstem[SUBCAT 2]: "suggest"
+
+Vstem[SUBCAT 2]: "test"
+
+Vstem[SUBCAT 2]: "use"
+
+Vstem[SUBCAT 2, REGPAST -, REGPAS -]: "say"
+V0[SUBCAT 2, PAST +]: "said"
+V0[SUBCAT 2, VFORM PSP]: "said"
+V0[SUBCAT 2, VFORM PAS]: "said"
+
+Vstem[SUBCAT 2, REGPAST -, REGPAS -]: "buy"
+V0[SUBCAT 2, PAST +]: "bought"
+V0[SUBCAT 2, VFORM PSP]: "bought"
+V0[SUBCAT 2, VFORM PAS]: "bought"
+
+{Vstem[SUBCAT 201, REGPAST -, REGPAS -]: "run"
+V0[SUBCAT 201, PAST +]: "ran"
+V0[SUBCAT 201, VFORM PAS]: "run"
+V0[SUBCAT 201, VFORM PSP]: "run"}
+
+{Subcat 3: Dative ditransitives - N2 + P2[to] complements}
+Vstem[SUBCAT 3, REGPAST -, REGPAS -]: "give"
+V0[SUBCAT 3, PAST +]: "gave"
+V0[SUBCAT 3, VFORM PAS]: "given"
+V0[SUBCAT 3, VFORM PSP]: "given"
+
+Vstem[SUBCAT 3, REGPAST -, REGPAS -]: "send"
+V0[SUBCAT 3, PAST +]: "sent"
+V0[SUBCAT 3, VFORM PAS]: "sent"
+V0[SUBCAT 3, VFORM PSP]: "sent"
+
+{Subcat 5:  Dative-shifted ditransitives - N2 + N2 complements}
+Vstem[SUBCAT 5, REGPAST -, REGPAS -]: "give"
+V0[SUBCAT 5, PAST +]: "gave"
+V0[SUBCAT 5, VFORM PSP]: "given"
+V0[SUBCAT 5, VFORM PAS]: "given"
+
+Vstem[SUBCAT 5, REGPAST -, REGPAS -]: "buy"
+V0[SUBCAT 5, PAST +]: "bought"
+V0[SUBCAT 5, VFORM PSP]: "bought"
+V0[SUBCAT 5, VFORM PAS]: "bought"
+
+Vstem[SUBCAT 5, REGPAST -, REGPAS -]: "send"
+V0[SUBCAT 5, PAST +]: "sent"
+V0[SUBCAT 5, VFORM PAS]: "sent"
+V0[SUBCAT 5, VFORM PSP]: "sent"
+
+Vstem[SUBCAT 5, REGPAS -, REGPAST -]: "tell"
+V0[SUBCAT 5, PAST +]:"told"
+V0[SUBCAT 5, VFORM PSP]: "told"
+V0[SUBCAT 5, VFORM PAS]: "told"
+
+Vstem[SUBCAT 5]: "call"
+
+Vstem[SUBCAT 5]: "name"
+
+{Subcat 6: Locative ditransitives - N2 and P2 complements}
+Vstem[SUBCAT 6, REGPAST -, REGPAS -]: "put"
+V0[SUBCAT 6, PAST +]: "put"
+V0[SUBCAT 6, VFORM PAS]: "put"
+V0[SUBCAT 6, VFORM PSP]: "put"
+
+{Subcat 601: particle P2 complement}
+Vstem[SUBCAT 601]: "go"
+
+{Subcat 602: N2 + particle P2 complements}
+Vstem[SUBCAT 602]: "switch"
+
+
+{Subcat 701: present progressive "be" - V1[PRP] complement}
+V0[SUBCAT 701, VFORM BSE]: "be"
+V0[SUBCAT 701, PAST -, PLU -, PER 1, NEG -]: "am"
+V0[SUBCAT 701, PAST -, PLU -, PER 1, NEG -, INV -]: "'m"
+V0[SUBCAT 701, PAST -, PLU -, PER 2, NEG -]: "are"
+V0[SUBCAT 701, PAST -, PLU -, PER 2, NEG -, INV -]: "'re"
+V0[SUBCAT 701, PAST -, PLU -, PER 3, NEG -]: "is"
+V0[SUBCAT 701, PAST -, PLU -, PER 3, NEG -, INV -]: "'s"
+V0[SUBCAT 701, PAST -, PLU +, NEG -]: "are"
+V0[SUBCAT 701, PAST -, PLU +, NEG -, INV -]: "'re"
+V0[SUBCAT 701, PAST +, PLU -, PER 1, NEG -]: "was"
+V0[SUBCAT 701, PAST +, PLU -, PER 2, NEG -]: "were"
+V0[SUBCAT 701, PAST +, PLU -, PER 3, NEG -]: "was"
+V0[SUBCAT 701, PAST +, PLU +, NEG -]: "were"
+V0[SUBCAT 701, PAST -, PLU -, PER 1, NEG +, INV +]: "aren't"
+V0[SUBCAT 701, PAST -, PLU -, PER 2, NEG +]: "aren't"
+V0[SUBCAT 701, PAST -, PLU -, PER 3, NEG +]: "isn't"
+V0[SUBCAT 701, PAST -, PLU +, NEG +]: "aren't"
+V0[SUBCAT 701, PAST +, PLU -, PER 1, NEG +]: "wasn't"
+V0[SUBCAT 701, PAST +, PLU -, PER 2, NEG +]: "weren't"
+V0[SUBCAT 701, PAST +, PLU -, PER 3, NEG +]: "wasn't"
+V0[SUBCAT 701, PAST +, PLU +, NEG +]: "weren't"
+V0[SUBCAT 701, VFORM PRP]: "being"
+V0[SUBCAT 701, VFORM PSP]: "been"
+
+
+{Subcat 702: Modals - V1[BSE] complement}
+V0[SUBCAT 702, PAST -, NEG -]: "can"
+V0[SUBCAT 702, PAST -, NEG +]: "cannot"
+V0[SUBCAT 702, PAST -, NEG +]: "can't"
+V0[SUBCAT 702, PAST +, NEG -]: "could"
+V0[SUBCAT 702, PAST -, NEG +]: "couldn't"
+V0[SUBCAT 702, PAST -, NEG -]: "may"
+V0[SUBCAT 702, PAST -, NEG +]: "mayn't"
+V0[SUBCAT 702, PAST -, NEG -]: "must"
+V0[SUBCAT 702, PAST -, NEG +]: "mustn't"
+V0[SUBCAT 702, PAST -, NEG -]: "shall"
+V0[SUBCAT 702, PAST -, NEG -, INV -]: "'ll"
+V0[SUBCAT 702, PAST -, NEG +]: "shan't"
+V0[SUBCAT 702, PAST -, NEG -]: "will"
+V0[SUBCAT 702, PAST -, NEG +]: "won't"
+V0[SUBCAT 702, PAST -, NEG -]: "would"
+V0[SUBCAT 702, PAST -, NEG -, INV -]: "'d"
+V0[SUBCAT 702, PAST -, NEG +]: "wouldn't"
+V0[SUBCAT 702, PAST -, NEG -]: "should"
+V0[SUBCAT 702, PAST -, NEG +]: "shouldn't"
+V0[SUBCAT 702, PAST -, NEG -]: "might"
+V0[SUBCAT 702, PAST -, NEG +]: "mightn't"
+
+
+{Subcat 703: "do" - V1[-AUX, BSE] complement}
+V0[SUBCAT 703, PAST -, 3SG -, NEG -]: "do"
+V0[SUBCAT 703, PAST -, 3SG -, NEG +]: "don't"
+V0[SUBCAT 703, PAST -, 3SG +, NEG -]: "does"
+V0[SUBCAT 703, PAST -, 3SG +, NEG +]: "doesn't"
+V0[SUBCAT 703, PAST +, NEG -]: "did"
+V0[SUBCAT 703, PAST +, NEG +]: "didn't"
+{V0[SUBCAT 703, VFORM PSP]: "done"}
+{V0[SUBCAT 703, VFORM PAS]: "done"}
+V0[SUBCAT 703, VFORM BSE]: "do"
+
+
+{Subcat 704: aspectual "have" - V1[PSP] complement}
+V0[SUBCAT 704, VFORM BSE]: "have"
+V0[SUBCAT 704, VFORM BSE, INV -]: "'ve"
+V0[SUBCAT 704, PAST -, 3SG -]: "have"
+V0[SUBCAT 704, PAST -, 3SG -, INV -]: "'ve"
+V0[SUBCAT 704, PAST -, 3SG +]: "has"
+V0[SUBCAT 704, PAST -, 3SG +, INV -]: "'s"
+V0[SUBCAT 704, PAST +]: "had"
+V0[SUBCAT 704, PAST +, INV -]: "'d"
+
+
+{Subcat 705: V1[INF] complement}
+V0[SUBCAT 705, PAST -, NEG -]: "ought"
+V0[SUBCAT 705, PAST -, NEG +]: "oughtn't"
+
+{Modal "have (to)"}
+V0[SUBCAT 705, VFORM BSE]: "have"
+V0[SUBCAT 705, PAST -, 3SG -, NEG -]: "have"
+V0[SUBCAT 705, PAST -, 3SG -, NEG +]: "haven't"
+V0[SUBCAT 705, PAST -, 3SG +, NEG -]: "has"
+V0[SUBCAT 705, PAST -, 3SG +, NEG +]: "hasn't"
+V0[SUBCAT 705, PAST +, NEG -]: "had"
+V0[SUBCAT 705, PAST +, NEG +]: "hadn't"
+V0[SUBCAT 705, VFORM PSP]: "had"
+
+{V0[SUBCAT 705, VFORM PRP, NEG -]: "going"}
+
+{Subcat 8: N2 + V2 complements}
+Vstem[SUBCAT 8, PAS +]: "persuade"
+
+{Subcat 9: (P2[to]) V2[FIN] complements}
+Vstem[SUBCAT 9, PAS -]: "concede"
+
+Vstem[SUBCAT 9, PAS -]: "suggest"
+
+{Subcat 10: V2[BSE] complement}
+Vstem[SUBCAT 10, PAS -]: "prefer"
+
+Vstem[SUBCAT 10, PAS -]: "suggest"
+
+Vstem[SUBCAT 10, PAS -]: "require"
+
+{Subcat 11: P2[of] + V2[BSE] complements}
+Vstem[SUBCAT 11, PAS -]: "require"
+
+{Subcat 12: V1[BSE] complement}
+V0[SUBCAT 12, VFORM INF]: "to"
+
+{Subcat 13: V1[INF] complement}
+Vstem[SUBCAT 13, PAS -]: "tend"
+
+{Subcat 14: V2[INF] complement}
+Vstem[SUBCAT 14, PAS -]: "prefer"
+
+Vstem[SUBCAT 14, PAS -]: "require"
+
+Vstem[SUBCAT 14, PAS -]: "want"
+
+Vstem[SUBCAT 14]: "use"
+
+{Subcat 15: V1[INF] complement}
+Vstem[SUBCAT 15, PAS -]: "prefer"
+
+Vstem[SUBCAT 15, PAS -]: "decide"
+
+Vstem[SUBCAT 15, PAS -]: "use"
+
+Vstem[SUBCAT 15, PAS -]: "hope"
+
+Vstem[SUBCAT 15, PAS -]: "try"
+
+Vstem[SUBCAT 15, PAS -]: "want"
+
+Vstem[SUBCAT 15, PAS -]: "seem"
+
+Vstem[SUBCAT 15, PAS -]: "promise"
+
+Vstem[SUBCAT 15, PAS -, REGPAST -, REGPAS -]: "go"
+V0[SUBCAT 15, PAST +]: "went"
+V0[SUBCAT 15, VFORM PSP]: "gone"
+
+
+{Subcat 16: P2[to] + V1[INF] complements}
+Vstem[SUBCAT 16, PAS -]: "seem"
+
+{Subcat 17: N2 + V1[INF] complements}
+Vstem[SUBCAT 17]: "believe"
+
+{Subcat 18: N2 + V1[INF] complements}
+Vstem[SUBCAT 18]: "persuade"
+
+{Subcat 188: N2 + V1[INF] complements}
+Vstem[SUBCAT 188, PAS -]: "promise"
+
+{Subcat 19: V2[FIN] complement}
+Vstem[SUBCAT 19, REGPAST -, REGPAS -]: "say"
+V0[SUBCAT 19, PAST +]: "said"
+V0[SUBCAT 19, VFORM PSP]: "said"
+V0[SUBCAT 19, VFORM PAS]: "said"
+
+Vstem[SUBCAT 19, REGPAST -, PAS -, REGPAS -]: "know"
+V0[SUBCAT 19, PAST +]: "knew"
+V0[SUBCAT 19, VFORM PSP]: "known"
+
+Vstem[SUBCAT 19, REGPAST -, REGPAS -, PAS -]: "think"
+V0[SUBCAT 19, PAST +]: "thought"
+V0[SUBCAT 19, VFORM PSP]: "thought"
+
+Vstem[SUBCAT 19, PAS -]: "believe"
+
+Vstem[SUBCAT 19, PAS -]: "presume"
+
+Vstem[SUBCAT 19, PAS -]: "realise"
+
+Vstem[SUBCAT 19, PAS -]: "suppose"
+
+Vstem[SUBCAT 19, PAS -]: "decide"
+
+Vstem[SUBCAT 19, PAS -]: "hope"
+
+Vstem[SUBCAT 19, PAS -]: "suggest"
+
+
+{Subcat 199: N2 + V1[INF] or P2[about] or V2[FIN] complements}
+Vstem[SUBCAT 199, REGPAS -, REGPAST -]: "tell"
+V0[SUBCAT 199, PAST +]:"told"
+V0[SUBCAT 199, VFORM PSP]: "told"
+V0[SUBCAT 199, VFORM PAS]: "told"
+
+Vstem[SUBCAT 199]: "hear"
+
+
+
+Vstem[SUBCAT 20, PAS -]: "approve"
+
+{Subcat 222: N2 + V2[FIN] complements}
+Vstem[SUBCAT 222, PAS -]: "bother"
+
+Vstem[SUBCAT 222, PAS -]: "amuse"
+
+{Subcat 223: (P2[to]) V2[FIN] complements}
+Vstem[SUBCAT 223, PAS -, NFORM it]: "seem"
+
+
+Vstem[SUBCAT 224, PAS -]: "seem"
+
+
+{Vstem[SUBCAT 22, PAS -]: "inquire"}
+
+

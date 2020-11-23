@@ -1,0 +1,27 @@
+BUILTINS =
+LIB	 = ../lib
+
+objs = main.o dial.o progress.o modem.o v8.o fax.o doc.o \
+       fsktx.o v29tx.o fskrx.o v29rx.o coder.o common.o
+
+libs = $LIB/library.a $MYLIB/fishaudio.a $MYLIB/coro.a
+
+hdrs = $LIB/sinegen.h $LIB/equalize.h $LIB/filters.h $LIB/debug.h $LIB/complex.h $LIB/scramble.h \
+       $LIB/myaudio.h $LIB/mystdio.h $LIB/tonedec.h $LIB/bitrates.h \
+       $MYLIB/coro.h \
+       modem.h coder.h fcf.h
+
+$MYBIN/modem:	    $objs $libs
+		    gcc $objs $libs -lm
+		    mv a.out $MYBIN/modem
+
+%.o:		    %.C $hdrs
+		    gcc -O -c -I$MYLIB -I$LIB $stem.C
+
+%.C:		    %.F
+		    fifi $stem.F $stem.C
+
+clean:
+		    rm -f $objs
+		    rm -f progress.C fskrx.C v29rx.C
+

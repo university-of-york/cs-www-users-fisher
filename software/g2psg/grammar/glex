@@ -1,0 +1,68 @@
+{Lexicon of 'grammatical' words}
+
+EXPRESSION: "hello"
+EXPRESSION: "good"
+EXPRESSION: "well"
+EXPRESSION: "OK"
+EXPRESSION: "no"
+EXPRESSION: "yes"
+
+PLEASE: "please"
+
+{Complementizers}
+COMP[COMP that]: "that"
+COMP[COMP whether]: "whether"
+COMP[COMP if]: "if"
+
+{Determiners}
+DET[PLU -]: "a"
+DET[PLU -]: "an"
+DET: "any"
+DET: "some"
+DET: "all"
+DET[PLU +]: "many"
+DET: "most"
+DET[PLU -]: "each"
+DET[PLU -]: "every"
+
+DET: "the"
+DET[PLU -]: "next"
+DET[PLU -]: "this"
+DET[PLU -]: "that"
+DET[PLU +]: "these"
+DET[PLU +]: "those"
+
+DET: "no"
+
+DET[WH, WHMOR Q]: "which"
+DET[WH, WHMOR Q]: "what"
+
+{Prepositional specifier}
+SPECP: "right"
+SPECP: "just"
+SPECP: "almost"
+SPECP: "nearly"
+
+{Conjunctions}
+
+CONJ[CONJ although]: "although"
+CONJ[CONJ and]: "and"
+CONJ[CONJ because]: "because"
+CONJ[CONJ both]: "both"
+CONJ[CONJ but]: "but"
+CONJ[CONJ either]: "either"
+CONJ[CONJ if]: "if"
+CONJ[CONJ or]: "or"
+CONJ[CONJ neither]: "neither"
+CONJ[CONJ nor]: "nor"
+CONJ[CONJ not]: NOT
+CONJ[CONJ then]: "then"
+CONJ[CONJ when]: "when"
+CONJ[CONJ while]: "while"
+CONJ[CONJ before]: "before"
+CONJ[CONJ until]: "until"
+CONJ[CONJ so]: "so"
+
+NOT: "not"
+
+INT: "indeed"

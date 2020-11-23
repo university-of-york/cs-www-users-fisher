@@ -1,0 +1,39 @@
+%%Creator: PostScript created by Alpha
+%%EndComments
+
+%%BeginProlog
+%%BeginProcSet: alpha 1 2
+
+/Mv  { moveto } def			    % absolute move
+/Rt  { 0 rmoveto } def			    % move right
+/Up  { 0 exch rmoveto } def		    % move up
+/SFt { setfont } def			    % set font
+/T   { show } def			    % show text
+/Bp  { /pgsave save def } def		    % begin page
+/Ep  { pgsave restore showpage } def	    % end page
+
+/FFt					    % define abbrev. for font,
+  { findfont				    % replacing StandardEncoding by AlphaEncoding
+    dup length dict copy begin
+      currentdict /FID undef
+      Encoding StandardEncoding eq { /Encoding AlphaEncoding def } if
+      currentdict
+    end
+    /Xxx exch definefont
+    exch scalefont def
+  }
+def
+
+%%EndProcSet
+%%EndProlog
+
+%%BeginSetup
+/AlphaEncoding 256 array def
+StandardEncoding AlphaEncoding copy
+   dup 236 /Eth put
+   dup 237 /Thorn put
+   dup 238 /Aring put
+   dup 252 /eth put
+   dup 253 /thorn put
+   dup 254 /aring put
+pop
