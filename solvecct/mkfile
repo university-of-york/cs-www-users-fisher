@@ -1,0 +1,16 @@
+BUILTINS =
+
+bindir = /york/www/usr/fisher/helpers
+libdir = /usr/fisher/linuxlib
+objs   = main.o matrix.o drawcct.o graphs.o common.o
+
+$bindir/solvecct:   $objs $libdir/libcgi.a
+		    olinux gcc -L$libdir $objs -lcgi -lgd -lm
+		    mv a.out $bindir/solvecct
+
+%.o:		    %.C solvecct.h $libdir/libcgi.h
+		    olinux gcc -O -c -I$libdir $stem.C
+
+clean:
+		    rm -f $objs
+
